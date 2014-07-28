@@ -1,21 +1,21 @@
 @font-face {
 	font-family: "montserratt";
-	src: url('../fonts/968200684-Montserrat-Regular.eot');
-	src: url('../fonts/968200684-Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/968200684-Montserrat-Regular.svg#montserratt') format('svg'),
-	url('../fonts/968200684-Montserrat-Regular.woff') format('woff'),
-	url('../fonts/968200684-Montserrat-Regular.ttf') format('truetype');
+	src: url('/static/968200684-Montserrat-Regular.eot');
+	src: url('/static/968200684-Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+	url('/static/968200684-Montserrat-Regular.svg#montserratt') format('svg'),
+	url('/static/968200684-Montserrat-Regular.woff') format('woff'),
+	url('/static/968200684-Montserrat-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: "montserratt";
-	src: url('../fonts/67260743-Montserrat-Bold.eot');
-	src: url('../fonts/67260743-Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/67260743-Montserrat-Bold.svg#Montserrat') format('svg'),
-	url('../fonts/67260743-Montserrat-Bold.woff') format('woff'),
-	url('../fonts/67260743-Montserrat-Bold.ttf') format('truetype');
+	src: url('/static/67260743-Montserrat-Bold.eot');
+	src: url('/static/67260743-Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+	url('/static/67260743-Montserrat-Bold.svg#Montserrat') format('svg'),
+	url('/static/67260743-Montserrat-Bold.woff') format('woff'),
+	url('/static/67260743-Montserrat-Bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -123,7 +123,7 @@ ol, ul {
 	padding: 0;
 }
 a {
-	color: #6a8a6b;
+	color: #326492;
 	text-decoration: underline;
 }
 a:visited {
@@ -222,6 +222,80 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   background-position: 0 0px;
 }
 
+
+#header h2 {
+	position: relative;
+	top: 29px;
+	left: 120px;
+  float: left;
+  text-transform: none;
+  font-weight: normal;
+  font-size: 11px;
+  color: #787878;
+  padding-left: 20px;
+	background: url(/static/user-id-ico.png) no-repeat;
+}
+#header span.score,
+#header span.monthly-score {
+	position: relative;
+	font-weight: normal;
+	top: 29px;
+	left: 176px;
+
+	display: inline-block;
+	line-height: 16px;
+	min-width: 10px;
+	padding: 0 3px;
+	text-align: center;
+	background: #326492;
+	font-size: 8px;
+	color: #fff;
+	-webkit-border-radius: 200px;
+	-moz-border-radius: 200px;
+	border-radius: 200px;
+}
+#header span.monthly-score {
+	      background: #7697b6;
+        left: 180px;
+}
+/* logout link */
+#header #signout {
+	position: relative;
+	font-size: 11px;
+	top: 29px;
+	left: 184px;
+	border-left: 1px solid #999999;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* search */
+#side-search {
+	position: relative;
+	background-color: transparent;
+	border: none;
+	margin: 0 0 15px;
+	padding: 0;
+	top: -32px;
+	left: 740px;
+}
+#side-search input.text {
+	background-position: 5px center !important;
+	border: 1px solid #e4e4e4 !important;
+	-webkit-box-shadow: inset 2px 2px 2px #dbdbdb;
+	-moz-box-shadow: inset 2px 2px 2px #dbdbdb;
+	box-shadow: inset 2px 2px 2px #dbdbdb;
+	font: 12px Arial, Helvetica, sans-serif;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	padding: 6px 4px 6px 9px !important;
+  width: 205px;
+}
+#side-search input.submit {
+	display: none;
+}
 
 /* Nav Menu
 -------------------------------------------------------------------------------------- */
@@ -362,6 +436,67 @@ ul#filternav li:last-child {
 }
 #post-filter div.filter-options a:hover {
 	background-color: #eee;
+}
+
+/* new article link */
+#newarticle {
+	position: relative;
+	top: 10px;
+	left: 420px;
+
+	float: left;
+	margin: 0 0 0 24px;
+	padding-left: 24px;
+	list-style: none;
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 14px;
+	-webkit-text-stroke: 0.3px;
+	color: #326492;
+	text-decoration: none;
+	line-height: 21px;
+	background: url(/static/option-new-article-ico.png) no-repeat left center;
+}
+
+/* messages link */
+#messages {
+	position: relative;
+	top: 10px;
+	left: 420px;
+	-webkit-text-stroke-color: rgb(86, 86, 86);
+	-webkit-text-stroke-width: 0.30000001192092896px;
+	display: list-item;
+	float: left;
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 14px;
+	color: #326492;
+	margin: 0 0 0 30px;
+	line-height: 21px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	padding-left: 30px;
+	background: url(/static/option-messages-ico.png) no-repeat left center;
+	text-align: left;
+	width: 100px;
+}
+
+/* preferences link */
+#preferences {
+	position: relative;
+	top: 10px;
+	left: 390px;
+
+	float: left;
+	margin: 0 0 0 24px;
+	padding-left: 24px;
+	list-style: none;
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 14px;
+	-webkit-text-stroke: 0.3px;
+	color: #326492;
+	text-decoration: none;
+	line-height: 21px;
+	background: url(/static/option-preferences-ico.png) no-repeat left center;
 }
 
 
@@ -986,31 +1121,7 @@ div.sidebox select {
 #side-login {
 	padding-bottom: 5px;
 }
-#side-search {
-	position: absolute;
-	background-color: transparent;
-	border: none;
-	margin: 0 0 15px;
-	padding: 0;
-	top: 20px;
-	left: 980px;
-}
-#side-search input.text {
-	background-position: 5px center !important;
-	border: 1px solid #e4e4e4 !important;
-	-webkit-box-shadow: inset 2px 2px 2px #dbdbdb;
-	-moz-box-shadow: inset 2px 2px 2px #dbdbdb;
-	box-shadow: inset 2px 2px 2px #dbdbdb;
-	font: 12px Arial, Helvetica, sans-serif;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
-	border-radius: 0;
-	padding: 6px 4px 6px 9px !important;
-    width: 205px;
-}
-#side-search input.submit {
-	display: none;
-}
+
 #side-status {
 	margin: 0 0 1em;
 }
@@ -1018,18 +1129,6 @@ div.sidebox select {
 	float: left;
   clear: left;
 	width: 92px;
-}
-#side-status h2 {
-	position: absolute;
-	top: 29px;
-	left: 730px;
-  float: left;
-  text-transform: none;
-  font-weight: normal;
-  font-size: 11px;
-  color: #787878;
-  padding-left: 20px;
-	background: url(/static/user-id-ico.png) no-repeat;
 }
 #side-status div.userinfo span {
 	color: #538d4d;
@@ -1041,29 +1140,6 @@ div.sidebox select {
 	font-size: 0.9090em; /* 10px */
 	line-height: 1.1em;
 	margin: 0 0 3px;
-}
-#side-status div.userinfo span.score,
-#side-status div.userinfo span.monthly-score {
-	position: absolute;
-	font-weight: normal;
-	top: 29px;
-	left: 860px;
-
-	display: inline-block;
-	line-height: 16px;
-	min-width: 10px;
-	padding: 0 3px;
-	text-align: center;
-	background: #326492;
-	font-size: 8px;
-	color: #fff;
-	-webkit-border-radius: 200px;
-	-moz-border-radius: 200px;
-	border-radius: 200px;
-}
-#side-status div.userinfo span.monthly-score {
-	      background: #7697b6;
-        left: 880px;
 }
 
 #side-status div.userinfo span.role {
@@ -1086,107 +1162,6 @@ div.sidebox select {
 }
 #side-status ul.userlinks li a {
 	position: absolute;
-}
-
-/* new article link */
-#side-status ul.userlinks li:first-child a {
-	visibility: hidden;
-}
-#side-status ul.userlinks li:first-child a:before {
-	visibility: visible;
-	position: absolute;
-	top: -46px;
-	left: -314px;
-
-	content: "New Article";
-	float: left;
-	margin: 0 0 0 24px;
-	padding-left: 24px;
-	list-style: none;
-	font-family: 'montserratt', Arial, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	-webkit-text-stroke: 0.3px;
-	color: #326492;
-	text-decoration: none;
-	line-height: 21px;
-	background: url(/static/option-new-article-ico.png) no-repeat left center;
-}
-
-/* messages link */
-#side-status div.userinfo span.mail {
-	position: absolute;
-	top: 368px;
-	left: 930px;
-}
-
-#side-status div.userinfo span.mail img {
-	display: none;
-}
-
-#side-status div.userinfo span.mail:before {
-	content: "Messages";
-	-webkit-text-stroke-color: rgb(86, 86, 86);
-	-webkit-text-stroke-width: 0.30000001192092896px;
-	color: rgb(86, 86, 86);
-	display: list-item;
-	float: left;
-	font-family: 'montserratt', Arial, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	color: #326492;
-	height: 21px;
-	line-height: 19.600000381469727px;
-	list-style-image: none;
-	list-style-position: outside;
-	list-style-type: none;
-	margin-bottom: 0px;
-	margin-left: 24px;
-	margin-right: 0px;
-	margin-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 30px;
-	background: url(/static/option-messages-ico.png) no-repeat left center;
-	padding-right: 0px;
-	padding-top: 0px;
-	text-align: left;
-	width: 100px;
-}
-
-/* preferences link */
-#side-status ul.userlinks li:nth-child(2) a {
-	position: absolute;
-	top: 368px;
-	left: 1050px;
-
-	float: left;
-	margin: 0 0 0 24px;
-	padding-left: 24px;
-	list-style: none;
-	font-family: 'montserratt', Arial, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	-webkit-text-stroke: 0.3px;
-	color: #326492;
-	text-decoration: none;
-	line-height: 21px;
-	background: url(/static/option-preferences-ico.png) no-repeat left center;
-}
-
-/* logout link */
-#side-status ul.userlinks li:nth-child(3) a {
-	font-size: 11px;
-	left: 900px;
-	top: 29px;
-	visibility: hidden;
-}
-#side-status ul.userlinks li:nth-child(3) a:before {
-	visibility: visible;
-	content: "sign out";
-	border-left: 1px solid #999999;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 #side-status dl.extrainfo {
@@ -1482,7 +1457,7 @@ div.articlenavigation #article_nav_controls .loading img {
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
 }
-.wiki-content h1 { color: #318756; font-size: 188%; }
+.wiki-content h1 { color: rgb(50, 100, 146); font-size: 188%; }
 .wiki-content h2 { font-size: 150%; }
 .wiki-content p {
 	margin: 0.4em 0 1em 0;

@@ -1,6 +1,30 @@
 (function ($) {
 
 $(document).ready(function() {
+  /* reposition elements for CFEA reskin */
+  // username
+  $("#side-status h2").appendTo("#header");
+  // karma
+  $("#side-status div.userinfo span.score").appendTo("#header");
+  $("#side-status div.userinfo span.monthly-score").appendTo("#header");
+  // logout
+  $("#side-status ul.userlinks li:nth-child(3) a").attr("id", "signout");
+  $("#side-status ul.userlinks li:nth-child(3) a").text("sign out");
+  $("#side-status ul.userlinks li:nth-child(3) a").appendTo("#header");
+  // search
+  $("#side-search").appendTo("#header");
+
+  // new article
+  $("#side-status ul.userlinks li:first-child a").text("New Article");
+  $("#side-status ul.userlinks li:first-child a").attr("id", "newarticle");
+  $("#side-status ul.userlinks li:first-child a").appendTo("#nav");
+  // messages
+  $("#side-status div.userinfo span.mail").text("Messages");
+  $("#side-status div.userinfo span.mail").attr("id", "messages");
+  $("#side-status div.userinfo span.mail").appendTo("#nav");
+  // preferences
+  $("#side-status ul.userlinks li:nth-child(2) a").attr("id", "preferences");
+  $("#side-status ul.userlinks li:nth-child(2) a").appendTo("#nav");
 
   /* Dropdowns in main menu */
   dropdownSel = 'ul#nav li img.dropdown';
@@ -43,7 +67,7 @@ $(document).ready(function() {
             (navigator.platform.indexOf("iPad") != -1));
   };
 
-  /* Don't do qtip tooltips with iphones (and related), it seems to interfer with the 
+  /* Don't do qtip tooltips with iphones (and related), it seems to interfer with the
      normal onclick behaviour */
   if (!isiPhone()) {
     // Button tooltips
