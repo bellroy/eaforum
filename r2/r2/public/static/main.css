@@ -1,3 +1,39 @@
+@font-face {
+	font-family: "montserratt";
+	src: url('../fonts/968200684-Montserrat-Regular.eot');
+	src: url('../fonts/968200684-Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/968200684-Montserrat-Regular.svg#montserratt') format('svg'),
+	url('../fonts/968200684-Montserrat-Regular.woff') format('woff'),
+	url('../fonts/968200684-Montserrat-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "montserratt";
+	src: url('../fonts/67260743-Montserrat-Bold.eot');
+	src: url('../fonts/67260743-Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/67260743-Montserrat-Bold.svg#Montserrat') format('svg'),
+	url('../fonts/67260743-Montserrat-Bold.woff') format('woff'),
+	url('../fonts/67260743-Montserrat-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+body, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+	font-size: 16px;
+	text-align: center;
+	color: #565656;
+	background: #eaeaea;
+	line-height: 1.4;
+}
+
 /* Clearing
 -------------------------------------------------------------------------------------- */
 #main:after,
@@ -26,22 +62,17 @@ div.footer ul.footer-links:after,
 
 /* General Page Structure
 -------------------------------------------------------------------------------------- */
-body {
-	background-color: #d8d8d8;
-	margin: 0;
-	padding: 0;
-}
 #wrapper {
-	background-color: #fff;
-	-webkit-box-shadow: 0px 0px 10px #555;
-	-moz-box-shadow: 0px 0px 10px #555;
-	box-shadow: 0px 0px 10px #555;
 	margin: 0 auto;
-	padding: 0;
-	width: 990px;
+	width: 1024px;
+	text-align: left;
+	font-size: 14px;
+	background: #fff;
+	border-left: 1px solid #d2d2d2;
+	border-right: 1px solid #d2d2d2;
 }
 #main {
-	padding: 15px 20px;
+	padding: 0px 0px 15px 0px;
 }
 #content {
 	float: left;
@@ -61,9 +92,9 @@ a img {	border: none; }
 
 /* General Typography
 -------------------------------------------------------------------------------------- */
-body {
+/*body {
 	font: 12px/1.5 Arial, Helvetica, sans-serif;
-}
+}*/
 #content {
 	text-align: justify;
 }
@@ -133,9 +164,23 @@ input, select, textarea, button {
 /* Header
 -------------------------------------------------------------------------------------- */
 #header {
-  background: url(/static/header_background.jpg) no-repeat top left;
-  height: 103px;
-  text-align: right;
+	height: 69px;
+	padding: 0 32px;
+}
+#header h1 {
+	float: left;
+	margin: 19px 0 0;
+	padding: 0;
+}
+#header h1 a {
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 25px;
+	color: #326492;
+	text-decoration: none;
+}
+#banner {
+	height: 285px;
+	background: #28577b url(/static/banner-image.jpg) no-repeat;
 }
 a#logo {
   display: block;
@@ -181,32 +226,45 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 /* Nav Menu
 -------------------------------------------------------------------------------------- */
 ul#nav {
-	border-bottom: 1px solid #c9c7c7;
 	clear: both;
 	list-style: none;
 	margin: 0;
-	padding: 0 0 10px;
+
+	height: 42px;
+	border-bottom: 1px solid #b2b2b2;
+}
+
+#nav img.dropdown {
+	display:none;
 }
 ul#nav li {
-	border-right: 1px solid #c9c7c7;
 	float: left;
 	font-size: 15px;
 	line-height: 1;
-	margin: 0 25px 0 0;
-	padding: 0 25px 0 0;
+	margin: 0 4px;
 	position: relative;
-	text-transform: uppercase;
+	list-style: none;
+	font-family: 'montserratt', Arial, sans-serif;
+	-webkit-text-stroke: 0.3px;
+}
+ul#nav li:first-child {
+	margin-left: 18px;
 }
 ul#nav li:last-child {
 	border-right: none;
 }
 ul#nav li a {
-	color: #999;
 	text-decoration: none;
+	display: inline-block;
+	padding: 0 10px;
+	height: 43px;
+	line-height: 42px;
+	color: #464646;
 }
 ul#nav li.active a {
-	color: #666666;
 	font-weight: bold;
+	color: #326492;
+	background: url(/static/tab-arrow.png) no-repeat center bottom
 }
 ul#nav li a:hover {
 	color: #777;
@@ -929,10 +987,13 @@ div.sidebox select {
 	padding-bottom: 5px;
 }
 #side-search {
+	position: absolute;
 	background-color: transparent;
 	border: none;
 	margin: 0 0 15px;
 	padding: 0;
+	top: 20px;
+	left: 980px;
 }
 #side-search input.text {
 	background-position: 5px center !important;
@@ -959,8 +1020,16 @@ div.sidebox select {
 	width: 92px;
 }
 #side-status h2 {
+	position: absolute;
+	top: 29px;
+	left: 730px;
   float: left;
   text-transform: none;
+  font-weight: normal;
+  font-size: 11px;
+  color: #787878;
+  padding-left: 20px;
+	background: url(/static/user-id-ico.png) no-repeat;
 }
 #side-status div.userinfo span {
 	color: #538d4d;
@@ -975,31 +1044,37 @@ div.sidebox select {
 }
 #side-status div.userinfo span.score,
 #side-status div.userinfo span.monthly-score {
-	background-color: #538d4d;
-	-webkit-border-radius: 11px;
-	-moz-border-radius: 11px;
-	border-radius: 11px;
-	color: #fff;
-	height: 22px;
-	line-height: 22px;
-	margin: 0 3px 0 0;
-	padding: 0 9px;
-	font-weight: bold;
+	position: absolute;
+	font-weight: normal;
+	top: 29px;
+	left: 860px;
+
+	display: inline-block;
+	line-height: 16px;
+	min-width: 10px;
+	padding: 0 3px;
 	text-align: center;
+	background: #326492;
+	font-size: 8px;
+	color: #fff;
+	-webkit-border-radius: 200px;
+	-moz-border-radius: 200px;
+	border-radius: 200px;
 }
 #side-status div.userinfo span.monthly-score {
-        background-color: #8fba75;
-        margin-top: 3px;
+	      background: #7697b6;
+        left: 880px;
 }
 
 #side-status div.userinfo span.role {
 	font-weight: bold;
 	line-height: 22px;
 }
-#side-status div.userinfo span.mail {
-    margin-top: 8px;
-    clear: both;
+
+#side-status div.userinfo span.label {
+	display:none;
 }
+
 #side-status ul.userlinks {
 	float: right;
 	list-style: none;
@@ -1010,25 +1085,110 @@ div.sidebox select {
 	margin: 0 0 5px;
 }
 #side-status ul.userlinks li a {
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #e9e7e7 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e9e7e7)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #ffffff 0%,#e9e7e7 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #ffffff 0%,#e9e7e7 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, #ffffff 0%,#e9e7e7 100%); /* IE10+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e9e7e7',GradientType=0 ); /* IE6-9 */
-	background: linear-gradient(top, #ffffff 0%,#e9e7e7 100%); /* W3C */
-	background-color: #fff;
-	border: 1px solid #8a8a8b;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	display: block;
-	font-size: 0.9090em; /* 10px */
-	padding: 2px 0;
-	text-align: center;
-	text-decoration: none;
+	position: absolute;
 }
+
+/* new article link */
+#side-status ul.userlinks li:first-child a {
+	visibility: hidden;
+}
+#side-status ul.userlinks li:first-child a:before {
+	visibility: visible;
+	position: absolute;
+	top: -46px;
+	left: -314px;
+
+	content: "New Article";
+	float: left;
+	margin: 0 0 0 24px;
+	padding-left: 24px;
+	list-style: none;
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	-webkit-text-stroke: 0.3px;
+	color: #326492;
+	text-decoration: none;
+	line-height: 21px;
+	background: url(/static/option-new-article-ico.png) no-repeat left center;
+}
+
+/* messages link */
+#side-status div.userinfo span.mail {
+	position: absolute;
+	top: 368px;
+	left: 930px;
+}
+
+#side-status div.userinfo span.mail img {
+	display: none;
+}
+
+#side-status div.userinfo span.mail:before {
+	content: "Messages";
+	-webkit-text-stroke-color: rgb(86, 86, 86);
+	-webkit-text-stroke-width: 0.30000001192092896px;
+	color: rgb(86, 86, 86);
+	display: list-item;
+	float: left;
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #326492;
+	height: 21px;
+	line-height: 19.600000381469727px;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin-bottom: 0px;
+	margin-left: 24px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 30px;
+	background: url(/static/option-messages-ico.png) no-repeat left center;
+	padding-right: 0px;
+	padding-top: 0px;
+	text-align: left;
+	width: 100px;
+}
+
+/* preferences link */
+#side-status ul.userlinks li:nth-child(2) a {
+	position: absolute;
+	top: 368px;
+	left: 1050px;
+
+	float: left;
+	margin: 0 0 0 24px;
+	padding-left: 24px;
+	list-style: none;
+	font-family: 'montserratt', Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	-webkit-text-stroke: 0.3px;
+	color: #326492;
+	text-decoration: none;
+	line-height: 21px;
+	background: url(/static/option-preferences-ico.png) no-repeat left center;
+}
+
+/* logout link */
+#side-status ul.userlinks li:nth-child(3) a {
+	font-size: 11px;
+	left: 900px;
+	top: 29px;
+	visibility: hidden;
+}
+#side-status ul.userlinks li:nth-child(3) a:before {
+	visibility: visible;
+	content: "sign out";
+	border-left: 1px solid #999999;
+	margin-left: 8px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 #side-status dl.extrainfo {
   margin: 0;
   padding: 8px 0 0 0;
@@ -1070,6 +1230,7 @@ div.sidebox select {
 ul#rightnav {
 	float: right;
 	margin: 0 0 13px;
+	display:none;
 }
 ul#rightnav li {
 	border-right: 1px solid #c9c7c7;
