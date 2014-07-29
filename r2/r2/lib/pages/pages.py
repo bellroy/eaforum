@@ -128,13 +128,6 @@ class Reddit(Wrapped):
         else:
             ps.append(ProfileBar(c.user, self.corner_buttons()))
 
-        if (c.user_is_loggedin and
-            c.user.wiki_account is None and
-            c.user.email is not None and
-            c.user.email_validated and
-            self.sidewiki):
-            ps.append(WikiCreateSide())
-
         filters_ps = PaneStack(div=True)
         for toolbar in self.toolbars:
             filters_ps.append(toolbar)
@@ -149,17 +142,8 @@ class Reddit(Wrapped):
         if c.user_is_admin and not isinstance(c.site, FakeSubreddit) and not c.cname:
             ps.append(SubredditInfoBar())
 
-        if self.extension_handling:
-            ps.append(FeedLinkBar(getattr(self, 'canonical_link', request.path)))
-
         ps.append(SideBoxPlaceholder('side-meetups', _('Nearest Meetups'), '/meetups', sr_path=False))
         ps.append(SideBoxPlaceholder('side-comments', _('Recent Comments'), '/comments'))
-        if c.site.name == 'discussion':
-            ps.append(SideBoxPlaceholder('side-open', _('Recent Open Threads'), '/tag/open_thread'))
-            ps.append(SideBoxPlaceholder('side-diary', _('Recent Rationality Diaries'), '/tag/group_rationality_diary'))
-        else:
-            ps.append(SideBoxPlaceholder('side-quote', _('Recent Rationality Quotes'), '/tag/quotes'))
-        ps.append(SideBoxPlaceholder('side-posts', _('Recent Posts'), '/recentposts'))
 
         if g.recent_edits_feed:
             ps.append(RecentWikiEditsBox(g.recent_edits_feed))
@@ -167,7 +151,9 @@ class Reddit(Wrapped):
         ps.append(FeedBox(g.feedbox_urls))
 
         ps.append(SideBoxPlaceholder('side-monthly-contributors', _('Top Contributors, 30 Days')))
-        ps.append(SideBoxPlaceholder('karma-awards', _('Recent Karma Awards'), '/karma', sr_path=False))
+
+        if self.extension_handling:
+            ps.append(FeedLinkBar(getattr(self, 'canonical_link', request.path)))
 
         if g.site_meter_codename:
             ps.append(SiteMeter(g.site_meter_codename))
