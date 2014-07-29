@@ -258,6 +258,36 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 	      background: #7697b6;
         left: 180px;
 }
+
+/* login button */
+#loginbutton {
+	position: relative;
+	top: 23px;
+	left: 200px;
+	-webkit-background-clip: border-box;
+	-webkit-background-origin: padding-box;
+	-webkit-background-size: auto;
+	background: #2a597c url(/static/login-btn-ico.png) no-repeat 10px center;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	color: rgb(255, 255, 255);
+	cursor: auto;
+	display: block;
+	float: left;
+	font-family: montserratt, Arial, sans-serif;
+	font-size: 11px;
+	height: 29px;
+	line-height: 29px;
+	padding-bottom: 0px;
+	padding-left: 33px;
+	padding-right: 14px;
+	padding-top: 0px;
+	text-align: left;
+	text-decoration: none solid rgb(255, 255, 255);
+}
+
 /* logout link */
 #header #signout {
 	position: relative;
@@ -504,7 +534,7 @@ ul#filternav li:last-child {
 	background: url(/static/option-preferences-ico.png) no-repeat left center;
 }
 
-#side-user, #side-feed {
+#side-user, #side-feed, #side-login {
 	display: none;
 }
 
