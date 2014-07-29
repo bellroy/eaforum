@@ -22,17 +22,22 @@ $(document).ready(function() {
   // search
   $("#side-search").appendTo("#header");
 
+  // filter nav
+  $("#filternav li:first-child a").text("New");
+
   // new article
   $("#side-status ul.userlinks li:first-child a").text("New Article");
   $("#side-status ul.userlinks li:first-child a").attr("id", "newarticle");
-  $("#side-status ul.userlinks li:first-child a").appendTo("#nav");
+  $("#side-status ul.userlinks li:first-child a").appendTo("#filternav");
   // messages
   $("#side-status div.userinfo span.mail a").text("Messages");
   $("#side-status div.userinfo span.mail").attr("id", "messages");
-  $("#side-status div.userinfo span.mail").appendTo("#nav");
+  $("#side-status div.userinfo span.mail").appendTo("#filternav");
   // preferences
   $("#side-status ul.userlinks li:nth-child(2) a").attr("id", "preferences");
-  $("#side-status ul.userlinks li:nth-child(2) a").appendTo("#nav");
+  $("#side-status ul.userlinks li:nth-child(2) a").appendTo("#filternav");
+
+  $("#filternav").prependTo("#main");
 
   /* Dropdowns in main menu */
   dropdownSel = 'ul#nav li img.dropdown';
