@@ -231,28 +231,23 @@ class Reddit(Wrapped):
 
     def header_nav(self):
         """Navigation menu for the header"""
-
-        menu_stack = PaneStack()
-
         # Ensure the default button is the first tab
-        #default_button_name = c.site.default_listing
+        default_button_name = c.site.default_listing
+        button_names = ['new', 'top']
 
-        main_buttons = [
-            ExpandableButton('main', dest = '/promoted', sr_path = False, sub_menus =
-                             [ NamedButton('posts', dest = '/promoted', sr_path = False),
-                               NamedButton('comments', dest = '/comments', sr_path = False)]),
-            ExpandableButton('discussion', dest = "/r/discussion/new", sub_reddit = "/r/discussion/", sub_menus =
-                             [ NamedButton('posts', dest = "/r/discussion/new", sr_path = False),
-                               NamedButton('comments', dest = "/r/discussion/comments", sr_path = False)])
-       ]
+        main_buttons = []
+        for name in button_names:
+          kw = dict(dest='', aliases=['/' + name]) if name == default_button_name else {}
+          main_buttons.append(NamedButton(name, **kw))
 
-        menu_stack.append(NavMenu(main_buttons, title = _('Filter by'), _id='nav', type='navlist'))
+        if c.user_is_loggedin:
+            main_buttons.append(NamedButton('saved', False))
 
+        if not c.default_sr:
+            main_buttons.insert(0, NamedButton('home', dest = '/', sr_path = False))
 
-        if self.header_sub_nav:
-            menu_stack.append(NavMenu(self.header_sub_nav, title = _('Filter by'), _id='filternav', type='navlist'))
+        return NavMenu(main_buttons, title = _('Filter by'), _id='nav', type='navlist')
 
-        return menu_stack
 
     def right_menu(self):
         """docstring for right_menu"""

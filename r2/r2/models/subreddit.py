@@ -520,7 +520,7 @@ class DefaultSR(FakeSubreddit):
 
     @property
     def default_listing(self):
-        return 'blessed'
+        return 'new'
 
 class MultiReddit(DefaultSR):
     name = 'multi'
