@@ -15,6 +15,14 @@ admin.email_validated = True
 admin._commit()
 
 try:
+    Subreddit._by_name('admin')
+except NotFound:
+    Subreddit._create_and_subscribe('main', admin,
+                                    { 'title': 'Admin',
+                                      'type': 'restricted',
+                                      'default_listing': 'new' })
+
+try:
     Subreddit._by_name('main')
 except NotFound:
     Subreddit._create_and_subscribe('main', admin,
