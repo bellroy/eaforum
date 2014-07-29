@@ -23,21 +23,29 @@ $(document).ready(function() {
   $("#side-search").appendTo("#header");
 
   // filter nav
-  $("#filternav li:first-child a").text("New");
+  var navDivId = "#nav";
+  if ($("#filternav").length > 0) {
+    $("#filternav li:first-child a").text("New");
+    $("#nav").hide();
+
+    navDivId = "#filternav";
+  }
+  $navBar = $("<div id=\"navbar\"></div>");
+  $navBar.prependTo("#main");
+  $(navDivId).prependTo("#navbar");
 
   // new article
   $("#side-status ul.userlinks li:first-child a").text("New Article");
   $("#side-status ul.userlinks li:first-child a").attr("id", "newarticle");
-  $("#side-status ul.userlinks li:first-child a").appendTo("#filternav");
+  $("#side-status ul.userlinks li:first-child a").appendTo("#navbar");
   // messages
   $("#side-status div.userinfo span.mail a").text("Messages");
   $("#side-status div.userinfo span.mail").attr("id", "messages");
-  $("#side-status div.userinfo span.mail").appendTo("#filternav");
+  $("#side-status div.userinfo span.mail").appendTo("#navbar");
   // preferences
   $("#side-status ul.userlinks li:nth-child(2) a").attr("id", "preferences");
-  $("#side-status ul.userlinks li:nth-child(2) a").appendTo("#filternav");
+  $("#side-status ul.userlinks li:nth-child(2) a").appendTo("#navbar");
 
-  $("#filternav").prependTo("#main");
 
   /* Dropdowns in main menu */
   dropdownSel = 'ul#nav li img.dropdown';
