@@ -1,29 +1,28 @@
 load 'config/cap-tasks/trike-aws.rb'
 
-set :application, "lesswrong.com"
-set :domains, %w[ lesswrong.com ]
-set :elb_name, 'lblw'
-set :hosts, lambda { AWS.elb_hosts(elb_name) }
+set :application, "ea-forum"
+set :domains, %w[ effectivealtruistforum.com ]
+# set :elb_name, 'lblw'
+# set :hosts, lambda { AWS.elb_hosts(elb_name) }
+set :hosts, %w[egg.trikeapps.com]
 set :environment, 'production'
 
 set :primary_host, hosts.shift
 
 role :app, primary_host, :primary => true
-role :app, *hosts
+# role :app, *hosts
 role :web, primary_host, :primary => true
-role :web, *hosts
-role :db,  "salad.trikeapps.com", :primary => true, :no_release => true
+# role :web, *hosts
+role :db,  "egg.trikeapps.com", :primary => true, :no_release => true
 role :backups, "backup.trikeapps.com", :user => 'backup', :no_release => true
 
 before "deploy:update_code", "tests_check:manual_tests_executed?"
 after 'deploy:update_code', 'git:tag_deploy'
 
-# XXX: Disabled for now - it fails to remove the 20110705001432
-# release. Fix when we cut the next AMI.
-# after 'deploy:restart', 'deploy:cleanup'
+after 'deploy:restart', 'deploy:cleanup'
 
-after 'multistage:ensure', :check_hostname
-after 'deploy:cleanup', :check_hostname
+# after 'multistage:ensure', :check_hostname
+# after 'deploy:cleanup', :check_hostname
 
 task :check_hostname, :roles => :app, :only => :primary do
   balancers = AWS.elb.describe_load_balancers(elb_name)

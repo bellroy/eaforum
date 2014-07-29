@@ -15,46 +15,29 @@ admin.email_validated = True
 admin._commit()
 
 try:
-    Subreddit._by_name('lesswrong')
+    Subreddit._by_name('admin')
 except NotFound:
-    Subreddit._create_and_subscribe('lesswrong', admin,
-                                    { 'title': 'Less Wrong',
+    Subreddit._create_and_subscribe('main', admin,
+                                    { 'title': 'Admin',
                                       'type': 'restricted',
-                                      'default_listing': 'blessed' })
+                                      'default_listing': 'new' })
 
 try:
-    Subreddit._by_name('discussion')
+    Subreddit._by_name('main')
 except NotFound:
-    s = Subreddit._create_and_subscribe('discussion', admin,
-                                        { 'title': 'Less Wrong Discussion',
-                                          'type': 'public',
-                                          'default_listing': 'new' })
-    s.header = "/static/logo-discussion.png"
-    s.stylesheet = "/static/discussion.css"
-    s.infotext = u"""You're looking at Less Wrong's discussion board. This includes
-                     all posts, including those that haven't been promoted to the front
-                     page yet. For more information, see [About Less Wrong](/about-less-wrong)."""
-
-    s.posts_per_page_multiplier = 4
-    s.post_karma_multiplier = 1
-    s._commit()
+    Subreddit._create_and_subscribe('main', admin,
+                                    { 'title': 'EA Forum',
+                                      'type': 'restricted',
+                                      'default_listing': 'new' })
 
 try:
     Subreddit._by_name('meetups')
 except NotFound:
     s = Subreddit._create_and_subscribe('meetups', admin,
-                                        { 'title': 'Less Wrong Meetups',
+                                        { 'title': 'Meetups',
                                           'type': 'restricted',
                                           'default_listing': 'new' })
 
     s.posts_per_page_multiplier = 4
     s.post_karma_multiplier = 1
     s._commit()
-
-
-tags = ['group_rationality_diary', 'open_thread', 'quotes']
-for tag in tags:
-    try:
-        Tag._new(tag)
-    except TagExists:
-        pass

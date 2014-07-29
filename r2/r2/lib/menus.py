@@ -43,8 +43,8 @@ class MenuHandler(StringHandler):
 
 # selected menu styles, primarily used on the main nav bar
 menu_selected=StringHandler(hot          = _("Popular"),
-                            new          = _("What's new"),
-                            top          = _("Top scoring"),
+                            new          = _("New"),
+                            top          = _("Top"),
                             controversial= _("Most controversial"),
                             saved        = _("Saved"),
                             recommended  = _("Recommended"),

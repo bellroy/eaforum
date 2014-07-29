@@ -177,6 +177,7 @@ input, select, textarea, button {
 	font-size: 25px;
 	color: #326492;
 	text-decoration: none;
+	text-transform: uppercase;
 }
 #banner {
 	height: 285px;

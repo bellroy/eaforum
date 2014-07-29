@@ -12,22 +12,10 @@ from pylons import c
 
 allWikiPagesCached = \
   {
-    'about': { 'url' : 'http://wiki.lesswrong.com/wiki/Lesswrong:Aboutpage',
-               'route' : 'Aboutpage'
-               },
-
-    'main': { 'url' : 'http://wiki.lesswrong.com/wiki/Lesswrong:Homepage',
-              'route' : 'Homepage'
-              },
 
     'comment-help' : { 'url' : 'http://wiki.lesswrong.com/wiki/Lesswrong:Commentmarkuphelp',
                        'route' : 'Commentmarkuphelp'
-                       },
-
-    'wiki-stylesheet' : { 'url' : 'http://wiki.lesswrong.com/wiki/Lesswrong:Stylesheet',
-                          'route' : 'Stylesheet',
-                          'id' : 'stylesheet',
-                          'content-type' : 'text/css'
                        }
+
     }
 

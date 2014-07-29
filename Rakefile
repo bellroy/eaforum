@@ -130,7 +130,7 @@ namespace :deploy do
   task :crontab do
     crontab = basepath + 'config' + 'crontab'
     target = "/etc/cron.d/lesswrong"
-    if environment == "production"
+    if false && environment == "production"
       sudo "/bin/cp #{crontab} #{target}"
     else
       # Don't want the cron jobs running in non-production environments
@@ -147,7 +147,7 @@ namespace :deploy do
       end
     else
       FileUtils.cd shared_path do
-        run "git clone git@git.trikeapps.com:settings/lesswrong.git secrets"
+        run "git clone git@git.trikeapps.com:settings/eaforum.git secrets"
       end
     end
 

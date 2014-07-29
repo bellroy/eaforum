@@ -1,11 +1,11 @@
-h1. Less Wrong
+h1. EA Forum
 
-The code behind the rationalists community at "lesswrong.com":http://lesswrong.com/.
+The code behind the Effective Altruist Forum at "effectivealtruistforum.com":http://effectivealtruistforum.com/.
 
 h2. Resources
 
-* The source code is hosted on "Github":http://github.com/tricycle/lesswrong
+* The source code is hosted on "GitHub":https://github.com/tricycle/eaforum
 * Documentation is available via the "GitHub wiki":http://wiki.github.com/tricycle/lesswrong
 * Issues are tracked on "Google Code":http://code.google.com/p/lesswrong/
 * Mailing list (lesswrong-dev) on "Google Groups":http://groups.google.com/group/lesswrong-dev
-* The code is a fork of the "Reddit":http://reddit.com/ "codebase":http://code.reddit.com/
+* The code is a fork of "Less Wrong":https://github.com/tricycle/lesswrong, which was originally forked from "Reddit":http://reddit.com/ "codebase":http://code.reddit.com/
