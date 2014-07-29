@@ -19,7 +19,7 @@ $(document).ready(function() {
   $("#side-status ul.userlinks li:first-child a").attr("id", "newarticle");
   $("#side-status ul.userlinks li:first-child a").appendTo("#nav");
   // messages
-  $("#side-status div.userinfo span.mail").text("Messages");
+  $("#side-status div.userinfo span.mail a").text("Messages");
   $("#side-status div.userinfo span.mail").attr("id", "messages");
   $("#side-status div.userinfo span.mail").appendTo("#nav");
   // preferences
