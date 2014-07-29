@@ -289,7 +289,7 @@ def chksrname(x):
 class VLinkUrls(Validator):
     "A comma-separated list of link urls"
     splitter = re.compile('[ ,]+')
-    id_re = re.compile('^/lw/([^/]+)/')
+    id_re = re.compile('^/ea/([^/]+)/')
     def __init__(self, item, *a, **kw):
         self.item = item
         Validator.__init__(self, item, *a, **kw)
