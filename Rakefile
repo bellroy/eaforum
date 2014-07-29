@@ -147,7 +147,7 @@ namespace :deploy do
       end
     else
       FileUtils.cd shared_path do
-        run "git clone git@git.trikeapps.com:settings/lesswrong.git secrets"
+        run "git clone git@git.trikeapps.com:settings/eaforum.git secrets"
       end
     end
 
