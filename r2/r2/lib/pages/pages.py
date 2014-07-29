@@ -128,13 +128,6 @@ class Reddit(Wrapped):
         else:
             ps.append(ProfileBar(c.user, self.corner_buttons()))
 
-        if (c.user_is_loggedin and
-            c.user.wiki_account is None and
-            c.user.email is not None and
-            c.user.email_validated and
-            self.sidewiki):
-            ps.append(WikiCreateSide())
-
         filters_ps = PaneStack(div=True)
         for toolbar in self.toolbars:
             filters_ps.append(toolbar)
@@ -149,17 +142,8 @@ class Reddit(Wrapped):
         if c.user_is_admin and not isinstance(c.site, FakeSubreddit) and not c.cname:
             ps.append(SubredditInfoBar())
 
-        if self.extension_handling:
-            ps.append(FeedLinkBar(getattr(self, 'canonical_link', request.path)))
-
         ps.append(SideBoxPlaceholder('side-meetups', _('Nearest Meetups'), '/meetups', sr_path=False))
         ps.append(SideBoxPlaceholder('side-comments', _('Recent Comments'), '/comments'))
-        if c.site.name == 'discussion':
-            ps.append(SideBoxPlaceholder('side-open', _('Recent Open Threads'), '/tag/open_thread'))
-            ps.append(SideBoxPlaceholder('side-diary', _('Recent Rationality Diaries'), '/tag/group_rationality_diary'))
-        else:
-            ps.append(SideBoxPlaceholder('side-quote', _('Recent Rationality Quotes'), '/tag/quotes'))
-        ps.append(SideBoxPlaceholder('side-posts', _('Recent Posts'), '/recentposts'))
 
         if g.recent_edits_feed:
             ps.append(RecentWikiEditsBox(g.recent_edits_feed))
@@ -167,7 +151,9 @@ class Reddit(Wrapped):
         ps.append(FeedBox(g.feedbox_urls))
 
         ps.append(SideBoxPlaceholder('side-monthly-contributors', _('Top Contributors, 30 Days')))
-        ps.append(SideBoxPlaceholder('karma-awards', _('Recent Karma Awards'), '/karma', sr_path=False))
+
+        if self.extension_handling:
+            ps.append(FeedLinkBar(getattr(self, 'canonical_link', request.path)))
 
         return ps
 
@@ -242,28 +228,23 @@ class Reddit(Wrapped):
 
     def header_nav(self):
         """Navigation menu for the header"""
-
-        menu_stack = PaneStack()
-
         # Ensure the default button is the first tab
-        #default_button_name = c.site.default_listing
+        default_button_name = c.site.default_listing
+        button_names = ['new', 'top']
 
-        main_buttons = [
-            ExpandableButton('main', dest = '/promoted', sr_path = False, sub_menus =
-                             [ NamedButton('posts', dest = '/promoted', sr_path = False),
-                               NamedButton('comments', dest = '/comments', sr_path = False)]),
-            ExpandableButton('discussion', dest = "/r/discussion/new", sub_reddit = "/r/discussion/", sub_menus =
-                             [ NamedButton('posts', dest = "/r/discussion/new", sr_path = False),
-                               NamedButton('comments', dest = "/r/discussion/comments", sr_path = False)])
-       ]
+        main_buttons = []
+        for name in button_names:
+          kw = dict(dest='', aliases=['/' + name]) if name == default_button_name else {}
+          main_buttons.append(NamedButton(name, **kw))
 
-        menu_stack.append(NavMenu(main_buttons, title = _('Filter by'), _id='nav', type='navlist'))
+        if c.user_is_loggedin:
+            main_buttons.append(NamedButton('saved', False))
 
+        if not c.default_sr:
+            main_buttons.insert(0, NamedButton('main', dest = '/', sr_path = False))
 
-        if self.header_sub_nav:
-            menu_stack.append(NavMenu(self.header_sub_nav, title = _('Filter by'), _id='filternav', type='navlist'))
+        return NavMenu(main_buttons, title = _('Filter by'), _id='nav', type='navlist')
 
-        return menu_stack
 
     def right_menu(self):
         """docstring for right_menu"""
