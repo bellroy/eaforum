@@ -17,7 +17,7 @@ admin._commit()
 try:
     Subreddit._by_name('admin')
 except NotFound:
-    Subreddit._create_and_subscribe('main', admin,
+    Subreddit._create_and_subscribe('admin', admin,
                                     { 'title': 'Admin',
                                       'type': 'restricted',
                                       'default_listing': 'new' })
