@@ -21,7 +21,7 @@ set :engine, "paster"
 # Be sure to change these in your application-specific files
 set :branch, 'stable'
 set :rails_env, nil
-set :user, "www-data"            # defaults to the currently logged in user
+set :user, lambda { "eaforum-#{stage}" }           # defaults to the currently logged in user
 set :public_path, lambda { "#{current_path}/r2/r2/public" }
 set :databases, %w[main change email query_queue]
 
@@ -59,8 +59,4 @@ end
 
 before 'deploy:update_code', 'git:ensure_pushed'
 after "deploy:update_code", "deploy:rake_after_update_code"
-after 'deploy:cleanup', :admin_message
 
-task :admin_message, :roles => :app, :only => :primary do
-  logger.info "\033[31mEnsure Alex_Altair's admin status remains\033[0m"
-end
