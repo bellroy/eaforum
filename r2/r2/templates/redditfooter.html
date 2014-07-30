@@ -34,7 +34,7 @@
 
   <p class="copyright">
     &#64; 2014 Effective Altruism Forum &nbsp;|
-    &nbsp; Powered by <a href="#">reddit</a> &nbsp;|
+    &nbsp; Powered by <a href="http://code.reddit.com/">reddit</a> &nbsp;|
     &nbsp; <a href="#">Privacy Policy</a> &nbsp;|
     &nbsp; <a href="mailto:contact@effectiveforum.com">contact@effectiveforum.com</a>
   </p>
@@ -94,23 +94,4 @@
 %endif
 
 %if not getattr(g, 'disable_tracking_js', False):
-        <script type="text/javascript">
-          var vglnk = { api_url: '//api.viglink.com/api',
-                        key: '9f37ca02a1e3cbd4f3d0a3618a39fbca' };
-
-          (function(d, t) {
-            var s = d.createElement(t); s.type = 'text/javascript'; s.async = true;
-            s.src = vglnk.api_url + '/vglnk.js?key=' + vglnk.key;
-            var r = d.getElementsByTagName(t)[0]; r.parentNode.insertBefore(s, r);
-          }(document, 'script'));
-        </script>
-        <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-        </script>
-        <script type="text/javascript">
-        try {
-        var pageTracker = _gat._getTracker("UA-5818093-2");
-        pageTracker._trackPageview();
-        } catch(err) {}</script>
 %endif
