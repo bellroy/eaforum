@@ -4,7 +4,7 @@ from r2.lib.pages import *
 from r2.lib.filters import remove_control_chars
 from r2.models.printable import Printable
 from pylons.i18n import _, ungettext
-from urllib2 import Request, HTTPError, URLError, quote, urlopen
+from urllib2 import Request, HTTPError, URLError, urlopen
 from urlparse import urlsplit,urlunsplit
 from lxml.html import soupparser
 from lxml.etree import tostring
@@ -47,7 +47,6 @@ class WikiPageCached:
     def __init__(self, config):
         self.config = config
         self._page = None
-        self._error = False
 
     @classmethod
     def get_url_for_user_page(cls, user):

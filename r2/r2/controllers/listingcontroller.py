@@ -512,7 +512,8 @@ class UserController(ListingController):
         q = None
 
         if self.where == 'profile':
-            q = object  # dummy value
+            page = 'User:' + urllib.quote(self.vuser.name)
+            q = {'url': 'http://wiki.lesswrong.com/wiki/' + page}
 
         if self.where == 'overview':
             self.skip = True
@@ -571,15 +572,6 @@ class UserController(ListingController):
         else:
             return ListingController.builder(self)
 
-    def check_wiki_maybe_redirect_url(self):
-        # If the user has a wiki page, show it. Otherwise, redirect to the
-        # overview page so people aren't greeted with an error message when
-        # clicking on a username.
-        config = {'url': WikiPageCached.get_url_for_user_page(self.vuser)}
-        self.wikipage = WikiPageThing(config)
-        if not self.wikipage.success:
-            return '/user/{0}/overview/'.format(urllib.quote(self.vuser.name))
-
     @staticmethod
     def builder_wrapper(thing):
         thing = ListingController.builder_wrapper(thing)
@@ -589,9 +581,6 @@ class UserController(ListingController):
     @validate(vuser = VExistingUname('username'))
     def GET_listing(self, where, vuser, **env):
         self.where = where
-        self.vuser = vuser
-        self.render_params = {'user' : vuser}
-        c.profilepage = True
 
         # the validator will ensure that vuser is a valid account
         if not vuser:
@@ -613,10 +602,9 @@ class UserController(ListingController):
 
         check_cheating('user')
 
-        if where == 'profile':
-            url = self.check_wiki_maybe_redirect_url()
-            if url is not None:
-                return self.redirect(url, 303)
+        self.vuser = vuser
+        self.render_params = {'user' : vuser}
+        c.profilepage = True
 
         return ListingController.GET_listing(self, **env)
 
