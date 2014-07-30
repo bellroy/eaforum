@@ -2,6 +2,14 @@
 
 $(document).ready(function() {
   /* reposition elements for CFEA reskin */
+
+  // login button
+  $("#side-login form button").attr("id", "loginbutton");
+  $("#side-login form button").text("Log in / Sign Up");
+  $form = $("<form id=\"loginForm\" action=\"/post/login\"></form>");
+  $form.appendTo("#header");
+  $("#side-login form button").appendTo("#loginForm");
+
   // username
   $("#side-status h2").appendTo("#header");
   // karma
@@ -14,17 +22,29 @@ $(document).ready(function() {
   // search
   $("#side-search").appendTo("#header");
 
+  // filter nav
+  var navDivId = "#nav";
+  if ($("#filternav").length > 0) {
+    $("#filternav li:first-child a").text("New");
+    $("#nav").hide();
+
+    navDivId = "#filternav";
+  }
+  $navBar = $("<div id=\"navbar\"></div>");
+  $navBar.prependTo("#main");
+  $(navDivId).prependTo("#navbar");
+
   // new article
   $("#side-status ul.userlinks a[href$='/submit/']").text("New Article");
   $("#side-status ul.userlinks a[href$='/submit/']").attr("id", "newarticle");
-  $("#side-status ul.userlinks a[href$='/submit/']").appendTo("#nav");
+  $("#side-status ul.userlinks a[href$='/submit/']").appendTo("#navbar");
   // messages
-  $("#side-status div.userinfo span.mail").text("Messages");
+  $("#side-status div.userinfo span.mail a").text("Messages");
   $("#side-status div.userinfo span.mail").attr("id", "messages");
-  $("#side-status div.userinfo span.mail").appendTo("#nav");
+  $("#side-status div.userinfo span.mail").appendTo("#navbar");
   // preferences
   $("#side-status ul.userlinks a[href$='/prefs/']").attr("id", "preferences");
-  $("#side-status ul.userlinks a[href$='/prefs/']").appendTo("#nav");
+  $("#side-status ul.userlinks a[href$='/prefs/']").appendTo("#navbar");
 
   /* Dropdowns in main menu */
   dropdownSel = 'ul#nav li img.dropdown';
@@ -46,6 +66,15 @@ $(document).ready(function() {
 
     return false;
   });
+
+  /* Add README link to the last paragraph */
+  $('span.read_more_link').each(function() {
+     var paragraph = $(this).parents("[itemprop='description']").find("p").filter(function() {
+        return jQuery(this).text().length > 0
+     }).last();
+     paragraph.append($(this).html());
+     $(this).remove();
+  })
 
   // Post filter control
   $('#post-filter div.filter-active').click(function() {

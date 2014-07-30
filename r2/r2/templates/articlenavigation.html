@@ -13,10 +13,6 @@
   <ul class="clear">
     ${unsafe(self.article_nav_item(article.prev_by_author(), article.next_by_author(), unsafe(self.author(thing.author)), _('by author')))}
 
-    %for sequence_name in article.get_sequence_names():
-    ${unsafe(self.article_nav_item(article.prev_in_sequence(sequence_name), article.next_in_sequence(sequence_name), unsafe(self.sequence(sequence_name)), _('in sequence')))}
-    %endfor
-
     %if article.blessed:
     ${unsafe(self.article_nav_item(article.prev_in_promoted(), article.next_in_promoted(), None, unsafe(self.promoted())))}
     %endif
