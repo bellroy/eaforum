@@ -129,7 +129,7 @@ namespace :deploy do
   desc "Copy the lesswrong crontab to /etc/cron.d in production. Requires root permissions"
   task :crontab do
     crontab = basepath + 'config' + 'crontab'
-    target = "/etc/cron.d/lesswrong"
+    target = "/etc/cron.d/#{application}"
     if false && environment == "production"
       sudo "/bin/cp #{crontab} #{target}"
     else
