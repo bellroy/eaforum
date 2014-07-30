@@ -477,14 +477,6 @@ def register(name, password, email):
         from r2.lib import emailer
         emailer.confirmation_email(a)
 
-        if wiki_account.valid_name(name):
-            def send_wiki_failed_email():
-                emailer.wiki_failed_email(a)
-            a.create_associated_wiki_account(password,
-                                             on_request_error=send_wiki_failed_email)
-        else:
-            emailer.wiki_incompatible_name_email(a)
-
         # Clear memoization of both with and without deleted
         clear_memo('account._by_name', Account, name.lower(), True)
         clear_memo('account._by_name', Account, name.lower(), False)
