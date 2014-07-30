@@ -226,7 +226,7 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 
 #header h2 {
 	position: relative;
-	top: 29px;
+	top: 32px;
 	left: 120px;
   float: left;
   text-transform: none;
@@ -240,9 +240,8 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 #header span.monthly-score {
 	position: relative;
 	font-weight: normal;
-	top: 29px;
+	top: 27px;
 	left: 176px;
-
 	display: inline-block;
 	line-height: 16px;
 	min-width: 10px;
@@ -255,6 +254,7 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 	-moz-border-radius: 200px;
 	border-radius: 200px;
 }
+
 #header span.monthly-score {
 	      background: #7697b6;
         left: 180px;
@@ -293,7 +293,7 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 #header #signout {
 	position: relative;
 	font-size: 11px;
-	top: 29px;
+	top: 28px;
 	left: 184px;
 	border-left: 1px solid #999999;
 	margin-left: 8px;
@@ -1906,7 +1906,7 @@ div.tools a.license.mod
   color: #326492;
 }
 
-#comments-controls {
+#comment-controls {
   margin-top: 10px;
 }
 
