@@ -754,9 +754,7 @@ class ProfilePage(Reddit):
 
     def header_nav(self):
         path = "/user/%s/" % self.user.name
-        main_buttons = [
-                   NavButton(_('Profile'), '/', aliases = ['/profile']),
-                   NavButton(menu.overview, '/overview'),
+        main_buttons = [NavButton(menu.overview, '/', aliases = ['/overview']),
                    NavButton(_('Comments'), 'comments'),
                    NamedButton('submitted')]
 

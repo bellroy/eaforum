@@ -64,7 +64,7 @@ def make_map(global_conf={}, app_conf={}):
     #mc('/stats', controller='front', action='stats')
 
     mc('/user/:username/:where', controller='user', action='listing',
-       where='profile')
+       where='overview')
 
     mc('/prefs/:location', controller='front',
        action='prefs', location='options')

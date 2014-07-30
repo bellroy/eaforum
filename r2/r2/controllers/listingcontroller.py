@@ -36,7 +36,6 @@ from r2.lib import organic
 from r2.lib.solrsearch import SearchQuery
 from r2.lib.utils import iters, check_cheating, timeago
 from r2.lib.filters import _force_unicode
-from r2.lib.wikipagecached import WikiPageThing
 
 from admin import admin_profile_query
 
@@ -510,11 +509,6 @@ class UserController(ListingController):
 
     def query(self):
         q = None
-
-        if self.where == 'profile':
-            page = 'User:' + urllib.quote(self.vuser.name)
-            q = {'url': 'http://wiki.lesswrong.com/wiki/' + page}
-
         if self.where == 'overview':
             self.skip = True
             self.check_modified(self.vuser, 'overview')
@@ -556,9 +550,7 @@ class UserController(ListingController):
         return q
 
     def builder(self):
-        if self.where == 'profile':
-            return PrecomputedBuilder([self.wikipage])
-        elif self.where in ('comments', 'overview', 'submitted'):
+        if self.where in ('comments', 'overview', 'submitted'):
             builder_cls = ContextualCommentBuilder
             b = builder_cls(self.query_obj,
                              num = self.num,
@@ -596,7 +588,7 @@ class UserController(ListingController):
                and vuser._spam:
             return self.abort404()
 
-        if (where not in ('profile', 'overview', 'submitted', 'comments', 'overviewrss', 'commentsrss')
+        if (where not in ('overview', 'submitted', 'comments', 'overviewrss', 'commentsrss')
             and not votes_visible(vuser)):
             return self.abort404()
 
