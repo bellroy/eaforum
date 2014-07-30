@@ -81,9 +81,11 @@ def db_dump_prefix
   ENV['DB_DUMP_PREFIX'] || ''
 end
 
-def app_server(action)
+def app_server(action, force_success = false)
   return unless [:start, :stop, :restart].include?(action)
-  sudo "#{action} paster"
+  cmd = "#{action} paster"
+  cmd << "; true" if force_success
+  sudo cmd
 end
 
 # These tasks assume they are running in a capistrano managed directory structure.
@@ -95,7 +97,7 @@ namespace :app do
 
   desc "Stop the Application"
   task :stop do
-    app_server(:stop)
+    app_server(:stop, true)
   end
 
   desc "Restart the Application"
