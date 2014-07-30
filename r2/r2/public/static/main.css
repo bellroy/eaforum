@@ -1823,7 +1823,9 @@ div.tools div.vote a.up {
   background-position: top left;
 }
 
-div.tools div.vote a.up:hover {
+div.tools div.vote a.up:hover,
+div.tools div.vote a.up.mod
+{
   background-position: bottom left;
 }
 
@@ -1831,12 +1833,14 @@ div.tools div.vote a.down {
   background-position: top right;
 }
 
-div.tools div.vote a.down:hover {
+div.tools div.vote a.down:hover,
+div.tools div.vote a.down.mod
+{
   background-position: bottom right;
 }
 
 /* Action buttons */
-div.tools a.save, div.tools a.edit, div.tools a.license {
+div.tools a.save, div.tools a.edit, div.tools a.license, div.tools a.subscription {
 	cursor: pointer;
 	display: block;
   height: 16px;
@@ -1847,22 +1851,30 @@ div.tools a.save, div.tools a.edit, div.tools a.license {
   padding: 0;
 }
 
-div.tools a.save {
-  width: 18px;
-  background-position: -42px 0;
-}
-
-div.tools a.save:hover {
-  background-position: -42px bottom;
-}
-
-div.tools a.edit {
+div.tools a.edit,
+div.tools a.subscription
+{
   width: 21px;
   background-position: top left;
 }
 
-div.tools a.edit:hover {
+div.tools a.edit:hover,
+div.tools a.edit.mod,
+div.tools a.subscription:hover,
+div.tools a.subscription.mod
+{
   background-position: bottom left;
+}
+
+div.tools a.save {
+  width: 18px;
+  background-position: -42px top;
+}
+
+div.tools a.save:hover,
+div.tools a.save.mod
+{
+  background-position: -42px bottom;
 }
 
 div.tools a.license {
@@ -1870,6 +1882,8 @@ div.tools a.license {
   width: 16px;
 }
 
-div.tools a.license:hover {
+div.tools a.license:hover,
+div.tools a.license.mod
+{
   background-position: bottom right;
 }
