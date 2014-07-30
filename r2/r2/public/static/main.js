@@ -67,6 +67,15 @@ $(document).ready(function() {
     return false;
   });
 
+  /* Add README link to the last paragraph */
+  $('span.read_more_link').each(function() {
+     var paragraph = $(this).parents("[itemprop='description']").find("p").filter(function() {
+        return jQuery(this).text().length > 0
+     }).last();
+     paragraph.append($(this).html());
+     $(this).remove();
+  })
+
   // Post filter control
   $('#post-filter div.filter-active').click(function() {
     $(this).toggleClass('open');

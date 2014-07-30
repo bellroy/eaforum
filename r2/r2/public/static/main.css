@@ -1702,3 +1702,111 @@ border: none;
 .masthead ul a {
 font-weight: bold;
 }
+
+#content .post {
+  position: relative;
+  padding-top: 0px;
+}
+
+div.post {
+}
+
+#content .post .meta {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#content .post .post-body {
+  margin-left: 65px;
+}
+
+#content .post .post-body h2,
+#content .post .post-body .postedby
+{
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+#content .post .post-body .post-info {
+  overflow: auto;
+  margin-bottom: 4px;
+}
+
+body.post #content .post .post-body .post-info {
+  margin-bottom: 24px;
+}
+
+#content .post .post-body .postedby {
+  top: 0px;
+  float: left;
+}
+
+#content .post .post-body .post-comment-count {
+  float: right;
+}
+
+#content .post .post-body .post-comment-count a {
+  font-family: "montserratt",Arial,sans-serif;
+  font-size: 12px;
+  color: #326492;
+  text-decoration: none;
+}
+
+#content .post .post-body .content .md {
+  font-size: 14px;
+}
+
+#content .post .action-bar {
+  border-top: 1px solid #ddd;
+  padding: 13px 0 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#content .post .action-bar ul {
+  list-style: none;
+  margin-left: 0px;
+  overflow: auto;
+}
+
+#content .post .action-bar ul li {
+  float: left;
+  margin-right: 10px;
+}
+
+#content .post .action-bar ul li.ban span {
+  color: red;
+}
+#content .post .action-bar ul li a {
+  text-decoration: none;
+  font-weight: 700;
+  background-color: whitesmoke;
+  padding: 5px;
+}
+
+div.content a.more {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  color: #326492;
+  text-decoration: none;
+  float: none;
+  text-align: inherit;
+}
+
+#content .post h1 {
+  height: auto;
+  margin-bottom: 0px;
+}
+
+#content .post h1 a {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #326492;
+  text-decoration: none;
+}
+
+h1 a:visited, h2 a:visited, a:visited {
+  color: #326492;
+}
