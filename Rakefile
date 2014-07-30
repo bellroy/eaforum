@@ -84,7 +84,7 @@ end
 def app_server(action, force_success = false)
   return unless [:start, :stop, :restart].include?(action)
   cmd = "#{action} paster"
-  cmd << " && true" if force_success
+  cmd << "; true" if force_success
   sudo cmd
 end
 
