@@ -670,33 +670,6 @@ div.tools {
 	padding: 10px 0;
 	position: relative;
 }
-body.post div.tools a {
-	color: #538d4d;
-}
-div.tools div.vote {
-	float: left;
-}
-div.tools div.vote a {
-	background-position: 0 0;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	display: block;
-	float: left;
-	height: 0;
-	margin-right: 5px;
-	overflow: hidden;
-	padding: 20px 0 0;
-	width: 14px;
-}
-div.tools div.vote a:hover, div.tools div.vote a.mod {
-	background-position: 0 -20px;
-}
-div.tools div.vote a.up {
-	background-image: url(/static/vote-up.gif);
-}
-div.tools div.vote a.down {
-	background-image: url(/static/vote-down.gif);
-}
 
 div.tools a.comment {
 	color: rgb(50, 100, 146);
@@ -713,31 +686,34 @@ div.tools a.comment {
 	text-align: left;
 	text-decoration: none solid rgb(50, 100, 146);
 }
+
 body.post div.tools a.comment {
 	font-weight: bold;
 }
-div.tools div.boxright {
-	float: right;
-}
+
 div.tools ul {
-        float: right;
+  float: right;
 	line-height: 1em;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
+
 div.tools ul li {
 	border-left: 1px solid #dedede;
 	float: left;
 	margin: 0 0 0 10px;
 	padding: 0 0 0 10px;
 }
+
 body.post div.tools ul li {
-	border-color: #538d4d;
+	border-color: #999999;
 }
+
 div.tools ul li:first-child {
 	border-left: none;
 }
+
 div.tools a.save, div.tools a.edit, div.tools a.hide, div.tools a.subscription {
 	cursor: pointer;
 	display: block;
@@ -1809,4 +1785,91 @@ div.content a.more {
 
 h1 a:visited, h2 a:visited, a:visited {
   color: #326492;
+}
+
+/* Tools Bar on the Post page */
+
+div.tools a {
+  color: #326492;
+}
+
+div.tools a.comment {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  height: auto;
+  line-height: 1.4;
+  float: left;
+}
+
+/* Voting buttons */
+div.tools div.vote {
+	float: left;
+  margin-right: 5px;
+}
+
+div.tools div.vote a {
+  height: 18px;
+  width: 16px;
+  margin-right: 5px;
+  background: url(/static/article-thumbs-ico.png) no-repeat left top;
+	background-position: 0 0;
+	cursor: pointer;
+	display: block;
+	float: left;
+  text-indent: -9999px;
+}
+
+div.tools div.vote a.up {
+  background-position: top left;
+}
+
+div.tools div.vote a.up:hover {
+  background-position: bottom left;
+}
+
+div.tools div.vote a.down {
+  background-position: top right;
+}
+
+div.tools div.vote a.down:hover {
+  background-position: bottom right;
+}
+
+/* Action buttons */
+div.tools a.save, div.tools a.edit, div.tools a.license {
+	cursor: pointer;
+	display: block;
+  height: 16px;
+  background: url(/static/article-options-ico.png) no-repeat 0 top;
+	margin: 0;
+  background-position: 0 0;
+  text-indent: -9999px;
+  padding: 0;
+}
+
+div.tools a.save {
+  width: 18px;
+  background-position: -42px 0;
+}
+
+div.tools a.save:hover {
+  background-position: -42px bottom;
+}
+
+div.tools a.edit {
+  width: 21px;
+  background-position: top left;
+}
+
+div.tools a.edit:hover {
+  background-position: bottom left;
+}
+
+div.tools a.license {
+  background-position: top right;
+  width: 16px;
+}
+
+div.tools a.license:hover {
+  background-position: bottom right;
 }

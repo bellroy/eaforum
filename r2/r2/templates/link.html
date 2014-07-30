@@ -105,8 +105,21 @@
         Loading&hellip;</span>
       </div>
     </div><!-- .articlenavigation -->
+    <div class="tools">
+      ${parent.midcol(thing.votable)}
+      %if thing.comments_enabled:
+        <%
+          num_comments = 0 if not thing.num_comments else thing.num_comments
+        %>
+        <a class="comment" href="${thing.url}#comments">${_('Comments (%d)') % (num_comments)}</a>
+      %endif
+      <ul class="action-list">
+          ${self.buttons(comments = False, report=False, delete=False, ban=False)}
+      </ul>
+      ## Each link has a hidden status span that is used to indicate voting errors.
+      <span id='${"status_"+thing._fullname}' class="error" style="display: none;"></span>
+    </div><!-- action-bar -->
     %endif
-    ${self.actionBar()}
   </div><!-- .post-body -->
 </div><!-- .post -->
 
@@ -114,16 +127,6 @@
 
 <%def name="title()">
   ${thing.title}
-</%def>
-
-<%def name="actionBar()">
-  %if c.user_is_loggedin:
-    <div class="action-bar">
-      <ul>
-        ${self.buttons(comments = False, report=False)}
-      </ul>
-    </div>
-  %endif
 </%def>
 
 <%def name="draft()">
