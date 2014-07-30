@@ -115,7 +115,7 @@ h1 {
 	font-weight: bold;
 }
 h2 a {
-	color: #538d4d;
+	color: #326492;
 	text-decoration: none;
 }
 ol, ul {
@@ -641,14 +641,14 @@ div.meta span.votes span.votes {
 }
 div.editors-pick div.meta span.votes span.votes {
 	color: #fff;
-	background-color: #538d4d;
+	background-color: #326492;
         border: none;
 	height: 22px;
 	line-height: 22px;
 	padding: 0 9px;
 }
 div.meta span.editors-pick {
-	color: #538d4d;
+	color: #326492;
 	font-weight: bold;
 }
 div.meta span.author a {
@@ -658,7 +658,7 @@ div.meta span.author a {
 }
 div.content a.more {
 	clear: both;
-	color: #538d4d;
+	color: #326492;
 	float: right;
 	text-align: right;
 }
@@ -758,7 +758,7 @@ div.tools div.tags {
 	padding-left: 20px;
 }
 div.tools div.tags span {
-	color: #538d4d;
+	color: #326492;
 	font-weight: bold;
 }
 div.tools div.tags a {
@@ -905,15 +905,15 @@ form#comment-listing label {
 	padding-right: 5px;
 }
 div.comment, div.message {
-	background-color: #f7f7f8;
-	border: 1px solid #bbbcbf;
+	background-color: #f9fcfe;
+	border: 1px solid #b3b3b3;
 	clear: both;
 	margin: 0 0 12px;
 	padding: 5px;
 }
 div.comment {
 	margin: 10px 0px 0px 0px;
-	padding: 2px 0 2px 15px;
+	padding: 2px 0 0px 15px;
 }
 div.comment div.entry {
 	padding-right: 15px;
@@ -930,7 +930,10 @@ div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message div.message {
 	background-color: #fff;
-	margin: 10px 0 8px;
+  background-color: #fff;
+  margin: 10px 0 0px;
+  border-bottom: 0px;
+  padding-bottom: 10px;
 }
 div.comment div.comment div.comment,
 div.comment div.comment div.comment div.comment div.comment,
@@ -953,6 +956,7 @@ div.retracted {
 }
 div.comment-meta {
 	color: #7f7f83;
+  padding: 10px 0;
 }
 div.comment-meta span {
 	float: left;
@@ -963,7 +967,7 @@ div.comment-meta span.comment-author {
 	text-align: left;
 }
 div.comment-meta span.comment-author a {
-	color: #538d4d;
+	color: #326492;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -973,7 +977,7 @@ div.comment-meta span.comment-date {
 	margin: 0 20px 0 0;
 }
 div.comment-meta span.votes {
-	color: #538d4d;
+	color: #326492;
 }
 div.comment-meta a.expand {
 	float: right;
@@ -986,7 +990,7 @@ div.message .head.new {
     color: orangered;
 }
 div.message .subject {
-    color: #538d4d;
+    color: #326492;
     padding: 0 5px;
     margin: 0;
 }
@@ -1055,6 +1059,7 @@ div.comment-links ul li a {
         overflow: hidden;
 	padding: 20px 0 0;
 }
+/*
 div.comment-links ul li a:hover, div.comment-links ul li a.mod {
 	background-position: 0 -20px;
 }
@@ -1123,6 +1128,7 @@ div.comment-links ul li.subscribe a.unsub {
     background-image: url(/static/disagree-button.gif);
     width: 20px;
 }
+*/
 /* Allow the 'yes/no' popup text to appear */
 div.comment-links ul li.delete a.yes, div.comment-links ul li.delete a.no,
 div.comment-links ul li.retract a.yes, div.comment-links ul li.retract a.no  {
@@ -1244,7 +1250,7 @@ div.sidebox select {
 	width: 92px;
 }
 #side-status div.userinfo span {
-	color: #538d4d;
+	color: #326492;
 	clear: both;
 	float: left;
 	display: block;
@@ -1288,7 +1294,7 @@ div.sidebox select {
   float: left
 }
 #side-status .extrainfo dt {
-  color: #538D4D;
+  color: #326492;
   clear: left;
   width: 50px;
 }
@@ -1886,4 +1892,127 @@ div.tools a.license:hover,
 div.tools a.license.mod
 {
   background-position: bottom right;
+}
+
+/******** Comments *****************/
+
+#comments {
+  margin-left: 65px;
+}
+
+#comments h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #326492;
+}
+
+#comments-controls {
+  margin-top: 10px;
+}
+
+div.comment-meta span.comment-date {
+  color: #858585;
+}
+
+div.comment-links {
+  margin-top: 0px;
+}
+
+/* TODO: Fix the child comment-meta headers having too much bottom space
+div.entry div.comment-meta.collapsed {
+  padding-bottom: 0px;
+}
+*/
+
+/* Comment Actions */
+div.comment-links ul li a {
+  display: inline-block;
+  width: 20px;
+  height: 14px;
+  background: url(/static/comment-icons.png) no-repeat left top;
+  text-indent: -9999px;
+	background-position: 0 0;
+  padding: 0px;
+}
+
+/* Comment Voting */
+div.comment-links ul.votes li a {
+  display: inline-block;
+  height: 18px;
+  width: 16px;
+  margin-right: 4px;
+  background: url(/static/article-thumbs-ico.png) no-repeat left top;
+  text-indent: -9999px;
+	background-position: 0 0;
+  padding: 0px;
+}
+
+div.comment-links ul li.up a
+{
+  background-position: top left;
+  width: 16px;
+}
+
+div.comment-links ul li.up a:hover,
+div.comment-links ul li.up a.mod
+{
+  background-position: bottom left;
+}
+
+div.comment-links ul li.down a
+{
+  background-position: top right;
+}
+
+div.comment-links ul li.down a:hover,
+div.comment-links ul li.down a.mod
+{
+  background-position: bottom right;
+}
+
+.commentreply .buttons button,
+.commentreply .help-toggle button,
+.poll-voting-area button, button
+{
+  display: inline-block;
+  line-height: 25px;
+  padding: 0 9px !important;
+  cursor: pointer;
+  background: #326492 !important;
+  border: 0;
+  font-family: 'montserratt', Arial, sans-serif;
+  font-size: 13px;
+  color: #fff !important;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-weight: normal !important;
+}
+
+body.post .comment .commentreply div {
+  margin-right: 20px;
+}
+
+body.post .commentreply .help-toggle button {
+  margin-right: -18px;
+}
+
+body.post .commentreply textarea {
+  min-height: 40px;
+  padding: 8px;
+  margin: 0 0 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #565656;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  outline: none;
+  border-radius: 0px;
+  box-shadow: inherit;
+  background: #f1f1f1;
+  border-top: 1px solid #d7d7d7;
+  border-left: 1px solid #d7d7d7;
+  box-shadow: inset 1px 1px 0 0 #e8e8e8;
 }
