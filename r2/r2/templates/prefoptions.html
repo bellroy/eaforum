@@ -27,12 +27,12 @@
 <%namespace file="utils.html" import="error_field, language_tool, language_checkboxes, plain_link"/>
 
 <%def name="checkbox(text, name)">
-    <input name="${name}" id="${name}" type="checkbox"\
+    <label for="${name}"><input name="${name}" id="${name}" type="checkbox" class="checkbox"\
                %if getattr(c.user, "pref_" + name):
                checked="checked"\
                %endif
                />
-    <label for="${name}">${text}</label>
+    ${text}</label>
 </%def>
 
 <%def name="link_options()">
@@ -55,7 +55,7 @@
 
 <%def name="num_input(s, name)">
   <input type="text" size="4" maxlength="4" 
-         name="${name}" style="margin:  0 .5em 0 .5em"
+         name="${name}" class="textbox small"
          value="${s if s is not None else ''}" />
 </%def>
 
@@ -69,124 +69,77 @@
     if not c.frameless_cname:
       action = add_sr(action, nocname=True)
   %>
-  <form action="${action}" method="post" class="pretty-form short-text">
+  <form action="${action}" method="post">
     <input type="hidden" name="uh" value="${c.modhash}" />
     %if c.cname:
       <input type="hidden" name="${UrlParser.cname_get}" value="${random.random()}" />
     %endif
-  <table class="content preftable">
     <input type="hidden" name="lang" value="English [en]" />
     <input type="hidden" name="all-langs" value="all" />
-    %if c.user_is_loggedin:
-    <tr>
-      <th>${_("Link options")}</th>
-      <td class="prefright">
-        <p>${checkbox(_("Don't show articles after I've liked them"), "hide_ups")}</p>
-        <p>${checkbox(_("Don't show articles after I've disliked them"), "hide_downs")}</p>
+
+    <div id="options">
+      <h6>${_("Link options")}</h6>
+      <ul>
+        <li>${checkbox(_("Don't show articles after I've liked them"), "hide_ups")}</li>
+        <li>${checkbox(_("Don't show articles after I've disliked them"), "hide_downs")}</li>
+        <li>${unsafe(_("Display %(num)s articles at once") % dict(num=capture(link_options)))}</li>
+        <% input = capture(num_input, c.user.pref_min_link_score, 'min_link_score') %>
+        <li><label>${unsafe(_("Don't show me articles with a score less than %(num)s") % dict(num = input))} (Blank for none)</label></li>
+      </ul>
+
+      <h6>${_("Comment options")}</h6>
+      <ul>
+        <li>${checkbox(_("Show parent comments on"), "show_parent_comments")}
+          <a href="/comments">/comments</a></li>
+
+        <% input = capture(num_input, c.user.pref_min_comment_score, 'min_comment_score') %>
+        <li>
+          <label>${unsafe(_("Don't show me comments with a score less than %(num)s") % dict(num = input))} (Blank for none)</label></li>
         <%
-          # stuff I can soon delete:
-          _("Display")
-          _("Links at once")
-          _("Don't show me sites with a score less than")
-          _("Don't show me comments with a score less than")
-          _("Comments by default")
-        %>
-        <p>
-          ${unsafe(_("Display %(num)s articles at once") % \
-          dict(num=capture(link_options)))}
-        </p>
-        <% 
-          input = capture(num_input, c.user.pref_min_link_score,
-          'min_link_score')
-        %>
-        <p>
-          ${unsafe(_("Don't show me articles with a score less than %(num)s") % dict(num = input))}
-          &#32;<span class="little gray">${_("(Blank for none)")}</span>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th>${_("Comment options")}</th>
-      <td class="prefright">
-        <p>
-          ${checkbox(_("Show parent comments on"), "show_parent_comments")}
-          <a href="/comments">/comments</a>
-        </p>
-        <% 
-          input = capture(num_input, c.user.pref_min_comment_score,
-                          'min_comment_score')
-        %>
-        <p>
-          ${unsafe(_("Don't show me comments with a score less than %(num)s") % dict(num = input))}
-          &#32;<span class="little gray">${_("(Blank for none)")}</span>
-        </p>
-        <%
-          input = capture(num_input, c.user.pref_num_comments,
-                          'num_comments')
+          input = capture(num_input, c.user.pref_num_comments, 'num_comments')
           s = c.user.pref_num_comments
         %>
-        <p>
-          ${unsafe(_("Display %(num)s comments by default") % dict(num = input))}
-          &#32;<span class="little gray">(1 - ${g.max_comments})</span>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th>${_("Privacy options")}</th>
-      <td class="prefright">
-        ${checkbox(_("Make my votes public"), "public_votes")}
-      </td>
-    </tr>
-    <tr>
-      <th>${_("Kibitz options")}</th>
-      <td class="prefright">
-        ${checkbox(_("Enable Anti-Kibitzer"), "kibitz")}
-        &nbsp;
-        <a target="blank" href="http://lesswrong.com/lw/1s/lesswrong_antikibitzer_hides_comment_authors_and/1hvk">${_("(What's this?)")}</a>
-        &nbsp;
-        ${_("Note: currently only works with Firefox.")}
-      </td>
-    </tr>
-    <tr>
-      <th>${_("Location")}</th>
-      <td class="prefright">
-        <input name="location" type="text" size="40" value="${c.user.pref_location}" />
+        <li><label>${unsafe(_("Display %(num)s comments by default") % dict(num = input))}</label></li>
+      </ul>
+
+      <h6>${_("Privacy options")}</h6>
+      <ul>
+        <li>${checkbox(_("Make my votes public"), "public_votes")}</li>
+      </ul>
+
+      <h6>${_("Location")}</h6>
+      <ul>
+        <li>
+        <input name="location" type="text" class="textbox" size="40" placeholder="Enter your location here" value="${c.user.pref_location}" />
         ${error_field("LOCATION_TOO_LONG", kind="p", cls="form-info-line")}
         <%
           lat = c.user.pref_latitude if c.user.pref_latitude is not None else ''
           lng = c.user.pref_longitude if c.user.pref_longitude is not None else ''
         %>
         <input name="latitude" type="hidden" value="${lat}" />
-        <input name="longitude" type="hidden" value="${lng}" />
-        <p>
+        <input name="longitude" type="hidden" value="${lng}" /></li>
+        <!-- <li><label><input type="checkbox" class="checkbox"/> Email me about meetups within <input type="text" value="200" class="textbox small"/> km of me</label></li> -->
+        <li>
           <label>
-            <input type="checkbox" name="meetup_notify_enabled"
+            <input type="checkbox" class="checkbox" name="meetup_notify_enabled"
               ${'checked="checked"' if c.user.pref_meetup_notify_enabled else ''} />
             Email me about meetups within
           </label>
           ${num_input(c.user.pref_meetup_notify_radius, 'meetup_notify_radius')}
-          km of me
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th>${_("Personal Link")}</th>
-      <td class="prefright">
-        <input name="url" id="url" type="text" size="40" value="${c.user.pref_url}" placeholder="http://yoursite.com/" />
-      </td>
-    </tr>
-    %endif
-    <tr>
-      <td>
-        <input type="submit" class="btn" value="${_('Save options')}"/>
-      </td>
-    </tr>
-  </table>
-   
+          km of me</li>
+      </ul>
+
+      <h6>${_("Personal Link")}</h6>
+      <ul>
+        <li><input id="url" name="url" type="text" placeholder="http://yoursite.com/" class="textbox" value="${c.user.pref_url}"/></li>
+      </ul>
+
+      <button class="btn" type="submit">${_('Save Options')}</button>
+    </div><!-- END options -->
   </form>
+
   <script type="text/javascript">
     makeGeocodedInputWidget({
-      prompt:    "Enter your location above",
       input:     $$('input[name="location"]').first(),
       latitude:  $$('input[name="latitude"]').first(),
       longitude: $$('input[name="longitude"]').first()

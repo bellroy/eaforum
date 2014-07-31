@@ -151,7 +151,7 @@ form {
   margin: 0;
   padding: 0;
 }
-input, select, textarea, button {
+button {
   border: 1px solid #8a8a8b;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -659,6 +659,7 @@ div.content a.more {
   text-align: right;
 }
 div.tools {
+  font-family: 'montserratt', Arial, sans-serif;
   border-top: 1px solid #c9c7c7;
   border-bottom: 1px solid #c9c7c7;
   line-height: 18px; /* Same height as vote circles */
@@ -821,7 +822,6 @@ div.meetup-listing ul li {
   margin: 0 0 5px;
 }
 div.meetup-content {
-  float: left;
   width: 445px;
   text-align: left;
 }
@@ -927,7 +927,7 @@ div.message div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message div.message {
   background-color: #fff;
   background-color: #fff;
-  margin: 10px 0 0px;
+  margin: 0px;
   border-bottom: 0px;
   padding-bottom: 10px;
 }
@@ -939,7 +939,7 @@ div.message div.message div.message,
 div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message div.message div.message {
-  background-color: #f7f7f8;
+  background-color: #F9FCFE;
 }
 .new-comment,
 div.comment div.new-comment {
@@ -960,6 +960,7 @@ div.comment-meta span {
   margin: 0 10px 0 0;
 }
 div.comment-meta span.comment-author {
+  font-family: 'montserratt', Arial, sans-serif;
   text-align: left;
 }
 div.comment-meta span.comment-author a {
@@ -1209,7 +1210,7 @@ div#content h1 {
   clear: both;
 }
 div.sidebox {
-  padding: 15px;
+  padding-top: 24px;
 }
 div.sidebox form {
   clear: both;
@@ -1368,6 +1369,7 @@ ul#rightnav li a:hover {
   margin: 0;
 }
 #side-comments div.inline-comment span.tagline a {
+  font-family: 'montserratt', Arial, sans-serif;
   color: #58585a;
 }
 
@@ -1482,6 +1484,7 @@ ul#rightnav li a:hover {
 ----------------------------------------------------------------------------------------------------*/
 div.articlenavigation {
   clear: both;
+  font-family: 'montserratt', Arial, sans-serif;
   font-size: 11px;
 }
 div.articlenavigation h4 {
@@ -1805,7 +1808,6 @@ div.tools a {
 }
 
 div.tools a.comment {
-  font-family: Arial, sans-serif;
   font-size: 13px;
   height: auto;
   line-height: 1.4;
@@ -2068,7 +2070,8 @@ body.post .commentreply .help-toggle button {
   margin-right: -18px;
 }
 
-body.post .commentreply textarea {
+body.post .commentreply textarea,
+body.meetup .commentreply textarea {
   min-height: 40px;
   padding: 8px;
   margin: 0 0 12px;
@@ -2081,8 +2084,88 @@ body.post .commentreply textarea {
   outline: none;
   border-radius: 0px;
   box-shadow: inherit;
-  background: #f1f1f1;
-  border-top: 1px solid #d7d7d7;
-  border-left: 1px solid #d7d7d7;
+  background: #fafafa;
+  border: 2px solid #376590;
   box-shadow: inset 1px 1px 0 0 #e8e8e8;
 }
+body.meetup .commentreply textarea {
+  width: 681px;
+}
+
+.meetup-comments #comments {
+  margin-left: 0;
+}
+#content .post .meetup-content .meta {
+  position: static;
+}
+
+.author {
+  font-family: 'montserratt', Arial, sans-serif;
+}
+
+/* Forms */
+
+.textbox,
+textarea,
+select {
+	margin: 0;
+	padding: 3px 6px;
+	height: 18px;
+	background: #f1f1f1;
+	border: 0;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	border-top: 1px solid #d7d7d7;
+	border-left: 1px solid #d7d7d7;
+	box-shadow: inset 1px 1px 0 0 #e8e8e8;
+	width: 160px;
+	overflow: auto;
+}
+
+select {
+	height: 24px;
+}
+
+/* Prefences */
+h6 {
+  margin: 0 0 14px;
+  line-height: 1.4;
+  /* font-family: Arial, sans-serif; */
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#options {
+  font-size: 13px;
+}
+
+#options ul {
+  margin: 0 0 25px;
+  padding: 0;
+}
+
+#options ul li {
+  margin: 0 0 3px;
+  padding: 0;
+  list-style: none;
+}
+
+#options .textbox.small {
+  width: 35px;
+  margin: 0 7px;
+  text-align: center;
+}
+
+#options ul li .checkbox {
+  margin: 0 3px 0 0;
+  padding: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
+#options ul li select {
+  width: 53px;
+  margin: 0 7px;
+}
+
