@@ -10,15 +10,19 @@ $(document).ready(function() {
   $form.appendTo("#header");
   $("#side-login form button").appendTo("#loginForm");
 
+  var userInfo = $('<div id="user-info">');
   // username
-  $("#side-status h2").appendTo("#header");
+  $("#side-status h2").appendTo(userInfo);
   // karma
-  $("#side-status div.userinfo span.score").appendTo("#header");
-  $("#side-status div.userinfo span.monthly-score").appendTo("#header");
+  $("#side-status div.userinfo span.score").appendTo(userInfo);
+  $("#side-status div.userinfo span.monthly-score").appendTo(userInfo);
   // logout
   $("#side-status ul.userlinks a[href$='/logout/']").attr("id", "signout");
   $("#side-status ul.userlinks a[href$='/logout/']").text("sign out");
-  $("#side-status ul.userlinks a[href$='/logout/']").appendTo("#header");
+  $("#side-status ul.userlinks a[href$='/logout/']").appendTo(userInfo);
+  
+  // Add user info to header
+  $("#header").append(userInfo);
   // search
   $("#side-search").appendTo("#header");
 

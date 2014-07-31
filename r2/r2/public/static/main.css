@@ -223,26 +223,31 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   background-position: 0 0px;
 }
 
+#user-info {
+  overflow: auto;
+  padding-top: 32px;
+  float: right;
+  margin-right: 200px;
+}
 
-#header h2 {
-  position: relative;
-  top: 32px;
-  left: 120px;
+#user-info h2, #user-info a, #user-info span {
+  display: block;
   float: left;
+  margin-right: 20px;
+}
+
+#user-info h2 {
   text-transform: none;
   font-weight: normal;
   font-size: 11px;
   color: #787878;
-  padding-left: 20px;
   background: url(/static/user-id-ico.png) no-repeat;
+  padding-left: 20px;
 }
-#header span.score,
-#header span.monthly-score {
-  position: relative;
+
+#user-info span.score,
+#user-info span.monthly-score {
   font-weight: normal;
-  top: 27px;
-  left: 176px;
-  display: inline-block;
   line-height: 16px;
   min-width: 10px;
   padding: 0 3px;
@@ -255,9 +260,12 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   border-radius: 200px;
 }
 
-#header span.monthly-score {
+#user-info span.score {
+  margin-right: 2px;
+}
+
+#user-info span.monthly-score {
   background: #7697b6;
-  left: 180px;
 }
 
 /* login button */
@@ -291,12 +299,8 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 
 /* logout link */
 #header #signout {
-  position: relative;
   font-size: 11px;
-  top: 28px;
-  left: 184px;
   border-left: 1px solid #999999;
-  margin-left: 8px;
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
