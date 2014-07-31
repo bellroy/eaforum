@@ -1912,6 +1912,7 @@ div.comment-meta span.comment-date {
 
 div.comment-links {
   margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 /* TODO: Fix the child comment-meta headers having too much bottom space
