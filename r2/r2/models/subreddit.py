@@ -335,7 +335,7 @@ class Subreddit(Thing, Printable, ImageHolder):
         if not c.over18:
             pop_reddits._filter(Subreddit.c.over_18 == False)
 
-        pop_reddits._filter(Subreddit.c.name != 'discussion')
+        pop_reddits._filter(Subreddit.c.name != 'meetups')
 
         pop_reddits = list(pop_reddits)
 
