@@ -79,8 +79,6 @@ class Meetup(Thing):
       return False
     elif user_is_admin or self.author_id == user._id:
       return True
-    elif Subreddit._by_name('discussion').is_editor(user):
-      return True
     else:
       return False
 

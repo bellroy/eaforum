@@ -930,7 +930,7 @@ class InterestingcommentsController(CommentsController):
                              count = self.count,
                              reverse = self.reverse,
                              wrap = self.builder_wrapper,
-                             sr_ids = [c.current_or_default_sr._id, Subreddit._by_name('discussion')._id])
+                             sr_ids = [c.current_or_default_sr._id])
         return b
 
     @property
@@ -981,7 +981,7 @@ class InterestingsubscribedController(CommentsController):
                              count = self.count,
                              reverse = self.reverse,
                              wrap = self.builder_wrapper,
-                             sr_ids = [c.current_or_default_sr._id, Subreddit._by_name('discussion')._id])
+                             sr_ids = [c.current_or_default_sr._id])
         return b
 
     @property
@@ -1026,7 +1026,7 @@ class InterestingpostsController(CommentsController):
                              count = self.count,
                              reverse = self.reverse,
                              wrap = self.builder_wrapper,
-                             sr_ids = [c.current_or_default_sr._id, Subreddit._by_name('discussion')._id])
+                             sr_ids = [c.current_or_default_sr._id])
         return b
 
     @property
