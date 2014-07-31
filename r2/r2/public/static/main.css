@@ -1515,18 +1515,27 @@ div.articlenavigation ul li {
 div.articlenavigation ul li:hover {
   background-color: #eee;
 }
-div.articlenavigation ul li a.nav {
+div.articlenavigation ul li .nav {
+  display: block;
   float: left;
   padding: 1px 0 0;
   width: 13px;
+  height: 13px;
+  background: url(/static/icons.png) no-repeat left top;
+  background-position: 0 0;
+  text-indent: -9999px;
 }
-div.articlenavigation ul li a.nav img {
-  display: block;
-  float: left;
+div.articlenavigation ul li .prev {
+  background-position: -608px 0;
 }
-div.articlenavigation ul li img {
-  display: block;
-  float: left;
+div.articlenavigation ul li a.prev {
+  background-position: -608px -32px;
+}
+div.articlenavigation ul li .next {
+  background-position: -640px 0;
+}
+div.articlenavigation ul li a.next {
+  background-position: -640px -32px;
 }
 div.articlenavigation ul li span.place {
   float: left;
@@ -1842,11 +1851,14 @@ div.tools div.vote a.down.mod
 }
 
 /* Action buttons */
-div.tools a.save, div.tools a.edit, div.tools a.license, div.tools a.subscription {
+div.tools a.save,
+div.tools a.edit,
+div.tools a.license,
+div.tools a.subscription {
   cursor: pointer;
   display: block;
   height: 16px;
-  background: url(/static/article-options-ico.png) no-repeat 0 top;
+  background: url(/static/icons.png) no-repeat 0 top;
   margin: 0;
   background-position: 0 0;
   text-indent: -9999px;
@@ -1854,13 +1866,25 @@ div.tools a.save, div.tools a.edit, div.tools a.license, div.tools a.subscriptio
 }
 
 div.tools a.edit,
-div.tools a.subscription
+div.comment-links ul li.edit a
 {
+  width: 17px;
+  height: 18px;
+  background-position: -448px 1px;
+}
+div.tools a.edit:hover,
+div.comment-links ul li.edit a:hover
+{
+  background-position: -448px -31px;
+}
+div.tools a.subscription {
   width: 21px;
-  background-position: top left;
+  background-position: 0 0;
+}
+div.tools a.subscription:hover {
+  background-position: 0 -32px;
 }
 
-div.tools a.edit:hover,
 div.tools a.edit.mod,
 div.tools a.subscription:hover,
 div.tools a.subscription.mod
@@ -1870,24 +1894,23 @@ div.tools a.subscription.mod
 
 div.tools a.save {
   width: 18px;
-  background-position: -42px top;
+  background-position: -32px 0;
 }
-
 div.tools a.save:hover,
 div.tools a.save.mod
 {
-  background-position: -42px bottom;
+  background-position: -32px -32px;
 }
 
 div.tools a.license {
-  background-position: top right;
+  background-position: -64px 0;
   width: 16px;
 }
 
 div.tools a.license:hover,
 div.tools a.license.mod
 {
-  background-position: bottom right;
+  background-position: -64px -32px;
 }
 
 /******** Comments *****************/
@@ -1926,7 +1949,7 @@ div.comment-links ul li a {
   display: inline-block;
   width: 20px;
   height: 14px;
-  background: url(/static/comment-icons.png) no-repeat left top;
+  background: url(/static/icons.png) no-repeat left top;
   text-indent: -9999px;
   background-position: 0 0;
   padding: 0px;
@@ -1938,34 +1961,84 @@ div.comment-links ul.votes li a {
   height: 18px;
   width: 16px;
   margin-right: 4px;
-  background: url(/static/article-thumbs-ico.png) no-repeat left top;
+  background: url(/static/icons.png) no-repeat left top;
   text-indent: -9999px;
   background-position: 0 0;
   padding: 0px;
 }
 
-div.comment-links ul li.up a
-{
-  background-position: top left;
+div.comment-links ul li.up a {
+  background-position: -544px 0;
   width: 16px;
 }
-
 div.comment-links ul li.up a:hover,
 div.comment-links ul li.up a.mod
 {
-  background-position: bottom left;
+  background-position: -544px -32px;
 }
 
-div.comment-links ul li.down a
-{
-  background-position: top right;
+div.comment-links ul li.down a {
+  background-position: -576px 0;
 }
-
 div.comment-links ul li.down a:hover,
 div.comment-links ul li.down a.mod
 {
-  background-position: bottom right;
+  background-position: -576px -32px;
 }
+
+div.comment-links ul li.reply a {
+  width: 24px;
+  height: 19px;
+  background-position: -192px 0;
+}
+div.comment-links ul li.reply a:hover,
+div.comment-links ul li.reply a.mod
+{
+  background-position: -192px -32px;
+}
+
+div.comment-links ul li.permalink a {
+  background-position: -480px 1px;
+}
+div.comment-links ul li.permalink a:hover,
+div.comment-links ul li.permalink a.mod
+{
+  background-position: -480px -31px;
+}
+
+div.comment-links ul li.subscribe a {
+  width: 21px;
+  height: 16px;
+  background-position: 0 0;
+}
+div.comment-links ul li.subscribe a:hover,
+div.comment-links ul li.subscribe a.mod
+{
+  background-position: 0 -32px;
+}
+
+div.comment-links ul li.retract a {
+  width: 19px;
+  height: 20px;
+  background-position: -128px 0;
+}
+div.comment-links ul li.retract a:hover,
+div.comment-links ul li.retract a.mod
+{
+  background-position: -128px -32px;
+}
+
+div.comment-links ul li.parent a {
+  width: 19px;
+  height: 20px;
+  background-position: -224px 0;
+}
+div.comment-links ul li.parent a:hover,
+div.comment-links ul li.parent a.mod
+{
+  background-position: -224px -32px;
+}
+
 
 .commentreply .buttons button,
 .commentreply .help-toggle button,
