@@ -470,7 +470,6 @@ def register(name, password, email):
 
         a.confirmation_code = random_key(6)
         a.email_validated = False
-        a.wiki_account = '__error__'
 
         a._commit()
 
