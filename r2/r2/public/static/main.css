@@ -2173,3 +2173,23 @@ h6 {
   margin: 0 7px;
 }
 
+/* Sidebar styling */
+
+#side-meetups ul li {
+  margin: 0 0 2px;
+  padding: 0;
+  list-style: none;
+}
+
+#side-meetups ul li a {
+  font-family: 'montserratt', Arial, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  padding-left: 17px;
+  background: url(/static/upcoming-meetups-ico.png) no-repeat;
+}
+
+#side-meetups ul li span.date {
+  font-size: 11px;
+  color: #787878;
+}
