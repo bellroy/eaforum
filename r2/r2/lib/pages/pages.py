@@ -270,7 +270,7 @@ class Reddit(Wrapped):
 
     def content(self):
         """returns a Wrapped (or renderable) item for the main content div."""
-        return self.content_stack(self.infobar, self._content)
+        return self._content
 
 class LoginFormWide(Wrapped):
     """generates a login form suitable for the 300px rightbox."""
@@ -514,7 +514,7 @@ class MessagePage(Reddit):
         self.replybox = CommentReplyBox()
 
     def content(self):
-        return self.content_stack(self.replybox, self.infobar, self._content)
+        return self.content_stack(self.replybox, self._content)
 
     def header_nav(self):
         buttons =  [NamedButton('compose'),
@@ -539,7 +539,7 @@ class KarmaAwardPage(Reddit):
         self.replybox = CommentReplyBox()
 
     def content(self):
-        return self.content_stack(self.replybox, self.infobar, self._content)
+        return self.content_stack(self.replybox, self._content)
 
 
 class KarmaAward(Wrapped):
@@ -605,7 +605,7 @@ class SearchPage(BoringPage):
         BoringPage.__init__(self, pagename, robots='noindex', *a, **kw)
 
     def content(self):
-        return self.content_stack(self.searchbar, self.infobar, self._content)
+        return self.content_stack(self.searchbar, self._content)
 
 class LinkInfoPage(Reddit):
     """Renders the varied /info pages for a link.  The Link object is
@@ -667,7 +667,7 @@ class LinkInfoPage(Reddit):
         Reddit.__init__(self, title = title, body_class = 'post', robots = self.robots, *a, **kw)
 
     def content(self):
-        return self.content_stack(self.infobar, self.link_listing, self._content)
+        return self.content_stack(self.link_listing, self._content)
 
     def build_toolbars(self):
         return []
@@ -724,7 +724,7 @@ class MySubredditsPage(SubredditsPage):
     """Same functionality as SubredditsPage, without the search box."""
 
     def content(self):
-        return self.content_stack(self.infobar, self._content)
+        return self.content_stack(self._content)
 
 
 def votes_visible(user):

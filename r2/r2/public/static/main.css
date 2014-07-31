@@ -553,10 +553,6 @@ ul#filternav li:last-child {
   display: none;
 }
 
-.infobar {
-  display: none;
-}
-
 /* Post
 -------------------------------------------------------------------------------------- */
 div.post {

@@ -153,6 +153,10 @@
         ${thing.header_nav().render()}
       %endif
 
+      %if thing.infobar:
+        ${thing.infobar.render()}
+      %endif
+
       <div id="content" class="clear ${'' if thing.show_sidebar else 'fullwidth'}">
         %if thing.top_filter:
           <div id="post-filter">

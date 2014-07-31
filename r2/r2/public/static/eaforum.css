@@ -356,10 +356,10 @@ div#side-wikilinks {
 
 /* Message bar at the top of the page */
 .infobar {
-    background-color: #f7f7f8;
-    padding: 5px;
-    margin: 10px 0;
-    border: 1px solid rgb(83, 141, 77);
+    background-color: #eaeaea;
+    padding: 10px 15px;
+    margin: 30px 30px 0;
+    border: 1px solid #326492;
     font-size: small;
 }
 
@@ -401,7 +401,7 @@ div#side-wikilinks {
 
 .error {
     color: red;
-    margin: 5px;
+    margin: 5px 0;
 }
 
 
