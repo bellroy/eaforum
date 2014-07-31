@@ -140,14 +140,11 @@
 	}
 
 
-/* Lesswrong style */
-.ui-tooltip-lesswrong {
-	opacity: 0.8 !important;
-}
+/* EA Forum style */
 .ui-tooltip-lesswrong .ui-tooltip-titlebar,
 .ui-tooltip-lesswrong .ui-tooltip-content {
-	background-color: #000001; /* BUG, specifying black #000 will cause tip to be transparent */
-	border: #000001;
+	background-color: #326492; /* BUG, specifying black #000 will cause tip to be transparent */
+	border: #326492;
 	color: #fff;
 }
 .ui-tooltip-lesswrong .ui-tooltip-content {
