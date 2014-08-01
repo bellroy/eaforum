@@ -150,7 +150,7 @@ class Reddit(Wrapped):
 
         ps.append(FeedBox(g.feedbox_urls))
 
-        ps.append(SideBoxPlaceholder('side-monthly-contributors', _('Top Contributors, 30 Days')))
+        ps.append(SideBoxPlaceholder('side-monthly-contributors', _('Top Contributors This Month')))
 
         if self.extension_handling:
             ps.append(FeedLinkBar(getattr(self, 'canonical_link', request.path)))
