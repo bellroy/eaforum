@@ -569,6 +569,7 @@ class FrontController(RedditController):
         captcha = Captcha(tabular=False) if c.user.needs_captcha() else None
 
         return FormPage(_("Edit article"),
+                      show_sidebar = True,
                       content=EditLink(article, subreddits=subreddits, tags=article.tag_names(), captcha=captcha)).render()
 
     def _render_opt_in_out(self, msg_hash, leave):
