@@ -1925,7 +1925,8 @@ div.tools div.vote a.down.mod
 div.tools a.save,
 div.tools a.edit,
 div.tools a.license,
-div.tools a.subscription {
+div.tools a.subscription,
+#side-meetups .add .icon {
   cursor: pointer;
   display: block;
   height: 16px;
@@ -2279,4 +2280,25 @@ h6 {
   background: url(/static/relationality-blog-ico.png) no-repeat 0 2px;
 }
 
+#side-meetups .add {
+  float: right;
+}
+#side-meetups .add .icon,
+#side-meetups .add .label
+{
+  float: left;
+}
+#side-meetups .add .icon {
+  width: 19px;
+  height: 19px;
+  background-position: -288px -32px;
+}
+/* #side-meetups .add .icon:hover */
+/* { */
+/*   background-position: -448px -31px; */
+/* } */
+#side-meetups .add .label {
+  font-family: 'montserratt', Arial, sans-serif;
+  margin-left: 5px;
+}
 
