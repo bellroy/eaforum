@@ -132,7 +132,7 @@ namespace :deploy do
   task :crontab do
     crontab = basepath + 'config' + 'crontab'
     target = "/etc/cron.d/#{application}"
-    if false && environment == "production"
+    if environment == "production"
       sudo "/bin/cp #{crontab} #{target}"
     else
       # Don't want the cron jobs running in non-production environments
