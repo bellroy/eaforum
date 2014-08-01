@@ -545,6 +545,7 @@ class FrontController(RedditController):
             sr = None
 
         return FormPage(_("Submit Article"),
+                        show_sidebar = True,
                         content=NewLink(title=title or '',
                                         subreddits = srs,
                                         tags=tags,
