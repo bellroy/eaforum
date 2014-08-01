@@ -2485,3 +2485,11 @@ form#passwordEmail button.button {
   color: #8a8a8b;
   font-style: italic;
 }
+
+#resend-confirmation-form {
+  margin-top: 30px;
+}
+#resend-confirmation-form .email {
+  color: black;
+  font-style: italic;
+}

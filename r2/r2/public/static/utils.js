@@ -591,7 +591,7 @@ function post_form(form, where, statusfunc, nametransformfunc, block, api_loc, o
 
     var p = {uh: modhash};
     var id = _id(form);
-    var status = $("status");
+    var status = options.status || $("status");
 
     if(statusfunc == null) {
         statusfunc = function(x) { return _global_submitting_tag; };

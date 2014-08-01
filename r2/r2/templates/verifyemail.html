@@ -24,11 +24,17 @@
 ${success_field(_('Thank you for verifying your email address'),
                 successful=thing.success, hide='passform')}
 
+%if c.user.email_validated:
+<h1>${_("Verify Email")}</h1>
+
+<p>Your email address has already been verified.</p>
+%else:
 <form id="passform" action="/api/verifyemail" method="post"
       class="content pretty-form medium-text"
       onsubmit="return post_form(this, 'verifyemail');">
   <h1>${_("Verify Email")}</h1>
-  <p> ${_("Enter your confirmation code to verify your email address")}</p>
+  <p>When you signed up we sent you an email with a confirmation code.<p>
+  <p>${_("Enter your confirmation code below to verify your email address.")}</p>
   <table>
     <tr>
       <td>
@@ -51,3 +57,28 @@ ${success_field(_('Thank you for verifying your email address'),
   </table>
 </form>
 
+<form id="resend-confirmation-form" action="/api/resendconfirmation" method="post">
+  <h1>${_("Can't find the email?")}</h1>
+  <p>Press Resend Confirmation Code to send it to <span class="email">${c.user.email}</span> again.</p>
+
+  <button type="submit" class="btn">${_('Resend Confirmation Code')}</button>
+  <span class="error" id="resend-status"></span>
+</form>
+<script type="text/javascript">
+  (function($) {
+   $('#resend-confirmation-form').submit(function(e) {
+     e.preventDefault();
+     var form = $(this);
+
+     $('#resend-status').text('Submitting...').show();
+     $.post(form.attr('action'), {uh: modhash}, function(data) {
+       debugger;
+       $('#resend-status').hide();
+       if (data.response && data.response.success) {
+         form.find('button').replaceWith('<p class="error">A new confirmation code has been emailed to you.</p>')
+       }
+     }, 'json');
+   });
+  })(jQuery);
+</script>
+%endif

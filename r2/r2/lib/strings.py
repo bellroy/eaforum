@@ -110,7 +110,7 @@ string_dict = dict(
     link_info_title = _("%(title)s - %(site)s"),
     show_meetup_title = _("%(title)s - %(site)s"),
     not_enough_downvote_karma = _('You do not have enough karma to downvote right now. You need %d more %s.'),
-    email_not_validated = _('You must [verify your email address](/verifyemail) in order to post and comment.')
+    email_not_validated = _('In order to post and comment you will need to [verify your email address](/verifyemail).')
 )
 
 class StringHandler(object):
