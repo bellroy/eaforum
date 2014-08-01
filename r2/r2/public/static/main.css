@@ -2300,3 +2300,6 @@ h6 {
   background: url(/static/relationality-blog-ico.png) no-repeat 0 2px;
 }
 
+.profile_page #newarticle {
+  display: none;
+}
