@@ -25,7 +25,7 @@
 files=( event.simulate.js utils.js animate.js link.js comments.js subreddit.js vote_piece.js reddit_piece.js organic.js main.js map.js polls.js )
 
 wd=`pwd`
-redditjs='lesswrong.js'
+redditjs='eaforum.js'
 framejs='frame.js'
 votejs='vote.js'
 

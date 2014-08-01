@@ -137,14 +137,8 @@ def make_map(global_conf={}, app_conf={}):
 
     mc('/doquery', controller='query', action='doquery')
 
-    mc('/code', controller='redirect', action='redirect',
-       dest='http://code.google.com/p/lesswrong/')
-
-    mc('/about-less-wrong', controller='front', action='about')
-    mc('/issues', controller='front', action='issues')
-
     # Google webmaster tools verification page
-    mc('/googlea26ba8329f727095.html', controller='front', action='blank')
+    #mc('/googlea26ba8329f727095.html', controller='front', action='blank')
 
     # This route handles displaying the error page and
     # graphics used in the 404/500

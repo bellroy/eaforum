@@ -37,7 +37,7 @@
   </div>
 </%def>
 
-<h1>${_("Complete the form to delete your LessWrong account.")}</h1>
+<h1>${_("Complete the form to delete your %s account." % g.front_page_title)}</h1>
 
 <form action="/post/delete" method="post" class="pretty-form" id="deleteAccount"
   onsubmit="${"return post_form(this, 'delete_user', function(x) {return '%s'})" % _("Deleting...")}">

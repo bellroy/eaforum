@@ -4,7 +4,7 @@ function init_tinymce(base_url) {
     elements : "article",
     theme : "advanced",
     width : "100%",
-    content_css : "/static/lesswrong.css",
+    content_css : "/static/eaforum.css",
     body_class : "md",
     theme_advanced_toolbar_location : "top",
     theme_advanced_buttons1 : "formatselect,|,bold,italic,del,forecolor,blockquote,summarybreak,|,bullist,numlist,|,outdent,indent,|,link,unlink,anchor,image,code,html,|,hr,removeformat,|,sub,sup,|,charmap",

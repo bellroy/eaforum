@@ -1,5 +1,5 @@
 Dear ${thing.user.name},
 
-To be able to comment or post on Less Wrong, you need to confirm your email address.
+To be able to comment or post on the ${g.front_page_title}, you need to confirm your email address.
 
 To confirm your email address, go to ${thing.link} and enter code ${thing.user.confirmation_code}.

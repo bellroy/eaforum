@@ -10,5 +10,5 @@ Visit this link to view the meetup page:
 --
 
 You are receiving this email because you enabled the, "Email me about meetups",
-option in your Less Wrong account preferences. If you no longer wish to receive
-these emails you turn can this option off at: http://lesswrong.com/prefs/
+option in your ${g.front_page_title} account preferences. If you no longer wish to receive
+these emails you turn can this option off at: http://effective-altruism.com/prefs/

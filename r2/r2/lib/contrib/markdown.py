@@ -266,7 +266,7 @@ class _Markdown:
                 url = url.replace("_", self.escapetable["_"])
                 res = '<a href="%s"' % htmlquote(url)
 
-                if not re.search('lesswrong|overcomingbias', res):
+                if not re.search('effective-?altruism', res):
                     res += ' rel="nofollow"'
 
                 if title:
@@ -288,7 +288,7 @@ class _Markdown:
             url = url.replace("_", self.escapetable["_"])
             res = '''<a href="%s"''' % htmlquote(url)
 
-            if not re.search('lesswrong|overcomingbias', res):
+            if not re.search('effective-?altruism', res):
                 res += ' rel="nofollow"'
 
             if title:

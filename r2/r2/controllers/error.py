@@ -48,7 +48,7 @@ except Exception, e:
 redditbroke =  \
 '''<html>
   <head>
-    <title>LessWrong broke!</title>
+    <title>The EA Forum broke!</title>
   </head>
   <body>
     <div style="margin: auto; text-align: center">

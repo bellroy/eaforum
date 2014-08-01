@@ -61,17 +61,17 @@ def password_email(user):
     key = passhash(random.randint(0, 1000), user.email)
     passlink = 'http://' + g.domain + '/resetpassword/' + key
     cache.set("reset_%s" %key, user._id, time=1800)
-    simple_email(user.email, 'contact@lesswrong.com',
-                 'lesswrong.com password reset',
+    simple_email(user.email, 'contact@effective-altruism.com',
+                 '%s password reset' % g.front_page_title,
                  PasswordReset(user=user, passlink=passlink).render(style='email'))
 
 def confirmation_email(user):
-    simple_email(user.email, 'contact@lesswrong.com',
-                 'lesswrong.com email verification',
+    simple_email(user.email, 'contact@effective-altruism.com',
+                 '%s email verification' % g.front_page_title,
                  EmailVerify(user=user, link='http://'+g.domain+'/verifyemail').render(style='email'))
 
 def wiki_failed_email(user):
-    simple_email(user.email, 'contact@lesswrong.com',
+    simple_email(user.email, 'contact@effective-altruism.com',
                  'LessWrong Wiki sign-up failed',
                  WikiSignupFail(user=user, link='http://'+g.domain+'/prefs/wikiaccount/').render(style='email'))
 
@@ -81,25 +81,25 @@ def unknown_wiki_error(error):
                  WikiAPIError(error=error).render(style='email'))
 
 def wiki_incompatible_name_email(user):
-    simple_email(user.email, 'contact@lesswrong.com',
+    simple_email(user.email, 'contact@effective-altruism.com',
                  'LessWrong account name incompatible with wiki',
                  WikiIncompatibleName(user=user, link='http://'+g.wiki_host+'/mediawiki/index.php?title=Special:UserLogin&type=signup').render(style='email'))
 
 def wiki_signup_notification_email(user):
-    simple_email(user.email, 'contact@lesswrong.com',
+    simple_email(user.email, 'contact@effective-altruism.com',
                  'LessWrong Wiki sign-up',
                  WikiSignupNotification(link='http://'+g.wiki_host).render(style='email'))
 
 def wiki_user_exists_email(user):
-    simple_email(user.email, 'contact@lesswrong.com',
+    simple_email(user.email, 'contact@effective-altruism.com',
                  'LessWrong Wiki account exists',
                  WikiUserExists(user=user,
                                 link_base='http://'+g.wiki_host,
                                 link='http://'+g.wiki_host+'/mediawiki/index.php?title=Special:UserLogin&type=signup').render(style='email'))
 
 def meetup_email(user, meetup):
-    simple_email(user.email, 'contact@lesswrong.com',
-                 'lesswrong.com meetup notification',
+    simple_email(user.email, 'contact@effective-altruism.com',
+                 '%s meetup notification' % g.front_page_title,
                  MeetupNotification(user=user, meetup=meetup).render(style='email'))
 
 
