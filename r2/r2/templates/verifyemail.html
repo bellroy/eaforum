@@ -72,7 +72,6 @@ ${success_field(_('Thank you for verifying your email address'),
 
      $('#resend-status').text('Submitting...').show();
      $.post(form.attr('action'), {uh: modhash}, function(data) {
-       debugger;
        $('#resend-status').hide();
        if (data.response && data.response.success) {
          form.find('button').replaceWith('<p class="error">A new confirmation code has been emailed to you.</p>')
