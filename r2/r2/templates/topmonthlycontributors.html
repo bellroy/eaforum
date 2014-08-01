@@ -1,9 +1,11 @@
 <h2>${_('Top Contributors, 30 Days')}</h2>
 <div class="contributors">
-%for user in thing.things:
-  <div class="user">
-    <a href="/user/${user.name}">${user.name}</a>&#32;
-    (<b>${user.monthly_karma}</b>)
-  </div>
-%endfor
+  <ul>
+    %for user in thing.things:
+      <li class="user">
+        <a href="/user/${user.name}">${user.name}</a>
+        <span class='karma'>${user.safe_karma}</span>
+      </li>
+    %endfor
+  </ul>
 </div>

@@ -1,9 +1,11 @@
 <h2>${_('Top Contributors, All Time')}:</h2>
 <div class="contributors">
-%for user in thing.things:
-  <div class="user">
-    <a href="/user/${user.name}">${user.name}</a>&#32;
-    (<b>${user.safe_karma}</b>)
-  </div>
+  <ul>
+    %for user in thing.things:
+      <li class="user">
+        <a href="/user/${user.name}">${user.name}</a>
+        <span class='karma'>${user.safe_karma}</span>
+      </li>
+  </ul>
 %endfor
 </div>

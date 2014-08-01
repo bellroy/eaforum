@@ -1357,6 +1357,36 @@ ul#rightnav li a:hover {
   width: 14px;
 }
 
+#side-comments .inline-comment-score {
+  display: inline-block;
+  min-width: 12px;
+  line-height: 14px;
+  padding: 1px 2px 0 1px;
+  border: 1px solid #326492;
+  text-align: center;
+  color: #326492;
+  font-size: 9px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+
+#side-comments .inline-comment-title {
+  font-style: italic;
+  color: #565656;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 180px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 #side-comments h3 {
   font-size: 1em;
   font-weight: bold;
@@ -1365,16 +1395,33 @@ ul#rightnav li a:hover {
   max-width: 100%;
   overflow: hidden;
 }
+
 #side-comments div.inline-comment {
   display: block;
   margin: 0 0 10px;
 }
+
 #side-comments div.inline-comment:last-child {
   margin: 0;
 }
-#side-comments div.inline-comment span.tagline a {
+
+#side-comments div.inline-comment span.tagline a.author {
   font-family: 'montserratt', Arial, sans-serif;
-  color: #58585a;
+}
+
+#side-comments div.inline-comment span.tagline a.author:hover {
+  text-decoration: none;
+  color: #326492;
+}
+
+#side-comments div.inline-comment span.tagline a.article-title {
+  font-style: italic;
+  text-decoration: underline;
+  color: #326492;
+}
+
+#side-comments div.inline-comment span.tagline a.article-title:hover {
+  text-decoration: underline;
 }
 
 #side-open h3 {
@@ -1385,6 +1432,7 @@ ul#rightnav li a:hover {
   max-width: 100%;
   overflow: hidden;
 }
+
 #side-open div.inline-comment {
   display: block;
   margin: 0 0 10px;
@@ -1476,13 +1524,30 @@ ul#rightnav li a:hover {
 #side-tags .nine  { font-size: 1.75em;  }
 #side-tags .ten   { font-size: 1.75em;  }
 
-#side-contributors div.contributors div.user {
-  margin: 0 0 0;
-}
-#side-contributors div.contributors div.user:last-child {
+#sidebar div.contributors ul {
   margin: 0;
+  padding: 0;
 }
 
+#sidebar div.contributors li.user {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#sidebar div.contributors li.user a {
+  font-family: 'montserratt', Arial, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  margin-right: 5px;
+  padding-left: 20px;
+  background: url(/static/top-contributors-ico.png) no-repeat 0 2px;
+}
+
+#sidebar div.contributors li.user span {
+  font-size: 11px;
+  color: #787878;
+}
 
 /* Article Navigation
 ----------------------------------------------------------------------------------------------------*/

@@ -3,13 +3,12 @@
    from r2.lib.filters import killhtml
    from r2.lib.template_helpers import get_domain
 %>
-  
-  <h3><a href="${thing.make_anchored_permalink()}">${killhtml(thing.body)}</a></h3>
-  <span class='tagline'>
-    by&#32;<a href="http://${get_domain(cname=True, subreddit=False)}/user/${thing.author.name}">
+
+  <span class="inline-comment-score" id="score_${thing._fullname}">${thing.score_fmt(thing.score)['label']}</span>
+  <span class="inline-comment-title" href="${thing.make_anchored_permalink()}">${killhtml(thing.body)}</span>
+  <span class="tagline">
+    by&#32;<a class="author" href="http://${get_domain(cname=True, subreddit=False)}/user/${thing.author.name}">
     <strong>${thing.author.name}</strong></a>&#32;
     on&#32;
-    ${thing.link.title}&#32;|&#32;
-    <span id="score_${thing._fullname}">${thing.score_fmt(thing.score)['label']}</span>
+    <a href='#' class="article-title">${thing.link.title}</a>
   </span>
-
