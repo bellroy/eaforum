@@ -123,6 +123,12 @@ class Reddit(Wrapped):
         if self.searchbox:
             ps.append(GoogleSearchForm())
 
+        links = [
+                    ("New to Effective Altruism?", "http://effectivealtruism.org/"),
+                    ("More on Effective Altruism", "http://effectivealtruism.org/resources/#reading")
+                ]
+        ps.append(LinkBox(title = "Getting Started", links = links))
+
         if not c.user_is_loggedin and self.loginbox:
             ps.append(LoginFormWide())
         else:
@@ -1505,6 +1511,12 @@ class AboutBox(Wrapped): pass
 class FeedBox(Wrapped):
     def __init__(self, feed_urls, *a, **kw):
         self.feed_urls = feed_urls
+        Wrapped.__init__(self, *a, **kw)
+
+class LinkBox(Wrapped):
+    def __init__(self, title, links, *a, **kw):
+        self.title = title
+        self.links = links
         Wrapped.__init__(self, *a, **kw)
 
 class RecentWikiEditsBox(Wrapped):

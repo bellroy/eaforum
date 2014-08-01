@@ -1,0 +1,9 @@
+<div class="linkbox">
+  <h2>${thing.title}</h2>
+
+  <ul>
+    %for (link, url) in thing.links:
+    <li><a href="${url}">${link}</a></li>
+    %endfor
+  </ul>
+</div>

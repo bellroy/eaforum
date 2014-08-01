@@ -2307,6 +2307,18 @@ h6 {
   background: url(/static/relationality-blog-ico.png) no-repeat 0 2px;
 }
 
+#sidebar .linkbox li {
+  margin: 0;
+  padding: ;
+}
+#sidebar .linkbox li a {
+  font-family: 'montserratt', Arial, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  padding-left: 17px;
+  background: url(/static/getting-started-ico.png) no-repeat 0 3px;
+}
+
 .profile_page #newarticle {
   display: none;
 }
