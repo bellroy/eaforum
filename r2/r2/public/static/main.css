@@ -2348,3 +2348,34 @@ h6 {
   line-height: 12px;
   background: url(/static/top-contributors-ico.png) no-repeat left center;
 }
+
+/* Preferences Page */
+
+form#passwordEmail {
+	width: 490px;
+}
+
+form#passwordEmail .field-wrapper{
+  overflow: auto;
+}
+
+form#passwordEmail .field {
+	float: left;
+	margin-right: 26px;
+	margin-bottom: 10px;
+}
+
+form#passwordEmail .field label{
+	display: block;
+	font-weight: bold;
+	padding-bottom: 3px;
+}
+
+form#passwordEmail .field .textbox {
+	width: 192px;
+  margin-left: 0px;
+}
+
+form#passwordEmail button.button {
+  margin-left: 0px;
+}

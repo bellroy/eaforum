@@ -22,34 +22,36 @@
 
 <%namespace file="utils.html" import="error_field"/>
 
-<form action="/post/update" method="post" class="pretty-form medium-text"
-      onsubmit="return post_form(this, 'update')">
-<table>
-<tr>
-    <td align="right">${_("Current password (required)")}:</td>
-    <td><input name="curpass" type="password" /></td>
-    <td>${error_field("WRONG_PASSWORD")}</td>
-</tr>
-<tr>
-    <td align="right">${_("Email")}:</td>
-    <td><input name="email" type="text" value="${hasattr(c.user,'email') and c.user.email or ''}"/></td>
-    <td>
-      ${error_field("BAD_EMAIL")}
-      ${error_field("NO_EMAIL")}
-    </td>
-</tr>
-<tr>
-    <td align="right">${_("New password")}:</td>
-    <td><input name="newpass" type="password" maxlength="20"/></td>
-    <td>${error_field("BAD_PASSWORD")}</td>
-</tr>
-<tr>
-    <td align="right">${_("Verify password")}:</td>
-    <td><input name="verpass" type="password" maxlength="20"/></td>
-    <td> ${error_field("BAD_PASSWORD_MATCH")}
-    </td>
-</tr>
-</table>
-<input type="submit" class="btn" value="${_('Save')}"/>
-<span id='status' class='error'></span>
+<form id="passwordEmail" action="/post/update" method="post" class="pretty-form medium-text"
+  onsubmit="return post_form(this, 'update')">
+  <div class="field-wrapper">
+    <div class="field">
+      <label for="currentPassword">${_("Current password (required)")}</label>
+      <input type="password" class="textbox" name="curpass" id="currentPassword">
+      <span class="error">${error_field("WRONG_PASSWORD")}</span>
+    </div>
+    <div class="field">
+      <label for="newPassword">${_("New password")}</label>
+      <input type="password" name="newpass" class="textbox" id="newPassword">
+      <span class="error">${error_field("BAD_PASSWORD")}</span>
+    </div>
+  </div>
+  <div class="field-wrapper">
+    <div class="field">
+      <label for="email">${_("Email")}</label>
+      <input type="text" name="email" class="textbox" id="email" value="${hasattr(c.user,'email') and c.user.email or ''}">
+      <span class="error">
+        ${error_field("BAD_EMAIL")}
+        ${error_field("NO_EMAIL")}
+      </span>
+    </div>
+    <div class="field">
+      <label for="verifyPassword">${_("Verify password")}</label>
+      <input type="password" class="textbox" id="verifyPassword" name="verpass">
+      <span class="error">${error_field("BAD_PASSWORD_MATCH")}</span>
+    </div>
+  </div>
+  <div class="clear"></div><br>
+  <button type="submit" class="button">${_('Save')}</button>
+  <span id='status' class='error'></span>
 </form>
