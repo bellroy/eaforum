@@ -1239,6 +1239,13 @@ class InlineComment(Comment):
     """Exists to gain a different render_class in Wrapped"""
     _nodb = True
 
+    @classmethod
+    def add_props(cls, user, wrapped):
+        Comment.add_props(user, wrapped)
+
+        for item in wrapped:
+            item.score_fmt = Score.signed_number
+
 class MoreComments(object):
     show_spam = False
     show_reports = False
