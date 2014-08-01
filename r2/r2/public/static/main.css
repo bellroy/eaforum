@@ -2379,3 +2379,29 @@ form#passwordEmail .field .textbox {
 form#passwordEmail button.button {
   margin-left: 0px;
 }
+
+/* Delete Account */
+#deleteAccount .question {
+	margin-bottom: 5px;
+}
+
+#deleteAccount .question span {
+	margin-right: 62px;
+}
+
+#deleteAccount .question label {
+	margin-right: 33px;
+}
+
+#deleteAccount .question label input {
+	margin: 0 0 0 5px;
+	padding: 0;
+	vertical-align: middle;
+	position: relative;
+	top: -1px;
+}
+
+#deleteAccount  .button {
+	margin-top: 16px;
+  margin-left: 0px;
+}
