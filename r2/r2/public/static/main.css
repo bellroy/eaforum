@@ -282,7 +282,6 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   color: rgb(255, 255, 255);
-  cursor: auto;
   display: block;
   float: left;
   font-family: montserratt, Arial, sans-serif;
@@ -294,7 +293,7 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   padding-right: 14px;
   padding-top: 0px;
   text-align: left;
-  text-decoration: none solid rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 /* logout link */

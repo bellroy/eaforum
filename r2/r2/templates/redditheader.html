@@ -31,11 +31,11 @@
         header_img = DefaultSR.header
 %>
 <div id="header" class='${c.site.name}'>
-      <h1><a href="/">Effective Altruism Forum</a></h1>
-  <!-- <img id="tagline" src="${static('tagline.png')}" alt="A community blog devoted to refining the art of human rationality" />
-  <a id="fhi" href="http://www.fhi.ox.ac.uk/" target="_blank">Future of Humanity Institute</a>
-  <a id="miri" href="http://intelligence.org/" target="_blank">Machine Intelligence Research Institute</a>
-  <a id="cfar" href="http://appliedrationality.org/" target="_blank">Center for Applied Rationality</a> -->
+  <h1><a href="/">Effective Altruism Forum</a></h1>
+
+%if not c.user_is_loggedin:
+  <a id="loginbutton" href="/login" onclick="return showcover(false);">Log in / Sign up</a>
+%endif
 </div><!-- #header -->
 
 <div id="banner"></div>

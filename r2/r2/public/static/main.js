@@ -3,13 +3,6 @@
 $(document).ready(function() {
   /* reposition elements for CFEA reskin */
 
-  // login button
-  $("#side-login form button").attr("id", "loginbutton");
-  $("#side-login form button").text("Log in / Sign Up");
-  $form = $("<form id=\"loginForm\" action=\"/post/login\"></form>");
-  $form.appendTo("#header");
-  $("#side-login form button").appendTo("#loginForm");
-
   var userInfo = $('<div id="user-info">');
   // username
   $("#side-status h2").appendTo(userInfo);
