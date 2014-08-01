@@ -2259,6 +2259,27 @@ h6 {
   font-size: 11px;
   color: #787878;
 }
+#side-meetups .location {
+  font-family: 'montserratt', Arial, sans-serif;
+}
+#side-meetups .add {
+  margin-top: 10px;
+  float: right;
+}
+#side-meetups .add .icon,
+#side-meetups .add .label
+{
+  float: left;
+}
+#side-meetups .add .icon {
+  width: 19px;
+  height: 19px;
+  background-position: -288px -32px;
+}
+#side-meetups .add .label {
+  font-family: 'montserratt', Arial, sans-serif;
+  margin-left: 5px;
+}
 
 #sidebar #feeds ul {
   margin: 0;
@@ -2278,27 +2299,5 @@ h6 {
   text-decoration: none;
   padding-left: 19px;
   background: url(/static/relationality-blog-ico.png) no-repeat 0 2px;
-}
-
-#side-meetups .add {
-  float: right;
-}
-#side-meetups .add .icon,
-#side-meetups .add .label
-{
-  float: left;
-}
-#side-meetups .add .icon {
-  width: 19px;
-  height: 19px;
-  background-position: -288px -32px;
-}
-/* #side-meetups .add .icon:hover */
-/* { */
-/*   background-position: -448px -31px; */
-/* } */
-#side-meetups .add .label {
-  font-family: 'montserratt', Arial, sans-serif;
-  margin-left: 5px;
 }
 

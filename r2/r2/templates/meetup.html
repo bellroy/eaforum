@@ -6,7 +6,5 @@
 <li>${self.meetup_title(thing)}</li>
 
 <%def name="meetup_title(meetup)">
-  <a href="${meetup.canonical_url}">
-		${meetup.title}:&nbsp;<span class="date">${meetup.datetime().strftime('%d %B %Y %H:%M')}</span>
-	</a>
+  <a href="${meetup.canonical_url}" class="location">${meetup.location}</a>&nbsp;<span class="date">${meetup.datetime().strftime('%d %b %Y %H:%M')}</span>
 </%def>
