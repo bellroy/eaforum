@@ -13,11 +13,11 @@ $(document).ready(function() {
   $("#side-status ul.userlinks a[href$='/logout/']").attr("id", "signout");
   $("#side-status ul.userlinks a[href$='/logout/']").text("sign out");
   $("#side-status ul.userlinks a[href$='/logout/']").appendTo(userInfo);
-  
-  // Add user info to header
-  $("#header").append(userInfo);
+
   // search
   $("#side-search").appendTo("#header");
+  // Add user info to header
+  $("#header").append(userInfo);
 
   // filter nav
   var navDivId = "#nav";

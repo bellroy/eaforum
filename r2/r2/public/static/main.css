@@ -227,7 +227,6 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   overflow: auto;
   padding-top: 32px;
   float: right;
-  margin-right: 200px;
 }
 
 #user-info h2, #user-info a, #user-info span {
@@ -303,32 +302,18 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
+  margin-right: 0px;
 }
 
 /* search */
 #side-search {
+  width: 230px;
+  float: right;
+  margin-top: 26px;
   position: relative;
-  background-color: transparent;
-  border: none;
-  margin: 0 0 15px;
-  padding: 0;
-  top: -32px;
-  left: 740px;
+  left: 15px; /* Compensate for padding I can't seem to get rid of */
 }
-#side-search input.text {
-  background-position: 5px center !important;
-  border: 1px solid #e4e4e4 !important;
-  -webkit-box-shadow: inset 2px 2px 2px #dbdbdb;
-  -moz-box-shadow: inset 2px 2px 2px #dbdbdb;
-  box-shadow: inset 2px 2px 2px #dbdbdb;
-  font: 12px Arial, Helvetica, sans-serif;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  padding: 6px 4px 6px 9px !important;
-  width: 205px;
-}
-#side-search input.submit {
+#side-search input.gsc-search-button {
   display: none;
 }
 
