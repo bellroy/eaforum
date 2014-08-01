@@ -435,7 +435,7 @@ ul#filternav li:last-child {
 
 #post-filter {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   z-index: 999;
 }
 #post-filter div.filter-active {
@@ -2104,29 +2104,29 @@ body.meetup .commentreply textarea {
 .textbox,
 textarea,
 select {
-	margin: 0;
-	padding: 3px 6px;
-	height: 18px;
-	background: #f1f1f1;
-	border: 0;
-	font-family: Arial, sans-serif;
-	font-size: 13px;
-	border-top: 1px solid #d7d7d7;
-	border-left: 1px solid #d7d7d7;
-	box-shadow: inset 1px 1px 0 0 #e8e8e8;
-	width: 160px;
-	overflow: auto;
+  margin: 0;
+  padding: 3px 6px;
+  background: #f1f1f1;
+  border: 0;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  border-top: 1px solid #d7d7d7;
+  border-left: 1px solid #d7d7d7;
+  box-shadow: inset 1px 1px 0 0 #e8e8e8;
+  width: 160px;
+  overflow: auto;
 }
-
+.textbox {
+  height: 18px;
+}
 select {
-	height: 24px;
+  height: 24px;
 }
 
 /* Prefences */
 h6 {
   margin: 0 0 14px;
   line-height: 1.4;
-  /* font-family: Arial, sans-serif; */
   font-size: 13px;
   font-weight: bold;
 }
