@@ -2303,3 +2303,48 @@ h6 {
 .profile_page #newarticle {
   display: none;
 }
+
+/* User Friends */
+.usertable h2 {
+  margin-bottom: 10px;
+  color: #326492;
+}
+
+.usertable form.pretty-form {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.usertable form.pretty-form .textbox {
+  margin-left: 0px;
+}
+
+.usertable ul#friend {
+  margin: 0;
+  padding: 0;
+}
+
+.usertable ul#friend li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usertable ul#friend li form {
+  display: inline-block;
+}
+
+.usertable ul#friend li a {
+  font-size: 12px;
+  margin-right: 19px;
+}
+
+.usertable ul#friend li a.id {
+  font-family: 'montserratt', Arial, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  padding-left: 19px;
+  margin-right: 16px;
+  line-height: 12px;
+  background: url(/static/top-contributors-ico.png) no-repeat left center;
+}

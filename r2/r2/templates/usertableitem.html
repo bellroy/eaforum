@@ -34,12 +34,9 @@
   
 <%def name="cell_type(name)">
   %if name == "user":
-      <span class="user">
-         ${plain_link(thing.user.name, "/user/%s/" % thing.user.name, _sr_path=False)}
-         &nbsp;(<b>${thing.user.safe_karma}</b>)
-      </span>&nbsp;
+  <a href="/user/${thing.user.name}" class="id">${thing.user.name} (${thing.user.safe_karma})</a>
   %elif c.user_is_loggedin and name == "sendmessage" and c.user != thing.user:
-    ${plain_link(_("Send message"), "/message/compose?to=%s" % (thing.user.name))}&nbsp;
+    ${plain_link(_("Send message"), "/message/compose?to=%s" % (thing.user.name))}
   %elif name == "remove" and thing.editable:
     ${yes_no_button("remove", thing.name, _("Remove"),
     "return deletetoggle(this, UserTable.del('%s', '%s'));"
