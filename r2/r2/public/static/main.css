@@ -971,11 +971,22 @@ div.message .tagline {
   padding: 0 5px;
   margin: 0;
 }
-div.message .head.new {
+div.message .head {
+  display: block;
+  font-style: italic;
+  font-size: 13px;
+  color: #858585;
+  margin-bottom: 16px;
+}
+
+div.message .head.new:before {
+  content: "⭑";
   color: orangered;
+  font-style: normal;
 }
 div.message .subject {
-  color: #326492;
+  color: rgb(86, 86, 86);
+  font-weight: bold;
   padding: 0 5px;
   margin: 0;
 }
