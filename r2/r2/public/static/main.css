@@ -2240,6 +2240,11 @@ h6 {
 
 /* Sidebar styling */
 
+#side-meetups ul {
+  border-bottom: 1px solid whitesmoke;
+  padding-bottom: 10px;
+}
+
 #side-meetups ul li {
   margin: 0 0 2px;
   padding: 0;
@@ -2258,23 +2263,29 @@ h6 {
   font-size: 11px;
   color: #787878;
 }
+
 #side-meetups .location {
   font-family: 'montserratt', Arial, sans-serif;
 }
+
 #side-meetups .add {
-  margin-top: 10px;
-  float: right;
+  padding-top: 10px;
+  overflow: auto;
+  display: inline-block;
 }
+
 #side-meetups .add .icon,
 #side-meetups .add .label
 {
   float: left;
 }
+
 #side-meetups .add .icon {
   width: 19px;
   height: 19px;
   background-position: -288px -32px;
 }
+
 #side-meetups .add .label {
   font-family: 'montserratt', Arial, sans-serif;
   margin-left: 5px;
@@ -2404,4 +2415,73 @@ form#passwordEmail button.button {
 #deleteAccount  .button {
 	margin-top: 16px;
   margin-left: 0px;
+}
+
+/* Login popup */
+
+#loginpopup {
+  left: inherit;
+  width: 600px;
+  padding: 50px 50px 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0px solid #fff;
+}
+
+#loginpopup h2 {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  color: #326492;
+  margin-left: 5px;
+  font-family: "montserratt",Arial,sans-serif;
+}
+
+#loginpopup .loginform {
+  width: 229px;
+  padding-left: 60px;
+  padding-right: 0px;
+  min-height: 330px; /* To make the separator look nice */
+}
+
+#loginpopup .loginform.divide {
+  padding-left: 0px;
+  padding-right: 60px;
+}
+
+
+#loginpopup input[type="text"],
+#loginpopup input[type="password"] {
+	margin: 0 0 5px;
+	padding: 5px 6px;
+	height: 18px;
+	background: #f1f1f1;
+	border: 0;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	border-top: 1px solid #d7d7d7;
+	border-left: 1px solid #d7d7d7;
+	box-shadow: inset 1px 1px 0 0 #e8e8e8;
+	overflow: auto;
+  width: 200px;
+}
+
+#loginpopup label.remember {
+  font-weight: normal;
+  color: #888;
+}
+
+#loginpopup a.close-popup {
+  font-size: 30px;
+  text-decoration: none;
+  position: absolute;
+  top: 4px;
+  right: 15px;
+}
+
+#loginpopup .password-link a {
+  color: #8a8a8b;
+  font-style: italic;
 }

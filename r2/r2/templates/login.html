@@ -58,9 +58,8 @@
     <div>
       <ul>
         <li>
-          <label for="user_${op}">${_('Username')}:</label>
           <input value="${user}" name="user_${op}" id="user_${op}"
-                 type="text" maxlength="20"/>
+                 type="text" maxlength="20" placeholder="${_('Username')}"/>
           %if register:
             ${error_field("BAD_USERNAME_" + op, kind="span")}
             ${error_field("BAD_USERNAME_CHARS_" + op, kind="span")}
@@ -71,17 +70,19 @@
         </li>
       %if register:
         <li>
-          <label for="email_${op}">${_('Email')}:</label>
           <input value="" name="email_${op}" id="email_${op}"
-                 type="text" maxlength="50"/>
+                 type="text" maxlength="50"
+                 placeholder="${_('Email')}"
+                 />
             ${error_field("NO_EMAIL_" + op, kind="span")}
             ${error_field("BAD_EMAIL_" + op, kind="span")}
         </li>
       %endif
         <li>
-          <label for="passwd_${op}">${_('Password')}:</label>
           <input id="passwd_${op}"
-                 name="passwd_${op}" type="password" maxlength="20"/>
+                 name="passwd_${op}" type="password" maxlength="20"
+                 placeholder="${_('Password')}"
+                 />
           %if register:
             ${error_field("BAD_PASSWORD_" + op, kind="span")}
           %else:
@@ -90,9 +91,8 @@
         </li>
       %if register:
         <li>
-          <label for="passwd2_${op}">${_('Verify password')}:</label>
           <input name="passwd2_${op}" id="passwd2_${op}"
-                 type="password" maxlength="20" />
+                 type="password" maxlength="20" placeholder="${_('Verify password')}"/>
           ${error_field("BAD_PASSWORD_MATCH_" + op, kind="span")}
         </li>
         <li>
@@ -103,16 +103,9 @@
       %endif
       <li>
         <input type="checkbox" name="rem" id="rem_${op}" />
-        <label for="rem_${op}" class="remember">${_('Remember me')}</label>
+        <label for="rem_${op}" class="remember">${_('remember me')}</label>
       </li>
     </ul>
-##    %if register:
-##      <p class="legal">
-##        ${text_with_links(strings.legal,
-##          user_agreement = (_("User Agreement"), "http://reddit.com/help/useragreement"),
-##          privacy_policy = (_("Privacy Policy"), "http://reddit.com/help/privacypolicy"))}
-##      </p>
-##    %endif
       <p>
         <button type="submit">
           ${register and _("Create account") or _("Login")}
@@ -126,21 +119,15 @@
 
 <%def name="login_panel(user_reg = '', user_login = '', dest='')">
   <div class="loginform divide">
-    <h3>${_("Create")}</h3>
-    <p class="tagline">
-      ${_("Pick a username and password for your Less Wrong and Less Wrong Wiki accounts. You will receive an email to verify your account.")}
+    <h2>${_("Log In")}</h2>
+    ${login_form(user = user_login, dest = dest)}
+    <p class="password-link">
+      ${plain_link(_("Recover password"), "/password")}
     </p>
-    ${login_form(register=True, user=user_reg, dest=dest)}
   </div>
   <div class="loginform">
-    <h3>${_("Login")}</h3>
-    <p class="tagline">
-      ${_("Already have an account and just want to login?")}
-    </p>
-    ${login_form(user = user_login, dest = dest)}
-    <p>
-      ${plain_link(_("Forgot your password?"), "/password")}
-    </p>
+    <h2>${_("Sign Up")}</h2>
+    ${login_form(register=True, user=user_reg, dest=dest)}
   </div>
   <div class="clear"></div>
 </%def>

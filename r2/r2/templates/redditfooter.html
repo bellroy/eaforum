@@ -66,23 +66,16 @@
 </div>
 
 %if not c.user_is_loggedin:
-<div id="cover" style="display:none" class="cover"
-       onclick="hidecover('cover', 'loginpopup')">
-  </div>
+  <div id="cover" style="display:none" class="cover" onclick="hidecover('cover', 'loginpopup')"></div>
   <div id="loginpopup" style="display: none" class="popup">
     <h1 id="cover_msg">${strings.cover_msg}</h1>
     <h2 id="cover_disclaim">${strings.cover_disclaim}</h2>
-    ${login_panel()}
     <div style="text-align:center">
-      <a href="javascript:hidecover('cover','loginpopup')">
-        ${_("Close this window")}
-      </a>
+      <a class="close-popup" href="javascript:hidecover('cover','loginpopup')">&times;</a>
     </div>
+    ${login_panel()}
   </div>
-
-  <div id="langcover" style="display:none" class="cover"
-       onclick="hidecover('langcover', 'langpopup')">
-  </div>
+  <div id="langcover" style="display:none" class="cover" onclick="hidecover('langcover', 'langpopup')"></div>
   <div id="langpopup" style="display: none" class="popup">
     <%include file="prefoptions.html" />
     <div style="text-align:center">
