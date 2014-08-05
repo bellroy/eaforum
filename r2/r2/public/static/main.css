@@ -778,6 +778,24 @@ div.tools a.license:hover {
   background-position: 0 -16px;
 }
 
+a.read_more_link {
+  color: rgb(50, 100, 146);
+  cursor: auto;
+  display: inline;
+  font-family: montserratt, Arial, sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  height: auto;
+  line-height: 16.799999237060547px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  text-align: left;
+  text-decoration: none;
+  width: auto;
+}
+
 /* Meetup
 -------------------------------------------------------------------------------------- */
 body.meetup-index div.post,

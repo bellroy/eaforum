@@ -23,7 +23,7 @@
 <%!
    from r2.models.subreddit import Default
    from r2.lib.template_helpers import get_domain, static
-   from r2.lib.filters import safemarkdown, cleanhtml
+   from r2.lib.filters import safemarkdown, cleanhtml, killhtml, first_words, word_count
    from r2.lib.utils import prettytime, epochtime
    from r2.lib.strings import strings
    from r2.models.poll import renderpolls
@@ -131,13 +131,18 @@
 </%def>
 
 <%def name="summary()">
-  ${unsafe(cleanhtml(renderpolls(thing._summary(), thing)))}
+  <% plain_text = killhtml(renderpolls(thing._summary(), thing)) %>
+  <% first_bit = first_words(plain_text, 50) %>
+
+  ${unsafe(first_bit)}
   % if thing._has_more():
     <span class="read_more_link">
       <%call expr="make_link('read_more', 'more', 'more')">
         ...Read More
       </%call>
     </span>
+  % elif (word_count(plain_text) > 50):
+      <a class="read_more_link" href="${thing.url}">...Read More</a>
   % endif
 </%def>
 

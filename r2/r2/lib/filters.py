@@ -176,6 +176,15 @@ def keep_space(text):
 def unkeep_space(text):
     return text.replace('&#32;', ' ').replace('&#10;', '\n').replace('&#09;', '\t')
 
+def first_words(text = "", number = 50):
+    words = text.split()
+    result_array = words[:number]
+    return " ".join(result_array)
+
+def word_count(text = ""):
+    words = text.split()
+    return len(words)
+
 whitespace_re = re.compile('^\s*$')
 def killhtml(html=''):
     html_doc = soupparser.fromstring(remove_control_chars(html))

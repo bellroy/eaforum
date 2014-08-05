@@ -404,7 +404,7 @@ class BrowseController(ListingController):
 
     @property
     def top_filter(self):
-        return TimeMenu(default = self.time, title = _('Filter'), type='dropdown2')
+        return TimeMenu(default = self.time, title = _('Links from'), type='dropdown2')
 
     def query(self):
         return c.site.get_links(self.sort, self.time)
@@ -879,7 +879,7 @@ class TopcommentsController(CommentsController):
 
 	@property
 	def top_filter(self):
-		return TimeMenu(default = self.time, title = _('Filter'), type='dropdown2')
+		return TimeMenu(default = self.time, title = _('Links from'), type='dropdown2')
 
 	@validate(time = VMenu('where', TimeMenu))
 	def GET_listing(self, time, **env):
@@ -893,7 +893,7 @@ def last_dashboard_visit():
         return cache_visit
     else:
         last_visit = c.user.dashboard_visit
-        g.permacache.set(hc_key, last_visit, time = int(g.dashboard_visits_period)) 
+        g.permacache.set(hc_key, last_visit, time = int(g.dashboard_visits_period))
         c.user.dashboard_visit = datetime.now(g.tz)
         c.user._commit()
         return last_visit
@@ -935,7 +935,7 @@ class InterestingcommentsController(CommentsController):
 
     @property
     def top_filter(self):
-        return DashboardTimeMenu(default = self.time, title = _('Filter'), type='dropdown2')
+        return DashboardTimeMenu(default = self.time, title = _('Links from'), type='dropdown2')
 
     @validate(VUser(),
               time = VMenu('where', DashboardTimeMenu))
@@ -986,7 +986,7 @@ class InterestingsubscribedController(CommentsController):
 
     @property
     def top_filter(self):
-        return DashboardTimeMenu(default = self.time, title = _('Filter'), type='dropdown2')
+        return DashboardTimeMenu(default = self.time, title = _('Links from'), type='dropdown2')
 
     @validate(VUser(),
               time = VMenu('where', DashboardTimeMenu))
@@ -1031,7 +1031,7 @@ class InterestingpostsController(CommentsController):
 
     @property
     def top_filter(self):
-        return DashboardTimeMenu(default = self.time, title = _('Filter'), type='dropdown2')
+        return DashboardTimeMenu(default = self.time, title = _('Links from'), type='dropdown2')
 
     @validate(VUser(),
               time = VMenu('where', DashboardTimeMenu))

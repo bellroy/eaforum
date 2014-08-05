@@ -118,7 +118,6 @@ menu =   MenuHandler(hot          = _('Popular'),
                      friends      = _("Friends"),
                      update       = _("Password/email"),
                      delete       = _("Delete"),
-                     wikiaccount  = _("Wiki Account"),
 
                      # messages
                      compose      = _("Compose"),
@@ -362,7 +361,7 @@ class NamedButton(NavButton):
             return NavButton.selected_title(self)
 
 class ExpandableButton(NamedButton):
-    def __init__(self, name, sr_path = True, nocname=False, dest = None, 
+    def __init__(self, name, sr_path = True, nocname=False, dest = None,
                  sub_reddit = "/", sub_menus=[], **kw):
         self.sub = sub_menus
         self.sub_reddit  = sub_reddit

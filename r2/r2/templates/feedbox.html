@@ -11,7 +11,7 @@
     google.setOnLoadCallback(function() {
       var title = document.getElementById("${title_id}");
       if(title) {
-        title.innerHTML = "Recent on Rationality Blogs";
+        title.innerHTML = "Recent on EA Blogs";
       }
       var urls = ${unsafe(simplejson.dumps(thing.feed_urls))};
       var entries = new Array();

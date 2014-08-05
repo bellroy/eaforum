@@ -4,18 +4,19 @@ $(document).ready(function() {
   /* reposition elements for CFEA reskin */
 
   var userInfo = $('<div id="user-info">');
-  // username
-  $("#side-status h2").appendTo(userInfo);
+  // username - using last child so when viewing another user their details
+  // stay in right box
+  $("#side-status h2").last().appendTo(userInfo);
   // karma
-  $("#side-status div.userinfo span.score").appendTo(userInfo);
-  $("#side-status div.userinfo span.monthly-score").appendTo(userInfo);
+  $("#side-status div.userinfo span.score").last().appendTo(userInfo);
+  $("#side-status div.userinfo span.monthly-score").last().appendTo(userInfo);
   // logout
   $("#side-status ul.userlinks a[href$='/logout/']").attr("id", "signout");
   $("#side-status ul.userlinks a[href$='/logout/']").text("sign out");
   $("#side-status ul.userlinks a[href$='/logout/']").appendTo(userInfo);
 
   // search
-  $("#side-search").appendTo("#header");
+  $("#sidebar #side-search").appendTo("#header");
   // Add user info to header
   $("#header").append(userInfo);
 
@@ -43,6 +44,13 @@ $(document).ready(function() {
   $("#side-status ul.userlinks a[href$='/prefs/']").attr("id", "preferences");
   $("#side-status ul.userlinks a[href$='/prefs/']").appendTo("#navbar");
 
+  // Add posts header on Overview page
+  if ($("ul#nav li.active").text().strip() == "Overview") {
+    var userName = $(location).attr('pathname').replace("/user/", "").replace("/", "");
+    $posts = $("<h2>" + userName + "'s Posts</h2>");
+    $posts.prependTo("#content");
+  }
+
   /* Dropdowns in main menu */
   dropdownSel = 'ul#nav li img.dropdown';
   $(dropdownSel).click(function(e) {
@@ -67,11 +75,11 @@ $(document).ready(function() {
   /* Add README link to the last paragraph */
   $('span.read_more_link').each(function() {
      var paragraph = $(this).parents("[itemprop='description']").find("p").filter(function() {
-        return jQuery(this).text().length > 0
+        return jQuery(this).text().length > 0;
      }).last();
      paragraph.append($(this).html());
      $(this).remove();
-  })
+  });
 
   // Post filter control
   $('#post-filter div.filter-active').click(function() {
@@ -91,7 +99,7 @@ $(document).ready(function() {
     return ((navigator.platform.indexOf("iPhone") != -1) ||
             (navigator.platform.indexOf("iPod") != -1) ||
             (navigator.platform.indexOf("iPad") != -1));
-  };
+  }
 
   /* Don't do qtip tooltips with iphones (and related), it seems to interfer with the
      normal onclick behaviour */
@@ -99,7 +107,8 @@ $(document).ready(function() {
     // Button tooltips
     $('div.tools div.vote a, div.tools div.boxright a.edit, div.tools div.boxright a, \
        div.comment-links ul li a, \
-       .userinfo .score, .userinfo .monthly-score, .votes').qtip({
+       .userinfo .score, .userinfo .monthly-score, \
+       #user-info .score, #user-info .monthly-score, .votes').qtip({
       position: {
         my: 'bottom center',
         at: 'top center'

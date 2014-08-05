@@ -1,27 +1,6 @@
 /* Fill in the given help content, and attach a handler for the form invalidate submission */
-function fillInHelpDiv(elem, content) {
-  elem.innerHTML = content;
-  elem.select('.invalidate').first().observe('submit', function(e) {
-    e.stop();
-    elem.innerHTML = "Loading..."
-    new Ajax.Request(this.getAttribute('action'), {
-      method: 'post',
-      parameters: {'skiplayout': 'on'},
-      onSuccess: function(response) {
-        fillInHelpDiv(elem, response.responseText)
-      }
-    })
-  });
-}
-
-/* Perform an ajax get for the help content, and fill in the element */
-function getHelpContent(elem) {
-  new Ajax.Request("/wiki/Commentmarkuphelp", {
-    method: 'get',
-    parameters: {'skiplayout': 'on'},
-    onSuccess: function(response) {
-      fillInHelpDiv(elem, response.responseText)
-    }});
+function fillInHelpDiv(elem) {
+  elem.innerHTML = '<div id="wiki"><div><div class="wiki-content"><a name="top" id="top"></a><h1 id="firstHeading" class="firstHeading"> Comment Markup Help </h1><div id="bodyContent"><div id="contentSub"></div><div lang="en" id="mw-content-text" dir="ltr" class="mw-content-ltr"><table class="help"><tr style="background-color: #326492;text-align: center;color: white;"><td><i>you type:</i></td><td><i>you see:</i></td></tr><tr><td> *italics* </td><td><i>italics</i></td></tr><tr><td> **bold** </td><td><b>bold</b></td></tr><tr><td> [Effective Altruism](<a href="http://effective-altruism.com" class="external free" rel="nofollow">http://effective-altruism.com</a>) </td><td><a href="http://effective-altruism.com" class="external text" rel="nofollow">Effective Altruism</a></td></tr><tr><td> * item 1<br>* item 2<br>* item 3 </td><td><ul><li>item 1 </li><li>item 2 </li><li>item 3 </li></ul></td></tr><tr><td> &gt;quoted text </td><td><blockquote> quoted text </blockquote></td></tr></table></div><div id="catlinks" class="catlinks catlinks-allhidden"></div><div class="visualClear"></div></div></div></div></div>';
 }
 
 function helpon(link, what, newlabel) {
@@ -30,7 +9,7 @@ function helpon(link, what, newlabel) {
 
     /* If not loaded help content, load it! */
     if (/\s*Loading/.match($(what+id).innerHTML)) {
-      getHelpContent($(what+id))
+      fillInHelpDiv($(what+id))
     }
 
     var oldlabel = link.innerHTML;
@@ -198,20 +177,20 @@ Comment.submitballot = function(r) {
     com.show();
 };
 
-Comment.prototype.collapse = function() { 
+Comment.prototype.collapse = function() {
     hide(this.get('child'));
     hide(this.get('display'));
     hide(this.get('arrows'));
     show(this.get('collapsed'));
 };
 
-Comment.prototype.uncollapse = function() { 
+Comment.prototype.uncollapse = function() {
     show(this.get('child'));
     show(this.get('display'));
     show(this.get('arrows'));
     hide(this.get('collapsed'));
 };
-    
+
 function all_morechildren(elem) {
   $$('.morechildren a').each(function(ahref, i) {
     ahref.simulate('click');
@@ -243,7 +222,7 @@ function getAttrTime(e) { return parseInt(e.readAttribute('time')); }
 
 function highlightNewComments() {
   var lastViewed = $('lastViewed')
-  if (!lastViewed) 
+  if (!lastViewed)
     return;
 
   var last = getAttrTime(lastViewed);
@@ -326,7 +305,7 @@ function checkInProgress(form) {
 }
 
 function clearTitle(box) {
-    if (box.rows && box.rows < 7 || 
+    if (box.rows && box.rows < 7 ||
         box.style.color == "gray" ||
         box.style.color == "#808080") {
         box.value = "";
