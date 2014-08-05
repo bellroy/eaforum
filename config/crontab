@@ -1,3 +1,3 @@
 # IF YOU STUMBLE UPON THIS FILE YOU MAY NOT HAVE NOTICED THAT IT IS SYMLINKED
 # INTO THE APP REPO. MAKE SURE THAT IT GETS COMMITED IF YOU MAKE ANY CHANGES.
-*/30 * * * * www-data cd /srv/www/lesswrong.com/current/r2 && /usr/local/bin/paster run production.ini ../scripts/run_pending_jobs.py 2>&1 | ../scripts/filter-stdout
+*/30 * * * * www-data cd /srv/www/ea-forum/current/r2 && /usr/local/bin/paster run production.ini ../scripts/run_pending_jobs.py 2>&1 | ../scripts/filter-stdout
