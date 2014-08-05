@@ -232,7 +232,7 @@ a#miri:hover, a#fhi:hover, a#cfar:hover {
 #user-info h2, #user-info a, #user-info span {
   display: block;
   float: left;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 #user-info h2 {
