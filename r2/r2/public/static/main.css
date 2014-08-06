@@ -1002,6 +1002,7 @@ div.message .head.new:before {
   color: orangered;
   font-style: normal;
 }
+
 div.message .subject {
   color: rgb(86, 86, 86);
   font-weight: bold;
@@ -1721,7 +1722,7 @@ div.post {
 }
 
 #content .post .post-body {
-  margin-left: 65px;
+  margin-left: 55px;
 }
 
 #content .post .post-body h2,

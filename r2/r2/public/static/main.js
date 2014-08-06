@@ -45,10 +45,34 @@ $(document).ready(function() {
   $("#side-status ul.userlinks a[href$='/prefs/']").appendTo("#navbar");
 
   // Add posts header on Overview page
-  if ($("ul#nav li.active").text().strip() == "Overview") {
-    var userName = $(location).attr('pathname').replace("/user/", "").replace("/", "");
-    $posts = $("<h2>" + userName + "'s Posts</h2>");
+  var pathname = window.location.pathname;
+  if (/^\/user\//.test(pathname)) {
+    var bits = /^\/user\/([^\/]*)\/(.*)/.exec(pathname);
+    var userName = bits[1];
+    var rest = bits[2];
+    var thingName = "Contributions";
+    if (rest.indexOf("comments") == 0) {
+      thingName = "Comments";
+    } else if (rest.indexOf("submitted") == 0) {
+      thingName = "Articles";
+    } else if (rest.indexOf("liked") == 0) {
+      thingName = "Likes";
+    } else if (rest.indexOf("disliked") == 0) {
+      thingName = "Dislikes";
+    } else if (rest.indexOf("hidden") == 0) {
+      thingName = "Hidden Articles";
+    } else if (rest.indexOf("drafts") == 0) {
+      thingName = "Drafts";
+    }
+    $posts = $("<h2>" + userName + "'s " + thingName + "</h2>");
     $posts.prependTo("#content");
+
+    // Bigger space between comments and posts
+    if (thingName == "Contributions") {
+      $("div.sitetable > div.comment, div.sitetable > div.post.list").each(function() {
+        $(this).attr("style", "margin-top: 24px");
+      });
+    }
   }
 
   /* Dropdowns in main menu */
