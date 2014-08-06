@@ -151,7 +151,7 @@ class Reddit(Wrapped):
             ps.append(SideBox(filters_ps))
 
         #don't show the subreddit info bar on cnames
-        if c.user_is_admin and not isinstance(c.site, FakeSubreddit) and not c.cname:
+        if c.user_is_admin or c.site.is_moderator(c.user) and not isinstance(c.site, FakeSubreddit) and not c.cname:
             ps.append(SubredditInfoBar())
 
         ps.append(SideBoxPlaceholder('side-meetups', _('Nearest Meetups'), '/meetups', sr_path=False))
@@ -452,11 +452,13 @@ class SubredditInfoBar(Wrapped):
         if c.site.type != 'public':
             buttons.append(NavButton(plurals.contributors, 'contributors'))
 
-        if is_moderator:
+        if c.user_is_admin:
             buttons.append(NamedButton('edit'))
+
+        if is_moderator:
             buttons.extend([NavButton(menu.banusers, 'banned'),
                             NamedButton('spam')])
-        return [NavMenu(buttons, type = "flatlist", base_path = "/about/")]
+        return [NavMenu(buttons, type = "buttons", base_path = "/about/")]
 
 class SideBox(Wrapped):
     """Generic sidebox"""
