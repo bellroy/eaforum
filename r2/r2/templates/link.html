@@ -52,7 +52,7 @@
 <div id="thingrow_${fullname}" class="${css_class}" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="meta">
     %if thing.hide_score:
-      <span class="votes">&bull;</span>
+      <span class="votes">&nbsp;</span>
     %else:
       <span class="votes">${self.score(thing, thing.likes, label = False)}</span>
     %endif
