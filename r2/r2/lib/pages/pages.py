@@ -134,6 +134,12 @@ class Reddit(Wrapped):
         else:
             ps.append(ProfileBar(c.user, self.corner_buttons()))
 
+            if c.user.name in g.admins:
+                button_name = "adminoff" if c.user_is_admin else "adminon"
+                button = NamedButton(button_name, False, nocname=not c.authorized_cname, target = "_self")
+                ps.append(SideBox(NavMenu([button], title = "Admin", base_path = "/", type = "buttons")))
+
+
         filters_ps = PaneStack(div=True)
         for toolbar in self.toolbars:
             filters_ps.append(toolbar)
@@ -191,16 +197,6 @@ class Reddit(Wrapped):
         """set up for buttons in upper right corner of main page."""
         buttons = []
         if c.user_is_loggedin:
-            if c.user.name in g.admins:
-                if c.user_is_admin:
-                   buttons += [NamedButton("adminoff", False,
-                                           nocname=not c.authorized_cname,
-                                           target = "_self")]
-                else:
-                   buttons += [NamedButton("adminon",  False,
-                                           nocname=not c.authorized_cname,
-                                           target = "_self")]
-
             buttons += [NamedButton('submit', sr_path = not c.default_sr,
                                     nocname=not c.authorized_cname)]
             if c.user.safe_karma >= g.discussion_karma_to_post:

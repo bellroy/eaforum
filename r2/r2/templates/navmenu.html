@@ -153,6 +153,10 @@
 
 <%def name="userlinks()">
   %if thing:
+    %if thing.title:
+      <h2>${thing.title}</h2>
+    %endif
+
     <ul class="userlinks"
         ${"id='%s'" % thing._id if thing._id else ""}>
         %for i, option in enumerate(thing):
