@@ -119,6 +119,10 @@ $(document).ready(function() {
     return false;
   });
 
+  $("#banner").click(function() {
+    window.location.href = "/";
+  });
+
   function isiPhone() {
     return ((navigator.platform.indexOf("iPhone") != -1) ||
             (navigator.platform.indexOf("iPod") != -1) ||

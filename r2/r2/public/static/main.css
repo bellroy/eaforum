@@ -182,6 +182,7 @@ button {
 #banner {
   height: 285px;
   background: #28577b url(/static/banner-image.jpg) no-repeat;
+  cursor: pointer;
 }
 a#logo {
   display: block;
@@ -934,7 +935,6 @@ div.message div.message div.message div.message div.message div.message div.mess
   background-color: #fff;
   background-color: #fff;
   margin: 0px;
-  border-bottom: 0px;
   padding-bottom: 10px;
 }
 div.comment div.comment div.comment,
@@ -2037,12 +2037,12 @@ div.comment-links ul li.subscribe a.mod
 div.comment-links ul li.retract a {
   width: 19px;
   height: 20px;
-  background-position: -128px 0;
+  background-position: -352px 0;
 }
 div.comment-links ul li.retract a:hover,
 div.comment-links ul li.retract a.mod
 {
-  background-position: -128px -32px;
+  background-position: -352px -32px;
 }
 
 div.comment-links ul li.parent a {
@@ -2054,6 +2054,34 @@ div.comment-links ul li.parent a:hover,
 div.comment-links ul li.parent a.mod
 {
   background-position: -224px -32px;
+}
+
+div.comment-links ul li.ban a {
+  width: 19px;
+  height: 20px;
+  background-position: -128px 0;
+}
+div.comment-links ul li.ban a:hover,
+div.comment-links ul li.ban a.mod,
+{
+  background-position: -128px -32px;
+}
+
+div.comment-links ul li.unban a {
+  width: 19px;
+  height: 20px;
+  background-position: -128px -32px;
+}
+div.comment-links ul li.unban a:hover,
+div.comment-links ul li.unban a.mod,
+{
+  background-position: -128px 0;
+}
+
+div.comment-links ul li.delete a {
+  width: 19px;
+  height: 20px;
+  background-position: -160px -32px;
 }
 
 
