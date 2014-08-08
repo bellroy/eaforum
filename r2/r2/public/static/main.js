@@ -69,7 +69,7 @@ $(document).ready(function() {
 
     // Bigger space between comments and posts
     if (thingName == "Contributions") {
-      $("div.sitetable > div.comment, div.sitetable > div.post.list").each(function() {
+      $("div#content > div.sitetable > div.comment, div#content > div.sitetable > div.post.list").each(function() {
         $(this).attr("style", "margin-top: 24px");
       });
     }

@@ -327,6 +327,7 @@ ul#nav {
 
   height: 42px;
   border-bottom: 1px solid #b2b2b2;
+  padding: 0 20px;
 }
 
 #nav img.dropdown {
@@ -577,7 +578,6 @@ div.post div.postedby {
   font-family: Arial, sans-serif;
   font-size: 12px;
   font-style: italic;
-  font-weight: bold;
   line-height: 16.799999237060547px;
   list-style-image: none;
   list-style-position: outside;
@@ -832,6 +832,11 @@ div.meetup-content {
   width: 445px;
   text-align: left;
 }
+div.meetup-content div.postedby {
+  margin-left: 0;
+  padding-left: 0;
+}
+
 div.meetup-meta {
   margin: 0 0 20px;
 }
@@ -1569,6 +1574,7 @@ div.articlenavigation {
   clear: both;
   font-family: 'montserratt', Arial, sans-serif;
   font-size: 11px;
+  margin-top: 12px;
 }
 div.articlenavigation h4 {
   font-size: 12px;
@@ -1645,8 +1651,8 @@ div.articlenavigation #article_nav_controls .loading img {
 ----------------------------------------------------------------------------------------------------*/
 
 .profile_page ul#nav li {
-	margin: 0 14px 0 0;
-	padding: 0 14px 0 0;
+	margin: 0 10px 0 0;
+	padding: 0 10px 0 0;
 }
 
 /* Footer
@@ -2128,9 +2134,15 @@ body.meetup .commentreply textarea {
   border-radius: 0px;
   box-shadow: inherit;
   background: #fafafa;
-  border: 2px solid #376590;
+  border: 2px solid silver;
   box-shadow: inset 1px 1px 0 0 #e8e8e8;
 }
+
+body.post .commentreply textarea:focus,
+body.meetup .commentreply textarea:focus {
+  border: 2px solid #376590;
+}`
+
 body.meetup .commentreply textarea {
   width: 681px;
 }
@@ -2147,6 +2159,10 @@ body.meetup .commentreply textarea {
 }
 
 /* Forms */
+
+textarea#message {
+  width: 100%;
+}
 
 .textbox,
 textarea,
