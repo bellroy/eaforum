@@ -151,7 +151,8 @@ class Reddit(Wrapped):
             ps.append(SideBox(filters_ps))
 
         #don't show the subreddit info bar on cnames
-        if c.user_is_admin or c.site.is_moderator(c.user) and not isinstance(c.site, FakeSubreddit) and not c.cname:
+        is_moderator = c.user_is_loggedin and c.site.is_moderator(c.user) or c.user_is_admin
+        if is_moderator and not isinstance(c.site, FakeSubreddit) and not c.cname:
             ps.append(SubredditInfoBar())
 
         ps.append(SideBoxPlaceholder('side-meetups', _('Nearest Meetups'), '/meetups', sr_path=False))
