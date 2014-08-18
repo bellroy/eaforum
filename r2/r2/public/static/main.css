@@ -921,7 +921,7 @@ div.comment, div.message {
 }
 div.comment {
   margin: 10px 0px 0px 0px;
-  padding: 2px 0 0px 15px;
+  padding: 2px 0 10px 15px;
 }
 div.comment div.entry {
   padding-right: 15px;
