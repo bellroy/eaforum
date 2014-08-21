@@ -949,7 +949,7 @@ div.message div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message div.message {
   background-color: #fff;
   background-color: #fff;
-  margin: 0px;
+  /*margin: 0px;*/
   padding-bottom: 10px;
 }
 div.comment div.comment div.comment,

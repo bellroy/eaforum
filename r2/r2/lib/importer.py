@@ -64,30 +64,28 @@ class Importer(object):
             # Determine account to use for this comment
             account = self._get_or_create_account(comment_data['author'], comment_data['authorEmail'])
 
-        if comment_data and not comment:
-            # Create new comment
-            comment, inbox_rel = Comment._new(account, post, None, comment_data['body'], ip, date=utc_date)
-            if str(comment_data['commentParent']) in comment_dictionary:
-                comment.parent_id = comment_dictionary[str(comment_data['commentParent'])]
-            comment.is_html = True
-            comment.ob_imported = True
-            comment._commit()
-            comment_dictionary[str(comment_data['commentId'])] = comment._id
-        elif comment_data and comment:
-            # Overwrite existing comment
-            if str(comment_data['commentParent']) in comment_dictionary:
-                comment.parent_id = comment_dictionary[str(comment_data['commentParent'])]
-            comment.author_id = account._id
-            comment.body = comment_data['body']
-            comment.ip = ip
-            comment._date = utc_date
-            comment.is_html = True
-            comment.ob_imported = True
-            comment._commit()
-            comment_dictionary[str(comment_data['commentId'])] = comment._id
-        elif not comment_data and comment:
-            # Not enough comment data being imported to overwrite all comments
-            print 'WARNING: More comments in lesswrong than we are importing, ignoring additional comment in lesswrong'
+        if comment_data and not comment_data['author'].endswith("| The Effective Altruism Blog"):
+            if not comment:
+                # Create new comment
+                comment, inbox_rel = Comment._new(account, post, None, comment_data['body'], ip, date=utc_date)
+                if str(comment_data['commentParent']) in comment_dictionary:
+                    comment.parent_id = comment_dictionary[str(comment_data['commentParent'])]
+                comment.is_html = True
+                comment.ob_imported = True
+                comment._commit()
+                comment_dictionary[str(comment_data['commentId'])] = comment._id
+            else:
+                # Overwrite existing comment
+                if str(comment_data['commentParent']) in comment_dictionary:
+                    comment.parent_id = comment_dictionary[str(comment_data['commentParent'])]
+                comment.author_id = account._id
+                comment.body = comment_data['body']
+                comment.ip = ip
+                comment._date = utc_date
+                comment.is_html = True
+                comment.ob_imported = True
+                comment._commit()
+                comment_dictionary[str(comment_data['commentId'])] = comment._id
 
     kill_tags_re = re.compile(r'</?[iub]>')
     transform_categories_re = re.compile(r'[- ]')
