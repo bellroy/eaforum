@@ -197,11 +197,11 @@ class Importer(object):
             self.post_process_post(post)
 
     def import_into_subreddit(self, sr, data, rewrite_map_file):
-        posts = list(Link._query(Link.c.ob_permalink != None, data = True))
+        posts = list(Link._query())
         for post in posts:
             post._delete_from_db()
 
-        comments = self._query_comments(Comment.c.ob_imported == True)
+        comments = self._query_comments()
         for comment in comments:
             comment._delete_from_db()
 
