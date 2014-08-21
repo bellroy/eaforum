@@ -1,5 +1,9 @@
 require 'pathname'
 
+execute "Update locale" do
+  command "update-locale LANG=en_US.utf8 LANGUAGE=en_US.utf8 LC_ALL=en_US.utf8 LC_CTYPE=en_US.utf8"
+end
+
 %w[xml git apache2 postgresql::server postgresql::ruby database memcached-lesswrong].each { |r| include_recipe r }
 %w{mod_expires mod_proxy_http}.each { |m| include_recipe("apache2::#{m}") }
 
@@ -28,6 +32,9 @@ postgresql_connection_info = {
   postgresql_database db do
     connection postgresql_connection_info
     owner "#{node.lesswrong.db.user}"
+    template 'template0'
+    collation 'en_US.utf8'
+    encoding 'UTF-8'
     action :create
   end
 end
