@@ -53,7 +53,7 @@ class Importer(object):
     def _default_url_handler(match):
         return match.group()
 
-    def process_comment(self, comment_data, comment, post):
+    def process_comment(self, comment_data, comment, post, comment_dictionary):
         # Prepare data for import
         ip = '127.0.0.1'
         if comment_data:
@@ -67,11 +67,16 @@ class Importer(object):
         if comment_data and not comment:
             # Create new comment
             comment, inbox_rel = Comment._new(account, post, None, comment_data['body'], ip, date=utc_date)
+            if str(comment_data['commentParent']) in comment_dictionary:
+                comment.parent_id = comment_dictionary[str(comment_data['commentParent'])]
             comment.is_html = True
             comment.ob_imported = True
             comment._commit()
+            comment_dictionary[str(comment_data['commentId'])] = comment._id
         elif comment_data and comment:
             # Overwrite existing comment
+            if str(comment_data['commentParent']) in comment_dictionary:
+                comment.parent_id = comment_dictionary[str(comment_data['commentParent'])]
             comment.author_id = account._id
             comment.body = comment_data['body']
             comment.ip = ip
@@ -79,6 +84,7 @@ class Importer(object):
             comment.is_html = True
             comment.ob_imported = True
             comment._commit()
+            comment_dictionary[str(comment_data['commentId'])] = comment._id
         elif not comment_data and comment:
             # Not enough comment data being imported to overwrite all comments
             print 'WARNING: More comments in lesswrong than we are importing, ignoring additional comment in lesswrong'
@@ -124,8 +130,9 @@ class Importer(object):
             post._commit()
 
         # Process each comment for this post
+        comment_dictionary = {}
         comments = self._query_comments(Comment.c.link_id == post._id, Comment.c.ob_imported == True)
-        [self.process_comment(comment_data, comment, post)
+        [self.process_comment(comment_data, comment, post, comment_dictionary)
          for comment_data, comment in map(None, post_data.get('comments', []), comments)]
 
     def substitute_ob_url(self, url):
@@ -143,7 +150,7 @@ class Importer(object):
                 text = text.decode('utf-8')
 
             # Double decode needed to handle some wierd characters
-            text = text.encode('utf-8')
+            # text = text.encode('utf-8')
             text = self.url_re.sub(lambda match: self.substitute_ob_url(match.group()), text)
 
         return text
@@ -153,7 +160,7 @@ class Importer(object):
            between old and new permalinks"""
         post.article = self.rewrite_ob_urls(post.article)
         post._commit()
-        
+
         comments = Comment._query(Comment.c.link_id == post._id, data = True)
         for comment in comments:
             comment.body = self.rewrite_ob_urls(comment.body)
@@ -190,6 +197,14 @@ class Importer(object):
             self.post_process_post(post)
 
     def import_into_subreddit(self, sr, data, rewrite_map_file):
+        posts = list(Link._query(Link.c.ob_permalink != None, data = True))
+        for post in posts:
+            post._delete_from_db()
+
+        comments = self._query_comments(Comment.c.ob_imported == True)
+        for comment in comments:
+            comment._delete_from_db()
+
         for post_data in data:
             try:
                 print post_data['title']
