@@ -550,13 +550,22 @@ div.post {
   margin: 5px 0;
   margin-bottom: 1.5em !important;
 }
+
+div.post h3 {
+  font-size: 14px;
+}
+
 div.post h2 {
-  padding-left: 20px;
+  font-size: 16px;
+}
+
+div.post h1, div.post h2, div.post h3 {
+  /*padding-left: 20px;*/
   color: rgb(50, 100, 146);
   cursor: auto;
-  display: inline;
+  display: block;
+  margin: 10px 0 !important;
   font-family: montserratt, Arial, sans-serif;
-  font-size: 16px;
   font-weight: bold;
   height: auto;
   line-height: 22.399999618530273px;
