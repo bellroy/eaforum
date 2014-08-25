@@ -27,7 +27,7 @@ function close_menus() {
             }
         }
     }
-    
+
     /* because body and the menu both fire the click event, cur_menu
        is only true for an instant when opening a menu */
     if (!cur_menu) {
@@ -95,10 +95,10 @@ function init(args) {
     populate_side_bar('side-contributors', args);
 
     populate_side_bar('front-recent-posts', args);
-    populate_side_bar('front-meetups-map', args, 
-                      function(response) { 
+    populate_side_bar('front-meetups-map', args,
+                      function(response) {
                         $('front-meetups-map').innerHTML = response.responseText;
-                        createMap($('front-map')); 
+                        createMap($('front-map'));
                       });
 }
 
@@ -201,10 +201,10 @@ function deletetoggle(link, type) {
     q.appendChild(yes);
     q.appendChild(slash);
     q.appendChild(no);
-    
+
     parent.innerHTML = '';
     parent.appendChild(q);
-    
+
     return false;
 }
 
@@ -224,7 +224,7 @@ function untoggle(execute, parent, oldtext, type) {
         else if (typeof(type) == "function") {
             type(form.id.value, uh);
         }
-    } 
+    }
     else {
         parent.innerHTML = oldtext;
     }
@@ -301,10 +301,20 @@ function showlang() {
     offset = window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop;
 
     $('langcover').style.top = offset + 'px';
-    $('langpopup').style.top = 40 + offset + 'px'; 
+    $('langpopup').style.top = 40 + offset + 'px';
     show("langcover", "langpopup");
-    return false; 
+    return false;
 }
+
+function addMeetup() {
+    // If user is logged in
+    var $loggedIn = jQuery('#header #user-info h2 a');
+    if ($loggedIn.length) {
+        window.location = "/meetups/new";
+    } else {
+        showcover(true, '');
+    }
+ }
 
 function showcover(warning, reason) {
     offset = window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop;
@@ -428,7 +438,7 @@ function update_reddit_count() {
             if (val > 0) reddit_counts[sr_name] = val;
             else delete reddit_counts[sr_name];
         }
-        
+
         if (reddit_counts[sr_name]) names.push(sr_name);
     }
 

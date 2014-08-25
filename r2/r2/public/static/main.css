@@ -633,14 +633,14 @@ div.meta span.votes span.votes {
   border-radius: 200px;
   text-align: center;
 }
-div.editors-pick div.meta span.votes span.votes {
+/*div.editors-pick div.meta span.votes span.votes {
   color: #fff;
   background-color: #326492;
   border: none;
   height: 22px;
   line-height: 22px;
   padding: 0 9px;
-}
+}*/
 div.meta span.editors-pick {
   color: #326492;
   font-weight: bold;

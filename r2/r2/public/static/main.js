@@ -4,17 +4,22 @@ $(document).ready(function() {
   /* reposition elements for CFEA reskin */
 
   var userInfo = $('<div id="user-info">');
-  // username - using last child so when viewing another user their details
-  // stay in right box
-  $("#side-status h2").last().appendTo(userInfo);
-  // karma
-  $("#side-status div.userinfo span.score").last().appendTo(userInfo);
-  $("#side-status div.userinfo span.monthly-score").last().appendTo(userInfo);
-  // logout
-  $("#side-status ul.userlinks a[href$='/logout/']").attr("id", "signout");
-  $("#side-status ul.userlinks a[href$='/logout/']").text("sign out");
-  $("#side-status ul.userlinks a[href$='/logout/']").appendTo(userInfo);
+  var pathname = window.location.pathname;
+  // This if statement prevents the viewed user being displayed as the logged in
+  // user when viewing a user's profile without being logged on
+  if ($("#side-status h2").length > 1 || !/^\/user\/([^\/]*)\/(.*)/.exec(pathname)) {
+    // username - using last child so when viewing another user their details
+    // stay in right box
+    $("#side-status h2").last().appendTo(userInfo);
+    // karma
+    $("#side-status div.userinfo span.score").last().appendTo(userInfo);
+    $("#side-status div.userinfo span.monthly-score").last().appendTo(userInfo);
+    // logout
+    $("#side-status ul.userlinks a[href$='/logout/']").attr("id", "signout");
+    $("#side-status ul.userlinks a[href$='/logout/']").text("sign out");
+    $("#side-status ul.userlinks a[href$='/logout/']").appendTo(userInfo);
 
+  }
   // search
   $("#sidebar #side-search").appendTo("#header");
   // Add user info to header
@@ -45,7 +50,6 @@ $(document).ready(function() {
   $("#side-status ul.userlinks a[href$='/prefs/']").appendTo("#navbar");
 
   // Add posts header on Overview page
-  var pathname = window.location.pathname;
   if (/^\/user\//.test(pathname)) {
     var bits = /^\/user\/([^\/]*)\/(.*)/.exec(pathname);
     var userName = bits[1];

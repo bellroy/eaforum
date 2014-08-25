@@ -181,6 +181,7 @@ ${self.RenderPrintable()}
 <%
    _type = "up" if dir > 0 else "down"
    _class = _type + (" mod" if mod else "")
+   _caption = "I found this useful" if dir > 0 else "I didn't find this useful"
    fullname = this._fullname
 %>
   <a id="${_type}_${fullname}" class="${_class}"
@@ -189,7 +190,7 @@ ${self.RenderPrintable()}
   %else:
     onclick="showcover(true, 'vote_${fullname}')"
   %endif
-  title="${_('Vote')} ${_(_type)}">${_('Vote')} ${_(_type)}</a>
+  title="${_(_caption)}">${_(_caption)}</a>
 </%def>
 
 <%def name="score(this, likes=None, inline=True, label = True, _id = True)">
