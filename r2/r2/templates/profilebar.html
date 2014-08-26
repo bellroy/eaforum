@@ -86,13 +86,16 @@
       %if thing.isMe:
         <%
           mail_img ="mail"
+          mail_class = "mail"
           if c.have_messages:
             mail_img += ".png"
+            mail_class += " unread"
           else:
             mail_img += "gray.png"
+            mail_class += " empty"
           mail_img = static(mail_img)
         %>
-        <span class="mail">
+        <span class="${mail_class}">
           ${img_link(_("messages"), mail_img, path="/message/inbox/", _id="mail")}
         </span>
       %endif

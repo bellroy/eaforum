@@ -6,16 +6,16 @@
 ## software over a computer network and provide for limited attribution for the
 ## Original Developer. In addition, Exhibit A has been modified to be consistent
 ## with Exhibit B.
-## 
+##
 ## Software distributed under the License is distributed on an "AS IS" basis,
 ## WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
 ## the specific language governing rights and limitations under the License.
-## 
+##
 ## The Original Code is Reddit.
-## 
+##
 ## The Original Developer is the Initial Developer.  The Initial Developer of
 ## the Original Code is CondeNet, Inc.
-## 
+##
 ## All portions of the code written by CondeNet are Copyright (c) 2006-2008
 ## CondeNet, Inc. All Rights Reserved.
 ################################################################################
@@ -25,11 +25,11 @@
    from r2.models import Link, Comment, Subreddit
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="${c.lang}" 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="${c.lang}"
       xml:lang="${c.lang}" ${c.lang_rtl and unsafe('dir="rtl"') or ''}>
   <head>
     <title>${self.Title()}</title>
-    
+
     <meta name="keywords" content="${self.keywords()}" />
     <meta name="title" content="${self.Title()}" />
     <% description = hasattr(thing, 'link') and thing.link._meta_description() %>
@@ -44,7 +44,7 @@
     <script type="text/javascript">
       var vl = {};
       var sr = {};
-      
+
       var logged = ${c.user_is_loggedin and ("'%s'" % c.user.name) or "false"};
       var post_site = "${c.site.name if not c.default_sr else ''}";
       var cnameframe  = ${"true" if (c.cname and not c.authorized_cname) else "false"};
@@ -52,21 +52,21 @@
       var cur_domain = "${get_domain(cname = True, subreddit = False) if c.frameless_cname else g.domain}";
       var ajax_domain = "${get_domain(cname = True, subreddit = False) if c.authorized_cname else g.domain}";
 
-      
-    </script> 
+
+    </script>
 
     ${self.javascript()}
     ${self.stylesheet()}
-    
+
     ##things here may depend on globals, or included js, so we run them last
     <script type="text/javascript">
       ${self.javascript_run()}
     </script>
-    
+
 
     ${self.head()}
   </head>
-  
+
   ${self.bodyHTML()}
 </html>
 
@@ -76,7 +76,7 @@
 </%def>
 
 <%def name="Title()">
-<% 
+<%
    try:
      title = _(c.site.title)
    except UnicodeDecodeError:
@@ -86,7 +86,7 @@ ${title}
 </%def>
 
 <%def name="keywords()">
-rationality, optimal philanthropy, critical thinking, heuristics and biases, skeptic
+effective, charity, philanthropy
 </%def>
 
 <%def name="robots()">

@@ -474,6 +474,26 @@ ul#filternav li:last-child {
 #navbar {
   position: relative;
 }
+
+/* back to forum link */
+#back_to_forum {
+  position: absolute;
+  top: 10px;
+  right: 410px;
+
+  float: left;
+  margin: 0 0 0 24px;
+  padding-left: 24px;
+  list-style: none;
+  font-family: 'montserratt', Arial, sans-serif;
+  font-size: 14px;
+  -webkit-text-stroke: 0.3px;
+  color: #326492;
+  text-decoration: none;
+  line-height: 21px;
+  background: url(/static/option-back-forum-ico.png) no-repeat left center;
+}
+
 /* new article link */
 #newarticle {
   position: absolute;
@@ -496,7 +516,6 @@ ul#filternav li:last-child {
 /* messages link */
 #messages {
   position: absolute;
-  top: 10px;
   right: 130px;
   -webkit-text-stroke-color: rgb(86, 86, 86);
   -webkit-text-stroke-width: 0.30000001192092896px;
@@ -505,14 +524,24 @@ ul#filternav li:last-child {
   font-family: 'montserratt', Arial, sans-serif;
   font-size: 14px;
   margin: 0 0 0 30px;
-  line-height: 21px;
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
   padding-left: 30px;
-  background: url(/static/option-messages-ico.png) no-repeat left center;
   text-align: left;
   width: 100px;
+}
+
+#messages.empty {
+  background: url(/static/option-messages-ico.png) no-repeat left center;
+  top: 10px;
+  line-height: 21px;
+}
+
+#messages.unread {
+ background: url(/static/new_mail.png) no-repeat left center;
+ top: 8px;
+ line-height: 25px;
 }
 
 #messages a {
@@ -973,7 +1002,7 @@ div.retracted {
 }
 div.comment-meta {
   color: #7f7f83;
-  padding: 10px 0;
+  padding: 0 0;
 }
 div.comment-meta span {
   float: left;
@@ -1014,8 +1043,13 @@ div.message .head {
 
 div.message .head.new:before {
   content: "⭑";
-  color: orangered;
+  color: #326492;
   font-style: normal;
+}
+
+div.message .head.new {
+  font-weight: bold;
+  color: #2F95FE;
 }
 
 div.message .subject {
@@ -1030,8 +1064,13 @@ div.message-content {
 }
 div.comment-content {
   clear: both;
-  padding: 9px 0 0;
+  padding: 0 0;
 }
+
+div.message-links {
+  font-size: 12px;
+}
+
 div.comment-links, div.message-links {
   padding: 0 5px 5px;
 }
@@ -1705,6 +1744,10 @@ span.morecomments {
   margin: -9px 0 9px;
 }
 
+span.deepthread {
+  font-size: 12px;
+}
+
 /* New home page outline */
 .masthead ul {
   font-size: 1.5em;
@@ -1968,7 +2011,7 @@ div.comment-meta span.comment-date {
 
 div.comment-links {
   margin-top: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 /* TODO: Fix the child comment-meta headers having too much bottom space

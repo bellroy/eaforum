@@ -37,6 +37,11 @@ $(document).ready(function() {
   $navBar.prependTo("#main");
   $(navDivId).prependTo("#navbar");
 
+  // if user is checking their messages, add the return to forum button
+  if (/^\/message\/.*/.test(pathname)) {
+    $("#navbar").append("<a href=\"/\" id=\"back_to_forum\">Back To Forum</a>");
+  }
+
   // new article
   $("#side-status ul.userlinks a[href$='/submit/']").text("New Article");
   $("#side-status ul.userlinks a[href$='/submit/']").attr("id", "newarticle");
@@ -44,6 +49,7 @@ $(document).ready(function() {
   // messages
   $("#side-status div.userinfo span.mail a").text("Messages");
   $("#side-status div.userinfo span.mail").attr("id", "messages");
+  // $("#side-status div.userinfo span.mail").addClass("empty");
   $("#side-status div.userinfo span.mail").appendTo("#navbar");
   // preferences
   $("#side-status ul.userlinks a[href$='/prefs/']").attr("id", "preferences");
