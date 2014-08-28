@@ -479,7 +479,6 @@ ul#filternav li:last-child {
 #back_to_forum {
   position: absolute;
   top: 10px;
-  right: 410px;
 
   float: left;
   margin: 0 0 0 24px;
@@ -539,9 +538,11 @@ ul#filternav li:last-child {
 }
 
 #messages.unread {
- background: url(/static/new_mail.png) no-repeat left center;
- top: 8px;
- line-height: 25px;
+ background-image: url(/static/new_mail.png);
+ background-repeat: no-repeat;
+ background-position: left -1px;
+ top: 6px;
+ line-height: 28px;
 }
 
 #messages a {
@@ -1039,12 +1040,6 @@ div.message .head {
   font-size: 13px;
   color: #858585;
   margin-bottom: 16px;
-}
-
-div.message .head.new:before {
-  content: "⭑";
-  color: #326492;
-  font-style: normal;
 }
 
 div.message .head.new {
@@ -1701,7 +1696,7 @@ div.articlenavigation #article_nav_controls .loading img {
 
 .profile_page ul#nav li {
 	margin: 0 10px 0 0;
-	padding: 0 10px 0 0;
+	padding: 0 0 0 0;
 }
 
 /* Footer
@@ -2094,7 +2089,7 @@ div.comment-links ul li.subscribe a.mod
 }
 
 div.comment-links ul li.retract a {
-  width: 19px;
+  width: 21px;
   height: 20px;
   background-position: -352px 0;
 }

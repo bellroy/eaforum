@@ -506,10 +506,14 @@ class DefaultSR(FakeSubreddit):
             if time != 'all':
                 q._filter(queries.db_times[time])
             return q
+            return q
 
     def get_links(self, sort, time, link_cls = None):
         user = c.user if c.user_is_loggedin else None
         sr_ids = Subreddit.user_subreddits(user)
+        draft_sr = Subreddit._by_name(user.draft_sr_name) if user else None
+        if draft_sr != None:
+            sr_ids.remove(draft_sr._id)
         return self.get_links_sr_ids(sr_ids, sort, time, link_cls)
 
     @property

@@ -38,8 +38,13 @@ $(document).ready(function() {
   $(navDivId).prependTo("#navbar");
 
   // if user is checking their messages, add the return to forum button
-  if (/^\/message\/.*/.test(pathname)) {
+  if (/^\/message\/.*/.test(pathname) || /^\/user\//.test(pathname)) {
     $("#navbar").append("<a href=\"/\" id=\"back_to_forum\">Back To Forum</a>");
+    var right = "410px";
+    if (/^\/user\//.test(pathname)) {
+      right = "280px";
+    }
+    $("#back_to_forum").attr("style", "right: " + right +";");
   }
 
   // new article
@@ -57,6 +62,8 @@ $(document).ready(function() {
 
   // Add posts header on Overview page
   if (/^\/user\//.test(pathname)) {
+    // Remove Hidden
+    $('a').filter(function(index) { return $(this).text() === "Hidden"; }).hide();
     var bits = /^\/user\/([^\/]*)\/(.*)/.exec(pathname);
     var userName = bits[1];
     var rest = bits[2];
