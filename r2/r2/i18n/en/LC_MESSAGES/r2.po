@@ -1884,9 +1884,8 @@ msgstr ""
 #: randomstring:sadmessages
 msgid "Funny 500 page message 1"
 msgstr ""
-"<p>You have encountered an error in the code that runs Less Wrong. The site maintainers have been informed and will get to it is as soon as they can.</p>"
-"<p>In the unlikely event that you've bumped into this error before and think that no-one is paying attention, please report the error and how to reproduce it on <a href='http://code.google.com/p/lesswrong/issues/list'>http://code.google.com/p/lesswrong/issues/list'</a></p>"
-"<p>If the error is localised you might still find awesome Less Wrong content in the <a href='http://lesswrong.com/promoted/'>Main article area</a> or in the <a href='http://lesswrong.com/r/discussion/'>Discussion area</a>.</p>"
+"<p>You have encountered an error in the code that runs the EA Forum. The site maintainers have been informed and will get to it is as soon as they can.</p>"
+"<p>If the error is localised you might still find awesome EA Forum content in the <a href='/main/'>Main article area</a> or in the <a href='/top/'>Top area</a>.</p>"
 
 #: randomstring:create_reddit
 msgid "Reason to create a reddit 1"

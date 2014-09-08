@@ -511,7 +511,12 @@ class DefaultSR(FakeSubreddit):
     def get_links(self, sort, time, link_cls = None):
         user = c.user if c.user_is_loggedin else None
         sr_ids = Subreddit.user_subreddits(user)
-        draft_sr = Subreddit._by_name(user.draft_sr_name) if user else None
+
+        try:
+            draft_sr = Subreddit._by_name(user.draft_sr_name) if user else None
+        except NotFound:
+            draft_sr = None
+
         if draft_sr != None:
             sr_ids.remove(draft_sr._id)
         return self.get_links_sr_ids(sr_ids, sort, time, link_cls)
