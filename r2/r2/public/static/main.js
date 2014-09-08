@@ -47,6 +47,14 @@ $(document).ready(function() {
     $("#back_to_forum").attr("style", "right: " + right +";");
   }
 
+  // if user is adding a new article and does not have enough karma
+  if (/^.*\/submit\//.test(pathname) && $("select#sr option[value=main]")[0].disabled) {
+    $("<div class='infobar' style='width: inherit;'>You do not have sufficient karma to post to the public forum. Karma " +
+      "can be gained by commenting on existing articles. Every 'like' that your " +
+      "comments gain will increase your karma by one point. In the meantime, you can " +
+      "write and save draft articles only.</div><p>&nbsp;</p>").insertAfter("form h1");
+  }
+
   // new article
   $("#side-status ul.userlinks a[href$='/submit/']").text("New Article");
   $("#side-status ul.userlinks a[href$='/submit/']").attr("id", "newarticle");

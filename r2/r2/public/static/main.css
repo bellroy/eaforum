@@ -953,7 +953,7 @@ form#comment-listing label {
   padding-right: 5px;
 }
 div.comment, div.message {
-  background-color: #f9fcfe;
+  background-color: #ECF5FF;
   border: 1px solid #b3b3b3;
   clear: both;
   margin: 0 0 12px;
@@ -990,7 +990,7 @@ div.message div.message div.message,
 div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message,
 div.message div.message div.message div.message div.message div.message div.message div.message div.message {
-  background-color: #F9FCFE;
+  background-color: #ECF5FF;
 }
 .new-comment,
 div.comment div.new-comment {
@@ -1787,7 +1787,7 @@ div.post {
 }
 
 #content .post .post-body .post-info {
-  overflow: auto;
+  overflow: hidden;
   margin-bottom: 4px;
 }
 
