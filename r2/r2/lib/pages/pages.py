@@ -125,7 +125,7 @@ class Reddit(Wrapped):
 
         links = [
                     ("New to Effective Altruism?", "http://effectivealtruism.org/"),
-                    ("More on Effective Altruism", "http://effectivealtruism.org/resources/#reading")
+                    ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/")
                 ]
         ps.append(LinkBox(title = "Getting Started", links = links))
 
