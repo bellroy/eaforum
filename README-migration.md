@@ -28,3 +28,32 @@ The Effective Altruism forum has been migrated from a WordPress site into a fork
     ```
     paster run development.ini ../scripts/ob_import_run.py -c "import_posts('../scripts/ready-to-import-format.yml','../scripts/updated-permalinks.yml','main')"
     ```
+    
+## Deleting articles
+Currently there is no means to delete an article using the web front end. To do so, open a terminal on the server running EA Forum and follow these instructions.
+
+Open a paster shell (replace the name of the environment appropriately):
+
+```
+paster shell development.ini
+```
+Import the Link model into the shell
+
+```
+>>> from r2.models import Link
+```
+Retrieve the article you want to delete. Replace 12345 with the ID of the article you want to delet. This ID is shown in the article URL: /ea/{article id}/{article title}/
+
+```
+>>> l = Link._byID(int('12345', 36))
+```
+Double check that you've got the right article by looking at the title
+
+```
+>>> l.title
+```
+Remove the article from the database.
+
+```
+>>> l._delete_from_db()
+```
