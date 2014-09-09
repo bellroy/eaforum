@@ -182,7 +182,7 @@ class Subreddit(Thing, Printable, ImageHolder):
     def can_submit(self, user):
         if c.user_is_admin:
             return True
-        elif self.type == 'private' and self.is_contributor(user):
+        elif (self.type == 'private' or self.type == 'restricted') and self.is_contributor(user):
             #restricted/private require contributorship
             return True
         elif not c.user.email_validated:
