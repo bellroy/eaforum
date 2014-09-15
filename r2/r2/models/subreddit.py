@@ -517,7 +517,7 @@ class DefaultSR(FakeSubreddit):
         except NotFound:
             draft_sr = None
 
-        if draft_sr != None:
+        if draft_sr != None and draft_sr._id in sr_ids:
             sr_ids.remove(draft_sr._id)
         return self.get_links_sr_ids(sr_ids, sort, time, link_cls)
 

@@ -29,7 +29,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   text-align: center;
-  color: #565656;
+  color: #222222;
   background: #eaeaea;
   line-height: 1.4;
 }
@@ -1440,7 +1440,7 @@ ul#rightnav li a:hover {
 
 #side-comments .inline-comment-title {
   font-style: italic;
-  color: #565656;
+  color: #222222;
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
@@ -2174,7 +2174,7 @@ body.meetup .commentreply textarea {
   margin: 0 0 12px;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  color: #565656;
+  color: #222222;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;

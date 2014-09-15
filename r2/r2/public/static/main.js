@@ -48,11 +48,10 @@ $(document).ready(function() {
   }
 
   // if user is adding a new article and does not have enough karma
-  if (/^.*\/submit\//.test(pathname) && $("select#sr option[value=main]")[0].disabled) {
-    $("<div class='infobar' style='width: inherit;'>You do not have sufficient karma to post to the public forum. Karma " +
-      "can be gained by commenting on existing articles. Every 'like' that your " +
-      "comments gain will increase your karma by one point. In the meantime, you can " +
-      "write and save draft articles only.</div><p>&nbsp;</p>").insertAfter("form h1");
+  var mainForumOption = $("select#sr option[value=main]")[0];
+  if (/^.*\/submit\//.test(pathname) && mainForumOption.disabled) {
+    var karma = / at least ([0-9]+) /.exec(mainForumOption.text)[1];
+    $("<div class='infobar' style='width: inherit;'>You do not yet have enough karma to post an article. Every 'like' that your comments gain will increase your karma by one point. Once you have earned " + karma + " karma, you will be able to post articles here. In the meantime, here are some <a href=\"/ea/7b/welcome_to_the_effective_altruism_forum/\">other ways</a> to participate.</div><p>&nbsp;</p>").insertAfter("form h1");
   }
 
   // new article
