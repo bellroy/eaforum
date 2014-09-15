@@ -371,6 +371,19 @@ class Account(Thing):
             return (self.pref_latitude, self.pref_longitude)
         return None
 
+    def create_draft_sr(self):
+        from r2.models.subreddit import Subreddit
+        Subreddit.subscribe_defaults(self)
+
+        # Create a drafts subredit for this user
+        return Subreddit._create_and_subscribe(
+            self.draft_sr_name, self, {
+                'title': "Drafts for " + self.name,
+                'type': "private",
+                'default_listing': 'new',
+            }
+        )
+
     def is_within_radius(self, coords, radius):
         return self.coords is not None and \
             gislib.getDistance(self.coords, coords) <= radius
