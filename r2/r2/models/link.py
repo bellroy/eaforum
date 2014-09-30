@@ -6,16 +6,16 @@
 # software over a computer network and provide for limited attribution for the
 # Original Developer. In addition, Exhibit A has been modified to be consistent
 # with Exhibit B.
-# 
+#
 # Software distributed under the License is distributed on an "AS IS" basis,
 # WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
 # the specific language governing rights and limitations under the License.
-# 
+#
 # The Original Code is Reddit.
-# 
+#
 # The Original Developer is the Initial Developer.  The Initial Developer of the
 # Original Code is CondeNet, Inc.
-# 
+#
 # All portions of the code written by CondeNet are Copyright (c) 2006-2008
 # CondeNet, Inc. All Rights Reserved.
 ################################################################################
@@ -88,7 +88,7 @@ class Link(Thing, Printable, ImageHolder):
         from subreddit import Default
         if sr == Default:
             sr = None
-            
+
         url = cls.by_url_key(url)
         link_ids = g.permacache.get(url)
         if link_ids:
@@ -158,7 +158,7 @@ class Link(Thing, Printable, ImageHolder):
                 url = 'self',
                 _spam = spam,
                 author_id = author._id,
-                sr_id = sr._id, 
+                sr_id = sr._id,
                 lang = sr.lang,
                 ip = ip,
                 article = article,
@@ -182,21 +182,21 @@ class Link(Thing, Printable, ImageHolder):
             l.add_tag(tag)
 
         return l
-        
+
     def set_article(self, article):
         self.article = article
         self._commit()
-    
+
 
 
     def _summary(self):
         if hasattr(self, 'article'):
             return self.article.split(self._more_marker)[0]
-            
+
     def _has_more(self):
         if hasattr(self, 'article'):
             return self.article.find(self._more_marker) >= 0
-            
+
     def _more(self):
         if hasattr(self, 'article'):
             return self.article.split(self._more_marker)[1]
@@ -315,7 +315,7 @@ class Link(Thing, Printable, ImageHolder):
             if self._spam and (not user or
                                (user and self.author_id != user._id)):
                 return False
-        
+
             #author_karma = wrapped.author.link_karma
             #if author_karma <= 0 and random.randint(author_karma, 0) != 0:
                 #return False
@@ -323,7 +323,7 @@ class Link(Thing, Printable, ImageHolder):
         if user:
             if user.pref_hide_ups and wrapped.likes == True:
                 return False
-        
+
             if user.pref_hide_downs and wrapped.likes == False:
                 return False
 
@@ -352,7 +352,7 @@ class Link(Thing, Printable, ImageHolder):
                               c.user.pref_compress,
                               c.user.pref_media,
                               request.host,
-                              c.cname, 
+                              c.cname,
                               wrapped.author == c.user,
                               wrapped.likes,
                               wrapped.saved,
@@ -393,7 +393,7 @@ class Link(Thing, Printable, ImageHolder):
 
     def make_permalink_slow(self):
         return self.make_permalink(self.subreddit_slow)
-    
+
     @property
     def canonical_url(self):
         from r2.lib.template_helpers import get_domain
@@ -428,7 +428,7 @@ class Link(Thing, Printable, ImageHolder):
                 item.thumbnail = thumbnail_url(item)
             else:
                 item.thumbnail = g.default_thumb
-            
+
             item.domain = (domain(item.url) if not item.is_self
                           else 'self.' + item.subreddit.name)
             if not hasattr(item,'top_link'):
@@ -563,13 +563,13 @@ class Link(Thing, Printable, ImageHolder):
         updated_tags = set(tags)
         removed_tags = current_tags.difference(updated_tags)
         new_tags = updated_tags.difference(current_tags)
-        
+
         for tag in new_tags:
             self.add_tag(tag)
-        
+
         for tag in removed_tags:
             self.remove_tag(tag)
-        
+
     def tag_names(self):
         """Returns just the names of the tags of this article"""
         return [tag.name for tag in self.get_tags()]
@@ -888,7 +888,7 @@ class LinkTag(Relation(Link, Tag)):
 
 class Comment(Thing, Printable):
     _data_int_props = Thing._data_int_props + ('reported',)
-    _defaults = dict(reported = 0, 
+    _defaults = dict(reported = 0,
                      moderator_banned = False,
                      banned_before_moderator = False,
                      is_html = False,
@@ -902,7 +902,7 @@ class Comment(Thing, Printable):
     def _delete(self):
         link = Link._byID(self.link_id, data = True)
         link._incr('num_comments', -1)
-    
+
     @classmethod
     def _new(cls, author, link, parent, body, ip, spam = False, date = None):
         comment = Comment(body = body,
@@ -911,7 +911,7 @@ class Comment(Thing, Printable):
                           author_id = author._id,
                           ip = ip,
                           date = date)
-        
+
         comment._spam = spam
 
         #these props aren't relations
@@ -1030,8 +1030,8 @@ class Comment(Thing, Printable):
     def can_delete(self):
         if not self._loaded:
             self._load()
-        return (c.user_is_loggedin and self.author_id == c.user._id and \
-                self.retracted and not self.has_children())
+        can_moderate = c.user_is_loggedin and (self.author_id == c.user._id or self.subreddit_slow.is_moderator(c.user) or c.user_is_admin)
+        return (can_moderate and self.retracted and not self.has_children())
 
 
     # Changes the body of this comment, parsing the new body for polls and
@@ -1105,7 +1105,7 @@ class Comment(Thing, Printable):
                               bool(c.user_is_loggedin),
                               c.focal_comment == wrapped._id36,
                               request.host,
-                              c.cname, 
+                              c.cname,
                               wrapped.author == c.user,
                               wrapped.likes,
                               wrapped.friend,
@@ -1145,18 +1145,18 @@ class Comment(Thing, Printable):
         author = Account._byID(self.author_id, data=True).name
         params = {'author' : _force_unicode(author), 'title' : _force_unicode(link.title), 'site' : c.site.title}
         return strings.permalink_title % params
-          
+
     @classmethod
     def add_props(cls, user, wrapped):
         #fetch parent links
         links = Link._byID(set(l.link_id for l in wrapped), True)
-        
+
 
         #get srs for comments that don't have them (old comments)
         for cm in wrapped:
             if not hasattr(cm, 'sr_id'):
                 cm.sr_id = links[cm.link_id].sr_id
-        
+
         subreddits = Subreddit._byID(set(cm.sr_id for cm in wrapped),
                                      data=True,return_dict=False)
         can_reply_srs = set(s._id for s in subreddits if s.can_comment(user))
@@ -1203,7 +1203,7 @@ class Comment(Thing, Printable):
                              not (c.profilepage or
                                   item.deleted or
                                   c.user_is_admin))
-                
+
             if not hasattr(item,'editted'):
                 item.editted = False
             #will get updated in builder
@@ -1261,12 +1261,12 @@ class MoreComments(object):
     @staticmethod
     def cache_key(item):
         return False
-    
+
     def __init__(self, link, depth, parent=None):
         if parent:
             self.parent_id = parent._id
             self.parent_name = parent._fullname
-            self.parent_permalink = parent.make_permalink(link, 
+            self.parent_permalink = parent.make_permalink(link,
                                                           link.subreddit_slow)
         self.link_name = link._fullname
         self.link_id = link._id
@@ -1288,7 +1288,7 @@ class MoreRecursion(MoreComments):
 
 class MoreChildren(MoreComments):
     pass
-    
+
 class Message(Thing, Printable):
     _defaults = dict(reported = 0,)
     _data_int_props = Thing._data_int_props + ('reported', )
@@ -1318,7 +1318,7 @@ class Message(Thing, Printable):
         #TODO global-ish functions that shouldn't be here?
         #reset msgtime after this request
         msgtime = c.have_messages
-        
+
         #load the "to" field if required
         to_ids = set(w.to_id for w in wrapped)
         tos = Account._byID(to_ids, True) if to_ids else {}
@@ -1331,7 +1331,7 @@ class Message(Thing, Printable):
                 item.new = False
             item.score_fmt = Score.none
 
- 
+
     @staticmethod
     def cache_key(wrapped):
         #warning: inbox/sent messages
@@ -1358,10 +1358,10 @@ class Inbox(MultiRelation('inbox',
 
         if not to._loaded:
             to._load()
-            
+
         #if there is not msgtime, or it's false, set it
         if not hasattr(to, 'msgtime') or not to.msgtime:
             to.msgtime = obj._date
             to._commit()
-            
+
         return i

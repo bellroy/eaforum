@@ -669,7 +669,7 @@ class ApiController(RedditController):
     @Json
     @validate(VUser(),
               VModhash(),
-              thing = VByNameIfAuthor('id'))
+              thing = VByNameIfModerator('id'))
     def POST_del(self, res, thing):
         '''for deleting all sorts of things'''
 
@@ -701,7 +701,7 @@ class ApiController(RedditController):
     @Json
     @validate(VUser(),
               VModhash(),
-              thing = VByNameIfAuthor('id'))
+              thing = VByNameIfModerator('id'))
     def POST_retract(self, res, thing):
         '''for retracting comments'''
 

@@ -161,7 +161,7 @@ ${parent.midcol()}
             </li>
           %endif
         %endif
-        <% allow_delete = thing.can_be_deleted %>
+        <% allow_delete = thing.can_delete() %>
         ${parent.delete_or_report_buttons(allow_delete,False,True)}
         ${parent.buttons()}
         %if c.user_is_loggedin and not thing.author == c.user:
