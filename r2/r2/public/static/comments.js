@@ -218,20 +218,20 @@ function morechildren(form, link_id, children, depth) {
     return false;
 };
 
-function getAttrTime(e) { return parseInt(e.readAttribute('time')); }
+function getAttrTime(e) { return parseInt(e.attr('time')); }
 
 function highlightNewComments() {
-  var lastViewed = $('lastViewed')
-  if (!lastViewed)
+  var lastLogin = jQuery('#lastLogin')
+  if (!lastLogin)
     return;
 
-  var last = getAttrTime(lastViewed);
+  var last = getAttrTime(lastLogin);
   if (last<=0)
     return;
-  $$('div.comment').each(function(div, i) {
-    var t = getAttrTime(div.select('.comment-date')[0]);
+  jQuery('div.comment').each(function(i) {
+    var t = getAttrTime(jQuery(this).find('.comment-date'));
     if (last<t) {
-      div.addClassName('new-comment')
+      jQuery(this).addClass('new-comment')
     }
   });
 }

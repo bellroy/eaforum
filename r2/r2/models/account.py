@@ -47,7 +47,8 @@ class NotEnoughKarma(Exception): pass
 class Account(Thing):
     _data_int_props = Thing._data_int_props + ('report_made', 'report_correct',
                                                'report_ignored', 'spammer',
-                                               'reported')
+                                               'reported', 'last_login',
+                                               'this_login')
     _int_prop_prefixes = ('karma_',)
     _defaults = dict(pref_numsites = 10,
                      pref_frame = False,
@@ -79,6 +80,8 @@ class Account(Thing):
                      report_made = 0,
                      report_correct = 0,
                      report_ignored = 0,
+                     last_login = 0,
+                     this_login = 0,
                      spammer = 0,
                      sort_options = {},
                      has_subscribed = False,

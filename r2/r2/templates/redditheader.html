@@ -35,6 +35,8 @@
 
 %if not c.user_is_loggedin:
   <a id="loginbutton" href="/login" onclick="return showcover(false);">Log in / Sign up</a>
+%else:
+  <div id="lastLogin" time='${c.user.last_login}'></div>
 %endif
 </div><!-- #header -->
 
