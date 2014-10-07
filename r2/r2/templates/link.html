@@ -97,6 +97,10 @@
       </div>
     </div><!-- .articlenavigation -->
     <div class="tools">
+      %if c.user_is_loggedin and (not c.profilepage):
+        <% clicked = thing.clicked() if thing.clicked else None %>
+        <div style="display: none;" id='lastViewed' time="${ epochtime(clicked._date if clicked else None) }"></div>
+      %endif
       ${parent.midcol(thing.votable)}
       %if thing.comments_enabled:
         <%

@@ -39,9 +39,7 @@ import r2.models.thing_changes as tc
 from r2.controllers import ListingController
 
 from r2.lib.utils import get_title, sanitize_url, timeuntil, \
-    set_last_modified, remote_addr, epochtime
-import pytz
-
+    set_last_modified, remote_addr
 from r2.lib.utils import query_string, to36, timefromnow
 from r2.lib.wrapped import Wrapped
 from r2.lib.rancode import random_key
@@ -401,11 +399,6 @@ class ApiController(RedditController):
 
         if (draft_sr is None):
           user.create_draft_sr()
-
-        # Update last login time
-        user.last_login = user.this_login
-        user.this_login = epochtime(datetime.now().replace(tzinfo = pytz.utc))
-        user._commit()
 
         dest = dest or request.referer or '/'
         res._redirect(dest)
