@@ -111,7 +111,8 @@ ${self.RenderPrintable()}
       _("Reported"), clicked=thing.report_made)}
     </li>
   %endif
-  <% can_moderate = c.user_is_loggedin and ((type(thing) is Link and thing.subreddit_slow.is_moderator(c.user)) or c.user_is_admin) %>
+  <% thing_is_moderatable = hasattr(thing,"subreddit_slow") %>
+  <% can_moderate = c.user_is_loggedin and ((thing_is_moderatable and thing.subreddit_slow.is_moderator(c.user)) or c.user_is_admin) %>
   %if (not thing.author or thing.author.name == c.user.name or can_moderate) and delete:
     <li class='delete'>
       ${yes_no_button("delete", fullname, _("Delete"), \
