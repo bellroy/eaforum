@@ -1,7 +1,7 @@
 (function ($) {
 
 $(document).ready(function() {
-  /* reposition elements for CFEA reskin */
+  /* reposition elements for EA Forum reskin */
 
   var userInfo = $('<div id="user-info">');
   var pathname = window.location.pathname;
@@ -176,6 +176,10 @@ $(document).ready(function() {
       }
     });
   }
+  
+
+  $("#side-meetups").prepend("<span>HI!!!!</span>")
+  
 });
 
 })(jQuery);

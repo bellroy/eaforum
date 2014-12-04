@@ -66,6 +66,7 @@ class Account(Thing):
                      pref_organic = True,
                      pref_show_stylesheets = True,
                      pref_url = '',
+                     pref_eaprofile = '',
                      pref_location = '',
                      pref_latitude = None,
                      pref_longitude = None,
