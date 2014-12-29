@@ -1,4 +1,4 @@
-name              "memcached"
+name              "memcached-lesswrong"
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
@@ -7,7 +7,7 @@ long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version           "1.1.3"
 depends           "runit"
 
-recipe "memcached", "Installs and configures memcached"
+recipe "memcached-lesswrong", "Installs and configures memcached"
 
 %w{ ubuntu debian redhat fedora centos }.each do |os|
   supports os
