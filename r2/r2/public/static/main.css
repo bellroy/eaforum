@@ -1,3 +1,20 @@
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 @font-face {
   font-family: "montserratt";
   src: url('/static/968200684-Montserrat-Regular.eot');
@@ -26,7 +43,7 @@ body, div {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Lato', Arial, sans-serif; /* tog  */
   font-size: 16px;
   text-align: center;
   color: #222222;
@@ -582,11 +599,11 @@ div.post {
 }
 
 div.post h3 {
-  font-size: 14px;
+  font-size: 16px; /* tog - was 14 */
 }
 
 div.post h2 {
-  font-size: 16px;
+  font-size: 18px; /* tog - was 16 */
 }
 
 div.post h1, div.post h2, div.post h3 {
@@ -1214,7 +1231,7 @@ div#content h1 {
   color: rgb(50, 100, 146);
   display: block;
   font-family: montserratt, Arial, sans-serif;
-  font-size: 19px;
+  font-size: 21px; /* tog was 19px; */
   font-weight: bold;
   height: 26px;
   line-height: 26.600000381469727px;
@@ -1812,7 +1829,7 @@ body.post #content .post .post-body .post-info {
 }
 
 #content .post .post-body .content .md {
-  font-size: 14px;
+  font-size: 16px; /* tog - was 14px */
 }
 
 #content .post .action-bar {
