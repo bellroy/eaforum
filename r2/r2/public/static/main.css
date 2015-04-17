@@ -43,7 +43,7 @@ body, div {
 }
 
 body {
-  font-family: 'Lato', Arial, sans-serif; /* tog  */
+  font-family: 'Lato', Arial, sans-serif;
   font-size: 16px;
   text-align: center;
   color: #222222;
@@ -599,11 +599,11 @@ div.post {
 }
 
 div.post h3 {
-  font-size: 16px; /* tog - was 14 */
+  font-size: 16px;
 }
 
 div.post h2 {
-  font-size: 18px; /* tog - was 16 */
+  font-size: 18px;
 }
 
 div.post h1, div.post h2, div.post h3 {
@@ -1231,7 +1231,7 @@ div#content h1 {
   color: rgb(50, 100, 146);
   display: block;
   font-family: montserratt, Arial, sans-serif;
-  font-size: 21px; /* tog was 19px; */
+  font-size: 21px;
   font-weight: bold;
   height: 26px;
   line-height: 26.600000381469727px;
@@ -1829,7 +1829,7 @@ body.post #content .post .post-body .post-info {
 }
 
 #content .post .post-body .content .md {
-  font-size: 16px; /* tog - was 14px */
+  font-size: 16px;
 }
 
 #content .post .action-bar {
