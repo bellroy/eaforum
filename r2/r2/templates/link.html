@@ -102,12 +102,11 @@
         <div style="display: none;" id='lastViewed' time="${ epochtime(clicked._date if clicked else None) }"></div>
       %endif
       ${parent.midcol(thing.votable)}
-      %if thing.comments_enabled:
-        <%
-          num_comments = 0 if not thing.num_comments else thing.num_comments
-        %>
-        <a class="comment" href="${thing.url}#comments">${_('Comments (%d)') % (num_comments)}</a>
-      %endif
+<div class="tom-ash-social" style="float:left;"><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "4e72a5f6-559e-41ed-90db-cb3b76d08015", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+<span class='st_facebook_hcount' displayText='Facebook'></span>
+<span class='st_twitter_hcount' displayText='Tweet'></span>
+</div>
       <ul class="action-list">
           ${self.buttons(comments = False, report=False, delete=False, ban=False)}
       </ul>
