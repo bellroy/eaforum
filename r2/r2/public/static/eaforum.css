@@ -585,3 +585,9 @@ div.meta.meetup strong {
   -khtml-border-radius: 4px;
   border-radius: 4px;
 }
+
+/* tom ash / .impact people additions */
+
+.tom-ash-social {
+	float: left;
+}
