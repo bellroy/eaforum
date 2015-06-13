@@ -1,6 +1,6 @@
 h1. EA Forum
 
-The code behind the Effective Altruist Forum at "effectivealtruistforum.com":http://effectivealtruistforum.com/.
+The code behind the Effective Altruist Forum at "effective-altruism.com":http://effective-altruism.com.
 
 h2. Resources
 
