@@ -10,4 +10,4 @@ gem 'treetop', '~>1.4.8'
 gem 'capybara'
 gem 'selenium-webdriver'
 gem 'rspec'
-
+gem 'httparty'
