@@ -3,7 +3,7 @@
   <ul>
     %for user in thing.things:
       <li class="user">
-        <a class="topUsername" href="/user/${user.name}">${user.name}</a>
+        <a href="/user/${user.name}">${user.name}</a>
         %if user.pref_url:
 	  &nbsp;<a href="${user.pref_url}">(Profile)</a>
 	%endif
