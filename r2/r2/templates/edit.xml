@@ -12,7 +12,13 @@
   <description>
 	<% domain = get_domain(cname = c.cname, subreddit = False) %>
     Edited by &lt;a href="http://${domain}/user/${thing.link_author.name}"&gt;${thing.author.name}&lt;/a&gt;
+    %if thing.author.pref_url:
+      &lt;a href="${thing.author.pref_url}"&gt;(Profile)&lt;/a&gt;
+    %endif
     Original by &lt;a href="http://${domain}/user/${thing.link_author.name}"&gt;${thing.link_author.name}&lt;/a&gt;
+    %if thing.link_author.pref_url:
+      &lt;a href="${thing.link_author.pref_url}"&gt;(Profile)&lt;/a&gt;
+    %endif
     <% entities = {"\n": "&#x0a;"} %>
     &lt;pre&gt;
     ${saxutils.escape("\n".join(thing.diff[2:]), entities)}
