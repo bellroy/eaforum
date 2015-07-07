@@ -22,7 +22,11 @@
              if c.user_is_admin: name += " (%d)" % (author.link_karma)
           %>
           posted by
-          <span class="author"><a id="author_${meetup._fullname}" ${href}>${name}</a></span>
+          <span class="author"><a id="author_${meetup._fullname}" ${href}>${name}</a>
+	  %if author.pref_url:
+	    &nbsp;<a id="author_${meetup._fullname}" href=${author.pref_url}>(Profile)</a>
+	  %endif
+	  </span>
           on
         %endif
         <span class="date">${prettytime(meetup._date)}</span>
