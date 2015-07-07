@@ -172,7 +172,10 @@ ${self.RenderPrintable()}
       %if label:
         ${label}
       %endif
-      <a id="author_${thing._fullname}" ${href}>${name}</a>
+      <a id="author_${thing._fullname}" ${href}>${name}</a> 
+      %if author.pref_url:
+        &nbsp;<a id="author_${thing._fullname}" href="${author.pref_url}">(Profile)</a>
+      %endif
     </span>
  %endif
 %endif
