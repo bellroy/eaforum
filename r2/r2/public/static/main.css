@@ -1614,6 +1614,7 @@ ul#rightnav li a:hover {
   margin: 0;
   padding: 0;
   list-style: none;
+  background: url(/static/top-contributors-ico.png) no-repeat 0 2px;
 }
 
 #sidebar div.contributors li.user a {
@@ -1622,7 +1623,6 @@ ul#rightnav li a:hover {
   text-decoration: none;
   margin-right: 5px;
   padding-left: 20px;
-  background: url(/static/top-contributors-ico.png) no-repeat 0 2px;
 }
 
 #sidebar div.contributors li.user span {
@@ -2292,6 +2292,10 @@ h6 {
 #options ul li select {
   width: 53px;
   margin: 0 7px;
+}
+
+#options .textbox#url {
+  width: 370px;
 }
 
 /* Sidebar styling */

@@ -58,6 +58,9 @@
   %else:
     <% author_path = unsafe(add_sr("/user/%s/" % websafe(author.name), sr_path = False)) %>
     <a href="${author_path}">${author.name}</a>
+    %if author.pref_url:
+      &nbsp;<a href="${author.pref_url}">(Profile)</a>
+    %endif
   %endif
 </%def>
 
