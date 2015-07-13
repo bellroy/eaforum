@@ -79,6 +79,14 @@ div.footer ul.footer-links:after,
 
 /* General Page Structure
 -------------------------------------------------------------------------------------- */
+/*Problem: On a sufficiently small screen size, the comment reply box will be wider than the screen
+(Containing div is 695px wide, the box is 100% of it minus margin, there's also the sidebar etc)
+Solution: On small screens, resize the whole site to make it fit, using viewport*/
+@media (max-width: 959px){
+  @viewport{
+    width: 960px;
+  }
+}
 #wrapper {
   margin: 0 auto;
   width: 1024px;
