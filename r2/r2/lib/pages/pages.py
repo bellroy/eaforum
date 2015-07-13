@@ -767,6 +767,10 @@ class ProfilePage(Reddit):
             # User is looking at their own page
             main_buttons.append(NamedButton('drafts'))
 
+        if c.user_is_loggedin and self.user._id != c.user._id:
+            #User is looking at another user's page, and so can send them a message
+            main_buttons.append(AbsButton('Send Message', 'message/compose/?to=' + self.user.name))
+
         return NavMenu(main_buttons, base_path = path, title = _('View'), _id='nav', type='navlist')
 
 
