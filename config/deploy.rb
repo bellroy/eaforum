@@ -9,6 +9,7 @@ load 'config/cap-tasks/console.rb'
 load 'config/cap-tasks/console.rb'
 load 'config/cap-tasks/rake.rb'
 load 'config/cap-tasks/postgresql_dump.rb'
+load 'config/cap-tasks/precheck.rb'
 load 'config/db.rb'
 
 set :scm, 'git'
