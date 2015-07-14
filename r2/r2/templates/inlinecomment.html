@@ -1,3 +1,5 @@
+<%namespace file="utils.html" import="optionalstyle"/>
+
 <%!
    from pylons.i18n import _, ungettext
    from r2.lib.filters import killhtml
@@ -9,9 +11,6 @@
   <span class="tagline">
     by&#32;<a class="author" href="http://${get_domain(cname=True, subreddit=False)}/user/${thing.author.name}">
     <strong>${thing.author.name}</strong></a>&#32;
-    %if thing.author.pref_url:
-      <a class ="author" href="${thing.author.pref_url}"><strong>(Profile)</strong></a>&#32;
-    %endif
     on&#32;
     <a href="${thing.permalink}" class="article-title">${thing.link.title}</a>
   </span>

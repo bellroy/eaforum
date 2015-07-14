@@ -1,6 +1,7 @@
+<%namespace file="utils.html" import="userlink_profile"/>
 <%!
   from r2.lib.wiki import Wiki
-  from r2.lib.template_helpers import add_sr
+  from r2.lib.template_helpers import add_sr 
 %>
 <%
   article = thing.article
@@ -56,11 +57,7 @@
   %if author is None:
     ${_('Unknown')}
   %else:
-    <% author_path = unsafe(add_sr("/user/%s/" % websafe(author.name), sr_path = False)) %>
-    <a href="${author_path}">${author.name}</a>
-    %if author.pref_url:
-      &nbsp;<a href="${author.pref_url}">(Profile)</a>
-    %endif
+    ${userlink_profile(author)}
   %endif
 </%def>
 
