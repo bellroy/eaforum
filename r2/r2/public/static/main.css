@@ -1614,7 +1614,6 @@ ul#rightnav li a:hover {
   margin: 0;
   padding: 0;
   list-style: none;
-  background: url(/static/top-contributors-ico.png) no-repeat 0 2px;
 }
 
 #sidebar div.contributors li.user a {
