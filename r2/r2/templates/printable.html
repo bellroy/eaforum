@@ -25,7 +25,7 @@
    from r2.lib.strings import strings
 %>
 
-<%namespace file="utils.html" import="plain_link" />
+<%namespace file="utils.html" import="plain_link, userlink_profile" />
 
 ${self.RenderPrintable()}
 
@@ -172,7 +172,7 @@ ${self.RenderPrintable()}
       %if label:
         ${label}
       %endif
-      <a id="author_${thing._fullname}" ${href}>${name}</a>
+      ${userlink_profile(author)}
     </span>
  %endif
 %endif
