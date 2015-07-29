@@ -1,3 +1,4 @@
+
 <%!
    from r2.lib.template_helpers import add_sr, get_domain
    from r2.lib.utils import rfc822format

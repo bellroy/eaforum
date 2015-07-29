@@ -24,6 +24,7 @@
    from r2.lib.filters import spaceCompress, unsafe
    from r2.lib.template_helpers import add_sr
    from r2.lib.utils import cols
+   import re
 %>
 <%def name="tags(**kw)">
 %for k, v in kw.iteritems():
@@ -280,4 +281,15 @@ ${unsafe(txt)}
       </option>
     %endfor
   </select>
+</%def>
+
+<%def name="userlink_profile(user)">
+  <%
+     pattern = re.compile("(http)?(s?)(:\/\/)?(www.)?effectivealtruismhub\.com\/user\/.*")
+  %>
+  <% author_path = unsafe(add_sr("/user/%s/" % websafe(user.name), sr_path = False)) %>
+  <a href="${author_path}">${user.name}</a>
+  %if user.pref_url and pattern.match(user.pref_url):
+    &nbsp;<a href=${user.pref_url}><img src="/static/user-id-ico.png" alt="(EA Profile)" title="View EA Profile" height="11" width="12"/></a>
+  %endif
 </%def>

@@ -1,3 +1,4 @@
+<%namespace file="utils.html" import="userlink_profile"/>
 <%!
   from routes.util import url_for
   from r2.lib.filters import safemarkdown,unsafe
@@ -22,7 +23,8 @@
              if c.user_is_admin: name += " (%d)" % (author.link_karma)
           %>
           posted by
-          <span class="author"><a id="author_${meetup._fullname}" ${href}>${name}</a></span>
+          <span class="author">${userlink_profile(author)}
+	  </span>
           on
         %endif
         <span class="date">${prettytime(meetup._date)}</span>
