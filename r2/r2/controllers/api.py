@@ -401,7 +401,10 @@ class ApiController(RedditController):
           user.create_draft_sr()
 
         dest = dest or request.referer or '/'
-        res._redirect(dest)
+        # The query parameter is a hack to force the header refresh
+        # and show that the user is logged in. "h" stands for "hack."
+        # Could cause problems if there are other params in the URL.
+        res._redirect(dest + "?h=t")
 
     @Json
     @validate(user = VLogin(['user_login', 'passwd_login']),
