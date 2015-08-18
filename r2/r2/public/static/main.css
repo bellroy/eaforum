@@ -1961,6 +1961,10 @@ div.tools a.subscription,
   padding: 0;
 }
 
+#side-meetups .add .label {
+  cursor: pointer;
+}
+
 div.tools a.edit,
 div.comment-links ul li.edit a
 {

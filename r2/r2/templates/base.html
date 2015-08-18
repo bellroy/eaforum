@@ -30,7 +30,8 @@
   <head>
     <title>${self.Title()}</title>
 
-    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<!-- `meta name="viewport"` set for mobile browsers. See https://github.com/tog22/eaforum/issues/7 & https://github.com/tog22/eaforum/issues/28 -->
+    <meta name="viewport" content="width=device-width minimum-scale=0.25 maximum-scale=2.0">
     <meta name="keywords" content="${self.keywords()}" />
     <meta name="title" content="${self.Title()}" />
     <% description = hasattr(thing, 'link') and thing.link._meta_description() %>

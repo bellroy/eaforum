@@ -290,6 +290,6 @@ ${unsafe(txt)}
   <% author_path = unsafe(add_sr("/user/%s/" % websafe(user.name), sr_path = False)) %>
   <a href="${author_path}">${user.name}</a>
   %if user.pref_url and pattern.match(user.pref_url):
-    &nbsp;<a href=${user.pref_url}><img src="/static/user-id-ico.png" alt="(EA Profile)" height="11" width="12"/></a>
+    &nbsp;<a href=${user.pref_url}><img src="/static/user-id-ico.png" alt="(EA Profile)" title="View EA Profile" height="11" width="12"/></a>
   %endif
 </%def>

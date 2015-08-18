@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     navDivId = "#filternav";
   }
-  $navBar = $("<div id=\"navbar\"></div>");
+  $navBar = $("<div id=\"navbar\" class=\"clear\"></div>");
   $navBar.prependTo("#main");
   $(navDivId).prependTo("#navbar");
 
