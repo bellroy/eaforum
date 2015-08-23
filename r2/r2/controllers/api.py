@@ -28,7 +28,9 @@ from pylons.controllers.util import etag_cache
 
 import hashlib
 import httplib
+import urllib
 import urllib2
+import urlparse
 from validator import *
 
 from r2.models import *
@@ -401,10 +403,25 @@ class ApiController(RedditController):
           user.create_draft_sr()
 
         dest = dest or request.referer or '/'
-        # The query parameter is a hack to force the header refresh
-        # and show that the user is logged in. "h" stands for "hack."
-        # Could cause problems if there are other params in the URL.
-        res._redirect(dest + "?h=t")
+
+        # The code below adds query parameter to force the header to
+        # refresh and show that the user is logged in.
+        # TODO: This is a hack, and it doesn't work if the user clicks
+        # on an anchor element after logging in because the query
+        # param will disappear.
+        # TODO: This function should be in a different file.
+        # From http://stackoverflow.com/a/12897375:
+        def set_query_parameter(url, param_name, param_value):
+            scheme, netloc, path, query_string, fragment = urlparse.urlsplit(url)
+            query_params = urlparse.parse_qs(query_string)
+
+            query_params[param_name] = [param_value]
+            new_query_string = urllib.urlencode(query_params, doseq=True)
+
+            return urlparse.urlunsplit((scheme, netloc, path, new_query_string, fragment))
+
+        dest_with_param = set_query_parameter(dest, "refresh", "true")
+        res._redirect(dest_with_param)
 
     @Json
     @validate(user = VLogin(['user_login', 'passwd_login']),
