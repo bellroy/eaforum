@@ -1884,8 +1884,8 @@ msgstr ""
 #: randomstring:sadmessages
 msgid "Funny 500 page message 1"
 msgstr ""
-"<p>You have encountered an error in the code that runs the EA Forum. The site maintainers have been informed and will get to it is as soon as they can.</p>"
-"<p>If the error is localised you might still find awesome EA Forum content in the <a href='/main/'>Main article area</a> or in the <a href='/top/'>Top area</a>.</p>"
+"<p>You have encountered an error in the code that runs the EA Forum. The site maintainers have been informed and will get to it is as soon as they can. If you think they aren't aware of the issue, please submit it at our <a href='https://github.com/tog22/eaforum/issues'>issue tracker.</a></p>"
+"<p>If the error is localised you might still find awesome EA Forum content in the <a href='/'>main article area</a>.</p>"
 
 #: randomstring:create_reddit
 msgid "Reason to create a reddit 1"

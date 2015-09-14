@@ -1630,7 +1630,6 @@ ul#rightnav li a:hover {
   text-decoration: none;
   margin-right: 5px;
   padding-left: 20px;
-  background: url(/static/top-contributors-ico.png) no-repeat 0 2px;
 }
 
 #sidebar div.contributors li.user span {

@@ -101,7 +101,7 @@ class Reddit(Wrapped):
 
         #add the infobar
         self.infobar = None
-        if c.user_is_loggedin and not c.user.email_validated:
+        if c.user_is_loggedin and not (c.user.email_validated or request.path_info == '/verifyemail'):
             infotext = strings.email_not_validated
         if not infotext and hasattr(c.site, 'infotext'):
             infotext = c.site.infotext
