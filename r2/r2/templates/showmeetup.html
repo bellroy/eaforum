@@ -4,6 +4,7 @@
   from r2.lib.filters import safemarkdown,unsafe
   from r2.lib.utils import prettytime, epochtime
   from r2.lib.template_helpers import static
+  import re
 %>
 <% meetup = thing.meetup %>
 <div class="post">
@@ -21,9 +22,14 @@
              name = websafe(author.name)
              href = unsafe('href="%s"' % "/user/%s/" % name)
              if c.user_is_admin: name += " (%d)" % (author.link_karma)
+             pattern = re.compile("(http)?(s?)(:\/\/)?(www.)?effectivealtruismhub\.com\/user\/.*")
           %>
           posted by
-          <span class="author">${userlink_profile(author)}
+            <span class="author">
+            <a id="author_${meetup._fullname}" ${href}>${name}</a>
+            %if author.pref_url and pattern.match(author.pref_url):
+              &nbsp;<a href=${author.pref_url}><img src="/static/user-id-ico.png" alt="(EA Profile)" height="11" width="12"/></a>
+            %endif
 	  </span>
           on
         %endif
