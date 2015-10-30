@@ -285,7 +285,7 @@ ${unsafe(txt)}
 
 <%def name="userlink_profile(user)">
   <%
-     pattern = re.compile("(http)?(s?)(:\/\/)?(www.)?effectivealtruismhub\.com\/user\/.*")
+     pattern = re.compile("((http)?(s?)(:\/\/)?(www.)?effectivealtruismhub\.com\/user\/.*)|((http)?(s?)(:\/\/)?(www.)?eahub\.org\/user\/.*)")
   %>
   <% author_path = unsafe(add_sr("/user/%s/" % websafe(user.name), sr_path = False)) %>
   <a href="${author_path}">${user.name}</a>
