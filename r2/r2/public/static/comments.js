@@ -218,22 +218,57 @@ function morechildren(form, link_id, children, depth) {
     return false;
 };
 
-function getAttrTime(e) { return parseInt(e.readAttribute('time')); }
+function getAttrTime(e) { return parseInt(e.attr('time')); }
 
 function highlightNewComments() {
-  var lastViewed = $('lastViewed')
-  if (!lastViewed)
-    return;
+  function CommentHighlighter() {
+    function getLastViewedTime() {
+      var lastViewed = jQuery('#lastViewed');
+      if (lastViewed.length === 0) {
+        return;
+      }
 
-  var last = getAttrTime(lastViewed);
-  if (last<=0)
-    return;
-  $$('div.comment').each(function(div, i) {
-    var t = getAttrTime(div.select('.comment-date')[0]);
-    if (last<t) {
-      div.addClassName('new-comment')
+      var lastViewedTime = getAttrTime(lastViewed);
+      if (lastViewedTime <= 0){ // Why would this ever be true?
+        return;
+      }
+
+      return lastViewedTime;
     }
-  });
+    var lastViewedTime = getLastViewedTime();
+
+    this.highlightNewComments = function () {
+      if (!lastViewedTime) {
+        return;
+      }
+
+      jQuery('div.comment').each(function() {
+        var comment = new Comment(jQuery(this));
+        if (comment.isEarlierThan(lastViewedTime) && comment.allParentsAreRead()) {
+          comment.highlight();
+        }
+      });
+    };
+  }
+
+  function Comment(comment) {
+    this.comment = comment;
+
+    this.isEarlierThan = function(time) {
+      var createdTime = getAttrTime(this.comment.find('.comment-date'));
+      return time < createdTime;
+    };
+
+    this.allParentsAreRead = function() {
+      return this.comment.closest('.new-comment').length === 0;
+    };
+
+    this.highlight = function () {
+      this.comment.addClass('new-comment');
+    };
+  }
+
+  new CommentHighlighter().highlightNewComments();
 }
 
 // Display the 'load all comments' if there any to be loaded
@@ -333,5 +368,3 @@ function showcomment(id, link) {
 
 Message = Comment;
 Message.message = Comment.comment;
-
-
