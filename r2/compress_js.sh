@@ -22,7 +22,7 @@
 # CondeNet, Inc. All Rights Reserved.
 ################################################################################
 
-files=( event.simulate.js utils.js animate.js link.js comments.js subreddit.js vote_piece.js reddit_piece.js organic.js main.js map.js polls.js )
+files=( event.simulate.js utils.js animate.js link.js comments.js subreddit.js vote_piece.js reddit_piece.js organic.js main.js map.js polls.js google-search.js)
 
 wd=`pwd`
 redditjs='eaforum.js'
