@@ -5,9 +5,7 @@ $(document).ready(function() {
 
   var userInfo = $('<div id="user-info">');
   var pathname = window.location.pathname;
-  // This if statement prevents the viewed user being displayed as the logged in
-  // user when viewing a user's profile without being logged on
-  if ($("#side-status h2").length > 1 || !/^\/user\/([^\/]*)\/(.*)/.exec(pathname)) {
+  if (logged) {
     // username - using last child so when viewing another user their details
     // stay in right box
     $("#side-status h2").last().appendTo(userInfo);
