@@ -6,16 +6,16 @@
 ## software over a computer network and provide for limited attribution for the
 ## Original Developer. In addition, Exhibit A has been modified to be consistent
 ## with Exhibit B.
-## 
+##
 ## Software distributed under the License is distributed on an "AS IS" basis,
 ## WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
 ## the specific language governing rights and limitations under the License.
-## 
+##
 ## The Original Code is Reddit.
-## 
+##
 ## The Original Developer is the Initial Developer.  The Initial Developer of
 ## the Original Code is CondeNet, Inc.
-## 
+##
 ## All portions of the code written by CondeNet are Copyright (c) 2006-2008
 ## CondeNet, Inc. All Rights Reserved.
 ################################################################################
@@ -46,15 +46,15 @@
 </%def>
 
 <%def name="media_radio(val, label)">
-  <input id="media_${val}" class="nomargin" 
+  <input id="media_${val}" class="nomargin"
          type="radio"  value="${val}" name="media"
-         ${"checked='checked'" if c.user.pref_media == val else ''} /> 
+         ${"checked='checked'" if c.user.pref_media == val else ''} />
   <label for="media_${val}">${label}</label>
   <br/>
 </%def>
 
 <%def name="num_input(s, name)">
-  <input type="text" size="4" maxlength="4" 
+  <input type="text" size="4" maxlength="4"
          name="${name}" class="textbox small"
          value="${s if s is not None else ''}" />
 </%def>
@@ -65,7 +65,7 @@
 
 %if c.user_is_loggedin:
   <%
-    action = "/post/options" 
+    action = "/post/options"
     if not c.frameless_cname:
       action = add_sr(action, nocname=True)
   %>
@@ -105,27 +105,6 @@
       <h6>${_("Privacy options")}</h6>
       <ul>
         <li>${checkbox(_("Make my votes public"), "public_votes")}</li>
-      </ul>
-
-      <h6>${_("Location")}</h6>
-      <ul>
-        <li>
-        <input name="location" type="text" class="textbox" size="40" placeholder="Enter your location here" value="${c.user.pref_location}" />
-        ${error_field("LOCATION_TOO_LONG", kind="p", cls="form-info-line")}
-        <%
-          lat = c.user.pref_latitude if c.user.pref_latitude is not None else ''
-          lng = c.user.pref_longitude if c.user.pref_longitude is not None else ''
-        %>
-        <input name="latitude" type="hidden" value="${lat}" />
-        <input name="longitude" type="hidden" value="${lng}" /></li>
-        <li>
-          <label>
-            <input type="checkbox" class="checkbox" name="meetup_notify_enabled"
-              ${'checked="checked"' if c.user.pref_meetup_notify_enabled else ''} />
-            Email me about meetups within
-          </label>
-          ${num_input(c.user.pref_meetup_notify_radius, 'meetup_notify_radius')}
-          km of me</li>
       </ul>
 
       <h6><!-- doesn't look good: <a href="http://eahub.org/user/profiles">-->EA Profiles<!--</a>--> Link</h6>

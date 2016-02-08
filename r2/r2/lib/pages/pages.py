@@ -123,7 +123,8 @@ class Reddit(Wrapped):
             links = [
                 ("New to Effective Altruism?", "http://effectivealtruism.org/"),
                 ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/"),
-                most_recent_open_thread_link()
+                most_recent_open_thread_link(),
+                ("Meetups", "https://eahub.org/groups"),
             ]
             return filter(None, links)
 
@@ -176,7 +177,6 @@ class Reddit(Wrapped):
         if is_moderator and not isinstance(c.site, FakeSubreddit) and not c.cname:
             ps.append(SubredditInfoBar())
 
-        ps.append(SideBoxPlaceholder('side-meetups', _('Nearest Meetups'), '/meetups', sr_path=False))
         ps.append(SideBoxPlaceholder('side-comments', _('Recent Comments'), '/comments'))
 
         if g.recent_edits_feed:
@@ -221,9 +221,6 @@ class Reddit(Wrapped):
         if c.user_is_loggedin:
             buttons += [NamedButton('submit', sr_path = not c.default_sr,
                                     nocname=not c.authorized_cname)]
-            if c.user.safe_karma >= g.discussion_karma_to_post:
-                buttons += [NamedButton('meetups/new', False,
-                                        nocname=not c.authorized_cname)]
             buttons += [NamedButton("prefs", False,
                                   css_class = "pref-lang")]
             buttons += [NamedButton("logout", False,

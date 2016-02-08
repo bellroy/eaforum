@@ -1250,17 +1250,6 @@ class ApiController(RedditController):
         """Return HTML snippet of the top contributors for the side bar."""
         return self.render_cached('side-contributors', TopContributors, g.side_contributors_max_age)
 
-    def GET_side_meetups(self, *a, **kw):
-        """Return HTML snippet of the upcoming meetups for the side bar."""
-        ip = remote_addr(c.environ)
-        location = Meetup.geoLocateIp(ip)
-        # Key to group cached meetup pages with
-        invalidating_key = g.rendercache.get_key_group_value(Meetup.group_cache_key())
-        cache_key = "%s-side-meetups-%s" % (invalidating_key,ip)
-        return self.render_cached(cache_key, UpcomingMeetups, g.side_meetups_max_age,
-                                  cache_time=self.TWELVE_HOURS, location=location,
-                                  max_distance=g.meetups_radius)
-
     def GET_side_monthly_contributors(self, *a, **kw):
         """Return HTML snippet of the top monthly contributors for the side bar."""
         return self.render_cached('side-monthly-contributors', TopMonthlyContributors, g.side_contributors_max_age)
@@ -1286,15 +1275,6 @@ class ApiController(RedditController):
         """Return HTML snippet of the recent promoted posts for the front page."""
         # Server side cache is also invalidated when new article is posted
         return self.render_cached('recent-promoted', RecentPromotedArticles, g.side_posts_max_age)
-
-    def GET_front_meetups_map(self, *a, **kw):
-        ip = remote_addr(c.environ)
-        location = Meetup.geoLocateIp(ip)
-        invalidating_key = g.rendercache.get_key_group_value(Meetup.group_cache_key())
-        cache_key = "%s-front-meetups-%s" % (invalidating_key,ip)
-        return self.render_cached(cache_key, MeetupsMap, g.side_meetups_max_age,
-                                  cache_time=self.TWELVE_HOURS, location=location,
-                                  max_distance=g.meetups_radius)
 
     @validate(link = VLink('article_id', redirect=False))
     def GET_article_navigation(self, link, *a, **kw):

@@ -79,11 +79,11 @@ def make_map(global_conf={}, app_conf={}):
     mc('/stylesheet', controller = 'front', action = 'stylesheet')
 
     mc('/', controller='promoted', action='listing')
-    
+
     for name,page in allWikiPagesCached.items():
         if page.has_key('route'):
             mc("/wiki/"+page['route'], controller='wikipage', action='wikipage', name=name)
-        
+
     mc('/invalidate_cache', controller='wikipage', action='invalidate_cache')
 
     listing_controllers = "hot|saved|toplinks|topcomments|new|recommended|randomrising|comments|blessed|recentposts|edits|promoted"
@@ -94,16 +94,6 @@ def make_map(global_conf={}, app_conf={}):
     mc('/dashboard/comments', action='listing', controller='interestingcomments')
     mc('/dashboard/subscribed', action='listing', controller='interestingsubscribed')
     mc('/dashboard/posts', action='listing', controller='interestingposts')
-
-    # Can't use map.resource because the version of the Routing module we're
-    # using doesn't support the controller_action kw arg
-    #map.resource('meetup', 'meetups', collection_actions=['create', 'new'])
-    mc('/meetups/create', action='create', controller='meetups')
-    mc('/meetups', action='listing', controller='meetupslisting')
-    mc('/meetups/new', action='new', controller='meetups')
-    mc('/meetups/:id/edit', action='edit', controller='meetups')
-    mc('/meetups/:id/update', action='update', controller='meetups')
-    mc('/meetups/:id', action='show', controller='meetups')
 
     mc('/tag/:tag', controller='tag', action='listing', where='tag')
 
@@ -150,4 +140,3 @@ def make_map(global_conf={}, app_conf={}):
     mc("/*url", controller='front', action='catchall')
 
     return map
-
