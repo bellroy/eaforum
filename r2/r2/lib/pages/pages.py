@@ -32,6 +32,7 @@ from pylons.controllers.util import abort
 from r2.lib.captcha import get_iden
 from r2.lib.filters import spaceCompress, _force_unicode, _force_utf8
 from r2.lib.db.queries import db_sort
+from r2.lib.db import tdb_sql
 from r2.lib.menus import NavButton, NamedButton, NavMenu, JsButton, ExpandableButton, AbsButton
 from r2.lib.menus import SubredditButton, SubredditMenu, menu
 from r2.lib.strings import plurals, rand_strings, strings
@@ -118,16 +119,36 @@ class Reddit(Wrapped):
     def rightbox(self):
         """generates content in <div class="rightbox">"""
 
+        def get_links():
+            links = [
+                ("New to Effective Altruism?", "http://effectivealtruism.org/"),
+                ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/"),
+                most_recent_open_thread_link()
+            ]
+            return filter(None, links)
+
+        def most_recent_open_thread_link():
+            query = """
+            SELECT thing_id
+            FROM reddit_data_link
+            WHERE key = 'title'
+              AND value LIKE 'The Effective Altruism Newsletter & Open Thread%%'
+            ORDER BY thing_id DESC
+            LIMIT 1
+            """
+            table, _ = tdb_sql.types_id[Link._type_id].data_table
+
+            link_id = table.engine.execute(query).scalar()
+            if link_id:
+                link = Link._byID(link_id)
+                return ("Open Thread", link.url)
+
         ps = PaneStack(css_class='spacer')
 
         if self.searchbox:
             ps.append(GoogleSearchForm())
 
-        links = [
-                    ("New to Effective Altruism?", "http://effectivealtruism.org/"),
-                    ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/")
-                ]
-        ps.append(LinkBox(title = "Getting Started", links = links))
+        ps.append(LinkBox(title = "Getting Started", links = get_links()))
 
         if not c.user_is_loggedin and self.loginbox:
             ps.append(LoginFormWide())
