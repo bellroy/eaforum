@@ -317,6 +317,14 @@ function addMeetup() {
  }
 
 function showcover(warning, reason) {
+    var hideOnEscape = function () {
+        jQuery(document).keydown(function(e) {
+            if (e.keyCode === 27) {
+                hidecover("cover", "loginpopup");
+            }
+        });
+    };
+
     offset = window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop;
     if (warning) {
         show('cover_msg', 'cover_disclaim');
@@ -338,6 +346,9 @@ function showcover(warning, reason) {
 
     new_captcha();
     show("cover", "loginpopup");
+
+    hideOnEscape();
+
     return false;
 }
 
