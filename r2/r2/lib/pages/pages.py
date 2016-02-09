@@ -479,7 +479,6 @@ class PrefsPage(Reddit):
 
     def header_nav(self):
         buttons = [NavButton(menu.options, ''),
-                   NamedButton('friends'),
                    NamedButton('update'),
                    NamedButton('delete')]
 

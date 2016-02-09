@@ -115,7 +115,6 @@ menu =   MenuHandler(hot          = _('Popular'),
 
                      #preferences
                      options      = _('Options'),
-                     friends      = _("Friends"),
                      update       = _("Password/email"),
                      delete       = _("Delete"),
 
@@ -612,5 +611,3 @@ class AdminTimeMenu(TimeMenu):
     get_param = 't'
     default   = 'day'
     options   = ('hour', 'day', 'week')
-
-
