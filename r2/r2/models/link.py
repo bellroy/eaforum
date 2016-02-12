@@ -1159,8 +1159,8 @@ class Comment(Thing, Printable):
         return permalink.unparse()
 
     def make_permalink_slow(self):
-        l = Link._byID(self.link_id, data=True)
-        return self.make_permalink(l, l.subreddit_slow)
+        link = Link._byID(self.link_id, data=True)
+        return self.make_permalink(link, link.subreddit_slow)
 
     def make_permalink_title(self, link):
         author = Account._byID(self.author_id, data=True).name
