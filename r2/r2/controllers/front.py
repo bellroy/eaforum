@@ -42,6 +42,7 @@ from pylons import c, request
 import random as rand
 import re
 import time as time_module
+import urlparse
 from urllib import quote_plus
 
 class FrontController(RedditController):
@@ -101,14 +102,18 @@ class FrontController(RedditController):
         """page hit once a user has been sent a password reset email
         to verify their identity before allowing them to update their
         password."""
-        done = False
-        if not key and request.referer:
-            referer_path =  request.referer.split(g.domain)[-1]
-            done = referer_path.startswith(request.fullpath)
-        elif not user:
+        password_reset_form_probably_submitted = not key and request.referer
+        if password_reset_form_probably_submitted:
+            referer_path = urlparse.urlparse(request.referer).path
+            request_path = urlparse.urlparse(request.fullpath).path
+            password_reset_successful = referer_path.startswith(request_path)
+        elif user:
+            password_reset_successful = False
+        else:
             return self.abort404()
+
         return BoringPage(_("Reset password"),
-                          content=ResetPassword(key=key, done=done)).render()
+                          content=ResetPassword(key=key, done=password_reset_successful)).render()
 
     @validate(VAdmin(),
               article = VLink('article'))
