@@ -1221,7 +1221,8 @@ width: 20px;
  */
 /* Allow the 'yes/no' popup text to appear */
 div.comment-links ul li.delete a.yes, div.comment-links ul li.delete a.no,
-div.comment-links ul li.retract a.yes, div.comment-links ul li.retract a.no  {
+div.comment-links ul li.retract a.yes, div.comment-links ul li.retract a.no,
+div.comment-links ul li.report a.yes, div.comment-links ul li.report a.no {
   background-image: none;
   width: auto;
   display: inline;
@@ -2117,6 +2118,18 @@ div.comment-links ul li.subscribe a.mod
 {
   background-position: 0 -32px;
 }
+
+div.comment-links ul li.report a {
+  width: 21px;
+  height: 16px;
+  background-position: -672px 0;
+}
+div.comment-links ul li.report a:hover,
+div.comment-links ul li.report a.mod
+{
+  background-position: -672px -32px;
+}
+
 
 div.comment-links ul li.retract a {
   width: 21px;
