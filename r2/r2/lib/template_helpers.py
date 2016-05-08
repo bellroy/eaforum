@@ -297,7 +297,8 @@ class ArticleSummary:
         return killhtml(renderpolls(self.link._summary(), self.link))
 
     def first_bit(self):
-        return first_words(self.plain_text(), 50)
+        ellipsis = "..." if self.has_more() or self.is_long() else ""
+        return first_words(self.plain_text(), 50) + ellipsis
 
     def has_more(self):
         return self.link._has_more()
