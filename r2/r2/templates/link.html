@@ -141,11 +141,11 @@
   % if article_summary.has_more():
     <span class="read_more_link">
       <%call expr="make_link('read_more', 'more', 'more')">
-        ...Read More
+        Read More
       </%call>
     </span>
   % elif article_summary.is_long():
-      <a class="read_more_link" href="${thing.url}">...Read More</a>
+      <a class="read_more_link" href="${thing.url}">Read More</a>
   % endif
 </%def>
 
