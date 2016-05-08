@@ -20,8 +20,9 @@
 # CondeNet, Inc. All Rights Reserved.
 ################################################################################
 from r2.models import *
-from filters import unsafe, websafe
+from filters import unsafe, websafe, first_words, killhtml, word_count
 from r2.lib.utils import vote_hash, UrlParser
+from r2.models.poll import renderpolls
 
 from mako.filters import url_escape
 import simplejson
@@ -287,3 +288,19 @@ def choose_width(link, width):
             return 100 + (10 * (len(str(link._ups - link._downs))))
         else:
             return 110
+
+class ArticleSummary:
+    def __init__(self, link):
+        self.link = link
+
+    def plain_text(self):
+        return killhtml(renderpolls(self.link._summary(), self.link))
+
+    def first_bit(self):
+        return first_words(self.plain_text(), 50)
+
+    def has_more(self):
+        return self.link._has_more()
+
+    def is_long(self):
+        return word_count(self.plain_text()) > 50
