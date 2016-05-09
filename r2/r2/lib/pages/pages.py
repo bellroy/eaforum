@@ -987,6 +987,11 @@ class EmailVerify(Wrapped):
     """Form for providing a confirmation code to a new user."""
     pass
 
+class ReportEmail(Wrapped):
+    """Email template. Informs the contact email address that a user 
+    has reported a post"""
+    pass
+
 class WikiSignupFail(Wrapped):
     """Email template. Tells a user that their automatic wiki account
     creation failed.
