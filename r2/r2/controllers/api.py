@@ -737,7 +737,11 @@ class ApiController(RedditController):
               thing = VByName('id'))
     def POST_report(self, res, thing):
         '''for reporting...'''
-        Report.new(c.user, thing)
+        #An internal  reporting mechanism, which makes the report status visible on the actual post
+        #Removing it for now, can re-enable easily, but I'm unclear if it's worth it
+        #Report.new(c.user, thing)
+        #Sends report email
+        emailer.report_email(c.user, thing)
 
 
     def _validate_comment_text(self, res, error_thing, text):
