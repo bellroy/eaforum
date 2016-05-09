@@ -1,0 +1,1 @@
+User ${thing.user.name} has reported <a href="${thing.link}">this</a> for moderation.
