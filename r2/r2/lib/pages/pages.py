@@ -125,6 +125,7 @@ class Reddit(Wrapped):
                 ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/"),
                 most_recent_open_thread_link(),
                 ("Meetups", "https://eahub.org/groups"),
+                ("Other Resources", "/ea/xd/ea_links/"),
             ]
             return filter(None, links)
 
