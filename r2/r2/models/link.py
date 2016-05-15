@@ -379,7 +379,28 @@ class Link(Thing, Printable, ImageHolder):
 
     def make_permalink(self, sr, force_domain = False, sr_path = False):
         from r2.lib.template_helpers import get_domain
-        p = "ea/%s/%s/" % (self._id36, title_to_url(self.title))
+
+        def slug():
+            """
+            Retrieves the original URL slug (if any) to prevent the
+            URL from changing when the article title is updated.
+            """
+            # This could probably just check for `self.url == None`.
+            if not isinstance(self.url, basestring):
+                return self.title
+
+            regex = re.compile("""
+              /ea                   # subreddit
+              /[^/]+                # ID
+              /(?P<title>[^/]+)/    # title
+            """, re.X)
+            match = regex.match(self.url)
+            if match:
+                return match.group("title")
+            else:
+                return title_to_url(self.title)
+
+        p = "ea/%s/%s/" % (self._id36, slug())
         if c.default_sr and not sr_path:
             res = "/%s" % p
         elif sr and not c.cname:
