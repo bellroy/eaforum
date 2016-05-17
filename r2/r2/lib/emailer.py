@@ -58,7 +58,8 @@ def simple_email(to, fr, subj, body):
     send_mail(msg, fr, to)
 
 def report_email(user, post):
-    body = ReportEmail(user=user, link='http://'+g.domain+post.make_permalink_slow()).render(style='email')
+    post_url = 'http://' + g.domain + post.make_permalink_slow()
+    body = ReportEmail(user=user, link=post_url).render(style='email')
     subj = "Post reported on EA Forum"
     to = 'contact@effective-altruism.com'
     fr = 'contact@effective-altruism.com'
