@@ -108,7 +108,7 @@
 <span class='st_twitter_hcount' displayText='Tweet'></span>
 </div>
       <ul class="action-list">
-          ${self.buttons(comments = False, report=False, delete=True, ban=False)}
+          ${self.buttons(comments = False, report=True, delete=True, ban=False)}
       </ul>
       ## Each link has a hidden status span that is used to indicate voting errors.
       <span id='${"status_"+thing._fullname}' class="error" style="display: none;"></span>
