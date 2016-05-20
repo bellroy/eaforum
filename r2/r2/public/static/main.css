@@ -1228,6 +1228,12 @@ div.comment-links ul li.report a.yes, div.comment-links ul li.report a.no {
   float: none;
 }
 
+/* Provide spacing between the question 'Are you sure?' and the first answer */
+div.comment-links ul li.delete a.yes, div.comment-links ul li.retract a.yes,
+div.comment-links ul li.report a.yes {
+    margin-left: 3px;
+}
+
 /* Temporary styling for text buttons until we have icons */
 div.comment-links ul li.delete a, div.comment-links ul li.unban a,
 div.comment-links ul li.ban a, div.comment-links ul li.ignore a {
@@ -2014,6 +2020,11 @@ div.tools ul li.report a.yes, div.tools ul li.report a.no {
   width: auto;
   display: inline;
   float: none;
+}
+
+/* Provide spacing between the question 'Are you sure?' and the first answer */
+div.comment-links ul li.report a.yes {
+    margin-left: 3px;
 }
 
 div.tools ul li.report a {
