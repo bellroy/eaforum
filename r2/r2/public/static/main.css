@@ -2023,7 +2023,7 @@ div.tools ul li.report a.yes, div.tools ul li.report a.no {
 }
 
 /* Provide spacing between the question 'Are you sure?' and the first answer */
-div.comment-links ul li.report a.yes {
+div.tools ul li.report a.yes {
     margin-left: 3px;
 }
 
@@ -2031,7 +2031,6 @@ div.tools ul li.report a {
   display: inline-block;
   width: 18px;
   height: 16px;
-  background: url(/static/icons.png) no-repeat left top;
   text-indent: -9999px;
   padding: 0px;
   background: url(/static/icons.png) no-repeat left top;
