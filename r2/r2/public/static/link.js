@@ -449,7 +449,7 @@ Reddit's original reporting method would remove the comment until a page reload
 Listing.report = _fire_and_hide('report'); 
  */
 Listing.report = function(fullname) {
-  redditRequest(type, {id: fullname, uh: modhash});
+  redditRequest('report', {id: fullname, uh: modhash});
 }
 Listing.retract = function(fullname) { 
   redditRequest('retract', {id: fullname, uh: modhash}, function(r) {
