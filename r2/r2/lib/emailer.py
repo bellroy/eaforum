@@ -22,7 +22,7 @@
 from email.MIMEText import MIMEText
 from pylons.i18n import _
 from pylons import c, g, request
-from r2.lib.pages import PasswordReset, MeetupNotification, Share, Mail_Opt, EmailVerify, WikiSignupFail, WikiSignupFail, WikiAPIError, WikiIncompatibleName, WikiSignupNotification, WikiUserExists
+from r2.lib.pages import PasswordReset, MeetupNotification, Share, Mail_Opt, EmailVerify, WikiSignupFail, WikiSignupFail, WikiAPIError, WikiIncompatibleName, WikiSignupNotification, WikiUserExists, ReportEmail
 from r2.lib.utils import timeago
 from r2.models import passhash, Email, Default, has_opted_out
 from r2.config import cache
@@ -57,6 +57,14 @@ def simple_email(to, fr, subj, body):
     msg['Subject'] = utf8(subj)
     send_mail(msg, fr, to)
 
+def report_email(user, post):
+    post_url = 'http://' + g.domain + post.make_permalink_slow()
+    body = ReportEmail(user=user, link=post_url).render(style='email')
+    subj = 'Post reported on EA Forum'
+    to = 'contact@effective-altruism.com'
+    fr = 'contact@effective-altruism.com'
+    simple_email(to, fr, subj, body)
+    
 def password_email(user):
     key = passhash(random.randint(0, 1000), user.email)
     passlink = 'http://' + g.domain + '/resetpassword/' + key

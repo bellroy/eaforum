@@ -444,7 +444,13 @@ function _fire_and_hide(type) {
 
 Listing.unhide = _fire_and_hide('unhide');
 Listing.hide   = _fire_and_hide('hide');
-Listing.report = _fire_and_hide('report');
+/* 
+Reddit's original reporting method would remove the comment until a page reload
+Listing.report = _fire_and_hide('report'); 
+ */
+Listing.report = function(fullname) {
+  redditRequest('report', {id: fullname, uh: modhash});
+}
 Listing.retract = function(fullname) { 
   redditRequest('retract', {id: fullname, uh: modhash}, function(r) {
     var res_obj = parse_response(r);

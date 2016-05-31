@@ -1220,11 +1220,18 @@ width: 20px;
  */
 /* Allow the 'yes/no' popup text to appear */
 div.comment-links ul li.delete a.yes, div.comment-links ul li.delete a.no,
-div.comment-links ul li.retract a.yes, div.comment-links ul li.retract a.no  {
+div.comment-links ul li.retract a.yes, div.comment-links ul li.retract a.no,
+div.comment-links ul li.report a.yes, div.comment-links ul li.report a.no {
   background-image: none;
   width: auto;
   display: inline;
   float: none;
+}
+
+/* Provide spacing between the question 'Are you sure?' and the first answer */
+div.comment-links ul li.delete a.yes, div.comment-links ul li.retract a.yes,
+div.comment-links ul li.report a.yes {
+    margin-left: 3px;
 }
 
 /* Temporary styling for text buttons until we have icons */
@@ -2007,6 +2014,34 @@ div.tools a.license {
   width: 16px;
 }
 
+/* Allow the yes/no question to appear */
+div.tools ul li.report a.yes, div.tools ul li.report a.no {
+  background-image: none;
+  width: auto;
+  display: inline;
+  float: none;
+}
+
+/* Provide spacing between the question 'Are you sure?' and the first answer */
+div.tools ul li.report a.yes {
+    margin-left: 3px;
+}
+
+div.tools ul li.report a {
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  text-indent: -9999px;
+  padding: 0px;
+  background: url(/static/icons.png) no-repeat left top;
+  background-position: -672px 0;
+}
+div.tools ul li.report a:hover,
+div.tools ul li.report a.mod
+{
+  background-position: -672px -32px;
+}
+
 div.tools a.license:hover,
 div.tools a.license.mod
 {
@@ -2116,6 +2151,18 @@ div.comment-links ul li.subscribe a.mod
 {
   background-position: 0 -32px;
 }
+
+div.comment-links ul li.report a {
+  width: 19px;
+  height: 16px;
+  background-position: -672px 0;
+}
+div.comment-links ul li.report a:hover,
+div.comment-links ul li.report a.mod
+{
+  background-position: -672px -32px;
+}
+
 
 div.comment-links ul li.retract a {
   width: 21px;

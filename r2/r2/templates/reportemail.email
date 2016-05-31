@@ -1,0 +1,3 @@
+User ${thing.user.name} has reported this for moderation:
+
+${thing.link}
