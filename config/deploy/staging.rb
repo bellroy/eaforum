@@ -1,45 +1,40 @@
-require 'socket'
 load 'config/cap-tasks/trike-aws.rb'
 
-set :application, "lesswrong.com"
-set :domains, %w[ lesswrong.com ]
-set :deploy_to, "/srv/www/#{application}"
-set :branch, 'staging'
+set :application, "lesswrong"
+set :domains, %w[ effectivealtruistforum.com ]
+# set :elb_name, 'lblw'
+# set :hosts, lambda { AWS.elb_hosts(elb_name) }
+set :hosts, %w[staging.lesswrong.trikeapps.com]
 set :environment, 'staging'
-set :security_group, 'sg-dc5caeb3' # lesswrong-staging
+set :user, 'lesswrong'
 
-set :instance, lambda {
-  ami = AWS.auto_scaler_ami('lesswrong')
-  raise "Unable to find ami from autoscaler" if ami.nil?
+set :primary_host, hosts.shift
 
-  AWS.find_or_start_host_for_security_group(
-    security_group,
-    ami,
-    120,
-    File.join('config', "user_data_#{environment}.sh.erb"),
-    :instance_type => 'm1.small',
-    :subnet_id => 'subnet-af1b7dc4',
-    :group_ids => %w[sg-1c7d9f73 sg-267d9f49] # default server-web
-  )
-}
+role :app, primary_host, :primary => true
+# role :app, *hosts
+role :web, primary_host, :primary => true
+# role :web, *hosts
+role :db,  "staging.lesswrong.trikeapps.com", :primary => true, :no_release => true
+role :backups, "staging.lesswrong.trikeapps.com", :user => 'backup', :no_release => true
 
-role :app, instance, :primary => true
-role :web, instance, :primary => true
-role :db,  "salad.trikeapps.com", :primary => true, :no_release => true
+before "deploy:update_code", "tests_check:manual_tests_executed?"
+after 'deploy:update_code', 'git:tag_deploy'
 
-after 'multistage:ensure', :check_hostname
-after 'deploy:cleanup', :check_hostname
+after 'deploy:restart', 'deploy:cleanup'
+
+# after 'multistage:ensure', :check_hostname
+# after 'deploy:cleanup', :check_hostname
 
 task :check_hostname, :roles => :app, :only => :primary do
-  hosts = AWS.security_group_hosts(security_group)
-  unless hosts.empty?
-    _, _, _, domain_ip = TCPSocket.gethostbyname(domains.first)
-    _, _, _, host_ip = TCPSocket.gethostbyname(hosts.first)
-    if domain_ip != host_ip
-      warn "\033[31mWARNING:\033[0m #{domains.first} is not resolving to #{host_ip}. " +
-        "You should add an entry to /etc/hosts:\n" +
-        "#{host_ip}  #{domains.first}"
+  balancers = AWS.elb.describe_load_balancers(elb_name)
+  unless balancers.empty?
+    domain = domains.first
+    balancer = balancers.first
+    _, _, _, domain_ip = TCPSocket.gethostbyname(domain)
+    _, _, _, balancer_ip = TCPSocket.gethostbyname(balancer[:dns_name])
+    if domain_ip != balancer_ip
+      warn "\033[31mWARNING:\033[0m #{domain} is not resolving to the IP for the #{elb_name} elb.\n" +
+        "Do you have an entry in /etc/hosts that needs removing?"
     end
   end
 end
-
