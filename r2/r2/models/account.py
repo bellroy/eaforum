@@ -472,7 +472,7 @@ def change_password(user, newpassword):
     return True
 
 #TODO reset the cache
-def register(name, password, email):
+def register(name, password, email, create_wiki_account=True):
     try:
         a = Account._by_name(name)
         raise AccountExists
