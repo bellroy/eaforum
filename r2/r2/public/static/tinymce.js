@@ -1,26 +1,25 @@
 function init_tinymce(base_url) {
   tinyMCE.init({
-    mode : "exact",
-    elements : "article",
-    theme : "advanced",
-    width : "100%",
-    content_css : "/static/eaforum.css",
-    body_class : "md",
-    theme_advanced_toolbar_location : "top",
-    theme_advanced_buttons1 : "formatselect,|,bold,italic,del,forecolor,blockquote,summarybreak,|,bullist,numlist,|,outdent,indent,|,link,unlink,anchor,image,code,html,|,hr,removeformat,|,sub,sup,|,charmap",
-    theme_advanced_buttons2 : "",
-    theme_advanced_buttons3 : "",
-    plugins : "summarybreak,inlinepopups,xhtmlxtras,media",
-    file_browser_callback : 'showImageBrowser',
-    relative_urls : false,
-    document_base_url : base_url,
-    gecko_spellcheck : true
-  }); 
+    selector: "#article",
+    plugins: "image,link,media,code",
+    content_css: "/static/eaforum.css",
+    toolbar: "styleselect | \
+              bold italic blockquote strikethrough removeformat | \
+              bullist numlist | \
+              outdent indent | \
+              link image media code",
+    body_class: "md",
+    menubar: false,
+    file_browser_callback: showImageBrowser,
+    relative_urls:false,
+    document_base_url: base_url,
+    browser_spellcheck: true,
+  });
 };
 
 function showImageBrowser(field_name, url, type, win) {
   var location = window.location;
-  
+
   // Get the last path component
   var path = location.pathname;
   var article_id = '';
