@@ -10,7 +10,6 @@ function init_tinymce(base_url) {
               link image media code",
     body_class: "md",
     menubar: false,
-    file_browser_callback: showImageBrowser,
     relative_urls:false,
     document_base_url: base_url,
     browser_spellcheck: true,
