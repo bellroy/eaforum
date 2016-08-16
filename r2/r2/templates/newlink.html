@@ -38,12 +38,19 @@
     <input type="hidden" name="sr" value="${c.site.name}" />
   %endif
   ${self.form_extra()}
-	%if thing.subreddits:
-	  <h1>${_("Submit article")}</h1>
-	%else:
-	  <h1>${_("Submit article to %(site)s") % dict(site=c.site.name)}</h1>
-	%endif
-	<table>
+  %if thing.subreddits:
+    <h1>${_("Submit article")}</h1>
+    <div style="margin-bottom: 10px; max-width: 580px;">
+      We recently upgraded the text editor on this page. If
+      you notice something not working properly, please create an issue on
+      <a href="https://github.com/tog22/eaforum/issues">GitHub</a> or
+      <a href="mailto:pbrinichlanglois@gmail.com?subject=EA Forum bug report">e-mail</a>
+      us, and we'll do our best to fix it.
+    </div>
+  %else:
+    <h1>${_("Submit article to %(site)s") % dict(site=c.site.name)}</h1>
+  %endif
+  <table>
     <tr>
       <td>
       <label for="title">${_("Title")}:</label>
