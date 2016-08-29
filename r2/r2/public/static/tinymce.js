@@ -1,7 +1,7 @@
 function init_tinymce(base_url) {
   tinyMCE.init({
     selector: "#article",
-    plugins: "image,link,media,code",
+    plugins: "advlist,code,image,link,media",
     content_css: "/static/eaforum.css",
     toolbar: "styleselect | \
               bold italic blockquote strikethrough removeformat | \
