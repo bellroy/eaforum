@@ -503,8 +503,8 @@ class FrontController(RedditController):
               can_submit = VSRSubmitPage(),
               url = VRequired('url', None),
               title = VRequired('title', None),
-              tags = VTags('tags'))
-    def GET_submit(self, can_submit, url, title, tags):
+    )
+    def GET_submit(self, can_submit, url, title):
         """Submit form."""
         if not can_submit:
             return BoringPage(_("Not Enough Karma"),
@@ -552,7 +552,6 @@ class FrontController(RedditController):
                         show_sidebar = True,
                         content=NewLink(title=title or '',
                                         subreddits = srs,
-                                        tags=tags,
                                         sr_id = sr._id if sr else None,
                                         captcha=captcha)).render()
 
@@ -574,7 +573,7 @@ class FrontController(RedditController):
 
         return FormPage(_("Edit article"),
                       show_sidebar = True,
-                      content=EditLink(article, subreddits=subreddits, tags=article.tag_names(), captcha=captcha)).render()
+                      content=EditLink(article, subreddits=subreddits, captcha=captcha)).render()
 
     def _render_opt_in_out(self, msg_hash, leave):
         """Generates the form for an optin/optout page"""

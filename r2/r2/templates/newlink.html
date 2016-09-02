@@ -63,14 +63,6 @@
     <tr>
       <td><textarea id="article" name="article" rows="35">${thing.article}</textarea></td>
     </tr>
-    <tr>
-      <td>
-        <label for="tags">${_("Tags:")}</label>
-        <input id="tags" name="tags" value="${', '.join(thing.tags)}"
-                   onfocus="clearTitle(this)" type="text" />
-        <span class="gray">${_('Enter tags separated by commas or spaces.')}</span>
-      </td>
-    </tr>
     %if thing.subreddits:
       <tr>
         <td>
@@ -128,17 +120,14 @@
 
       if(form) {
         setMessage(form.title, ${json(_('Enter a title for the article.'))});
-        setMessage(form.tags, ${json(_('Enter tags separated by commas or spaces.'))});
 
         form.title.setAttribute("data-orig-value", form.title.value);
         form.article.setAttribute("data-orig-value", form.article.value);
-        form.tags.setAttribute("data-orig-value", form.tags.value);
 
         function unsavedPrompt() {
           var message = "You've made changes to the article, but haven't submitted it.";
 
-          if ((form.title.value && form.title.value !== form.title.getAttribute("data-orig-value")) ||
-              (form.tags.value && form.tags.value !== form.tags.getAttribute("data-orig-value")))
+          if (form.title.value && form.title.value !== form.title.getAttribute("data-orig-value"))
             return message;
 
           // Ensure that TinyMCE has saved the content back to the textarea
