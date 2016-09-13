@@ -118,7 +118,9 @@ class VRequired(Validator):
 
 class VEmailVerify(Validator):
     def run(self, code):
-        if not code:
+        code = code or ""
+        code = re.sub("\W", "", code).upper()
+        if code == "":
             c.errors.add(errors.NO_CODE)
         elif not code == c.user.confirmation_code:
             c.errors.add(errors.WRONG_CODE)
