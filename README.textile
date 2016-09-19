@@ -4,8 +4,7 @@ The code behind the Effective Altruist Forum at "effective-altruism.com":http://
 
 h2. Resources
 
-* The source code is hosted on "GitHub":https://github.com/tricycle/eaforum
-* Documentation is available via the "GitHub wiki":http://wiki.github.com/tricycle/lesswrong
-* Issues are tracked on "Google Code":http://code.google.com/p/lesswrong/
-* Mailing list (lesswrong-dev) on "Google Groups":http://groups.google.com/group/lesswrong-dev
-* The code is a fork of "Less Wrong":https://github.com/tricycle/lesswrong, which was originally forked from "Reddit":http://reddit.com/ "codebase":http://code.reddit.com/
+* The source code is hosted on "GitHub":https://github.com/tricycle/eaforum.
+* Documentation is in this "GitHub wiki":https://github.com/tog22/eaforum/wiki. (Note that this wiki belongs to different repository.)
+* Issues are also tracked in "this other repository":https://github.com/tog22/eaforum/issues.
+* The code is a fork of "Less Wrong":https://github.com/tricycle/lesswrong, which was originally forked from "Reddit":http://reddit.com/ "codebase":http://code.reddit.com/.
