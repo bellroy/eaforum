@@ -97,7 +97,7 @@
         chdir: /vagrant/r2
 
     - name: Bootstrap DB
-      command: paster run development.ini ../provisioning/bootstrap.py
+      command: paster run development.ini ../provisioning/cookbooks/lesswrong/files/default/bootstrap.py
       args:
         chdir: /vagrant/r2
 
