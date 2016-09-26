@@ -34,22 +34,18 @@
 <%def name="form_extra()"></%def>
 
 <%call expr="submit_form(action='/submit', _class='long-text content', _id='newlink')">
-  %if not thing.subreddits:
-    <input type="hidden" name="sr" value="${c.site.name}" />
-  %endif
   ${self.form_extra()}
-  %if thing.subreddits:
-    <h1>${_("Submit article")}</h1>
-    <div style="margin-bottom: 10px; max-width: 580px;">
-      We recently upgraded the text editor on this page. If
-      you notice something not working properly, please create an issue on
-      <a href="https://github.com/tog22/eaforum/issues">GitHub</a> or
-      <a href="mailto:pbrinichlanglois@gmail.com?subject=EA Forum bug report">e-mail</a>
-      us, and we'll do our best to fix it.
-    </div>
-  %else:
-    <h1>${_("Submit article to %(site)s") % dict(site=c.site.name)}</h1>
-  %endif
+  <h1>${_("Submit article")}</h1>
+  <div style="margin-bottom: 10px; max-width: 580px;">
+    We recently upgraded the text editor on this page. If
+    you notice something not working properly, please create an issue on
+    <a href="https://github.com/tog22/eaforum/issues">GitHub</a> or
+    <a href="mailto:pbrinichlanglois@gmail.com?subject=EA Forum bug report">e-mail</a>
+    us, and we'll do our best to fix it.
+  </div>
+
+  <div class="js-link-confirmation-message infobar displayNone"></div>
+
   <table>
     <tr>
       <td>
@@ -63,25 +59,6 @@
     <tr>
       <td><textarea id="article" name="article" rows="35">${thing.article}</textarea></td>
     </tr>
-    %if thing.subreddits:
-      <tr>
-        <td>
-          <label for="sr">${_("Post to")}</label>
-          <select id="sr" name="sr">
-            %for sr in thing.subreddits:
-              <option value="${sr.name}"
-                      %if not sr.can_submit(c.user):
-                        disabled="disabled"
-                      %elif sr._id == thing.sr_id:
-                        selected="selected"
-                      %endif
-              >${sr.title} ${_('(Your karma must be at least %d to post here)' % g.karma_to_post) if not sr.can_submit(c.user) else ''}
-              </option>
-            %endfor
-          </select>
-        </td>
-      </tr>
-    %endif
     <tr>
       <td>
         ${checkbox("notify_on_comment", _("Notify me of new top level comments on this article"), thing.notify_on_comment)}
@@ -102,10 +79,31 @@
     %endif
     <tr>
       <td>
-        <input type="hidden" id="keep_editing" name="keep_editing" value="off" />
-        <button class="btn" type="submit">${_("Submit")}</button>
-        <button class="btn" type="submit"
-          onclick="continueEditing(true)">${_("Save and continue")}</button>
+        %if thing.is_published:
+          <button class="js-publish-button btn" data-save-action="update" type="submit">
+            Update
+          </button>
+          <button class="js-save-button btn btn-danger"  data-save-action="unpublish" type="submit">
+            Unpublish
+          </button>
+          <a href="${thing.permalink}" target="_blank">View on Forum</a>
+        %else:
+          <button class="js-save-button btn" data-save-action="save" type="submit">
+            Save as Draft
+          </button>
+          <% allowed_to_publish = thing.main_subreddit.can_submit(c.user) %>
+          <button
+            class="js-publish-button btn ${'' if allowed_to_publish else 'btn-disabled'}"
+            ${"" if allowed_to_publish else "disabled"}
+            data-save-action="publish"
+            type="submit"
+          >
+            Publish
+          </button>
+        %endif
+        <input type="hidden" id="keep_editing" name="keep_editing" value="on" />
+        <input class="js-subreddit" name="sr" value="${thing.draft_subreddit.name}" hidden />
+        <input class="js-link-submit-action" type="hidden" name="link_submit_action" value="" />
         <span id="status" class="error"></span>
         ${error_field("RATELIMIT", "span")}
         ${error_field("SUBREDDIT_FORBIDDEN", "span")}
@@ -114,6 +112,24 @@
   </table>
 
   <script type="text/javascript">
+    (function() {
+      function updateSubredditOnClick(button, subreddit) {
+        button.click(function(event) {
+          event.preventDefault();
+          $subreddit.attr("value", subreddit);
+          var submitAction = jQuery(event.target).attr("data-save-action");
+          jQuery(".js-link-submit-action").attr("value", submitAction);
+          jQuery("#newlink").trigger("submit");
+        });
+      }
+
+      var $saveButton = jQuery(".js-save-button");
+      var $publishButton = jQuery(".js-publish-button");
+      var $subreddit = jQuery(".js-subreddit");
+
+      updateSubredditOnClick($saveButton, "${thing.draft_subreddit.name}");
+      updateSubredditOnClick($publishButton, "${thing.main_subreddit.name}");
+    })();
     (function () {
       init_tinymce("http://${get_domain(subreddit=False)}/");
       var form = $('newlink');
@@ -166,6 +182,36 @@
       $("#content").css("float", "none");
       $("#content").css("padding", "30px 32px 0 32px");
       $("#content").css("width", "auto");
+
+      var messages = {
+        displayIfNecessary: function() {
+          if (this.getMessage()) {
+            this.displayMessage();
+            this.removeQueryString();
+          }
+        },
+        displayMessage: function() {
+          $(".js-link-confirmation-message")
+            .html(this.getMessage())
+            .removeClass("displayNone");
+        },
+        removeQueryString: function() {
+          history.pushState("", document.title, window.location.pathname);
+        },
+        getMessage: function() {
+          var url = "${unsafe(thing.permalink)}";
+          var messageType = getQueryVariable("message");
+          var messages = {
+            "update": "Your published article has been updated. <a href='${unsafe(thing.permalink)}'>View</a>",
+            "unpublish": "Your article is no longer publicly visible.",
+            "save": "Your draft was saved.",
+            "publish": "Your article is published. <a href='${unsafe(thing.permalink)}'>View</a>",
+          };
+          return messages[messageType];
+        },
+      };
+
+      messages.displayIfNecessary();
     });
 
   })(jQuery);

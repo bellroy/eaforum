@@ -399,6 +399,14 @@ class Subreddit(Thing, Printable, ImageHolder):
         srs.sort(key=lambda a:a.title)
         return srs
 
+    @classmethod
+    def main_subreddit(cls):
+        return cls._by_name("main")
+
+    @classmethod
+    def draft_subreddit(cls, account):
+        return cls._by_name(account.draft_sr_name)
+
     @property
     def path(self):
         return "/r/%s/" % self.name

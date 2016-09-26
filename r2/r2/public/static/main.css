@@ -2247,6 +2247,10 @@ div.comment-links ul li.delete a {
   font-weight: normal !important;
 }
 
+button.btn-danger {
+  background-color: #d9534f !important;
+}
+
 body.post .comment .commentreply div {
   margin-right: 20px;
 }

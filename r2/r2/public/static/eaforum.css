@@ -591,3 +591,12 @@ div.meta.meetup strong {
 .tom-ash-social {
 	float: left;
 }
+
+.displayNone {
+  display: none;
+}
+
+button.btn-disabled {
+  cursor: not-allowed;
+  background-color: #8a8a8b !important;
+}
