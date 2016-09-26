@@ -28,9 +28,7 @@ from pylons.controllers.util import etag_cache
 
 import hashlib
 import httplib
-import urllib
 import urllib2
-import urlparse
 from validator import *
 
 from r2.models import *
@@ -43,6 +41,7 @@ from r2.controllers import ListingController
 from r2.lib.utils import get_title, sanitize_url, timeuntil, \
     set_last_modified, remote_addr
 from r2.lib.utils import query_string, to36, timefromnow
+from r2.lib.utils.http_utils import set_query_parameter
 from r2.lib.wrapped import Wrapped
 from r2.lib.rancode import random_key
 from r2.lib.pages import FriendList, ContributorList, ModList, EditorList, \
@@ -408,17 +407,6 @@ class ApiController(RedditController):
         # TODO: This is a hack, and it doesn't work if the user clicks
         # on an anchor element after logging in because the query
         # param will disappear.
-        # TODO: This function should be in a different file.
-        # From http://stackoverflow.com/a/12897375:
-        def set_query_parameter(url, param_name, param_value):
-            scheme, netloc, path, query_string, fragment = urlparse.urlsplit(url)
-            query_params = urlparse.parse_qs(query_string)
-
-            query_params[param_name] = [param_value]
-            new_query_string = urllib.urlencode(query_params, doseq=True)
-
-            return urlparse.urlunsplit((scheme, netloc, path, new_query_string, fragment))
-
         dest_with_param = set_query_parameter(dest, "refresh", "true")
         res._redirect(dest_with_param)
 
