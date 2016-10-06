@@ -1098,6 +1098,19 @@ div.comment-links {
   padding: 0 0 2px;
   margin-top: -10px;
 }
+.comment-fading-highlight {
+  animation: 2s fadingHighlight;
+  -webkit-animation: 2s fadingHighlight;
+}
+@keyframes fadingHighlight {
+  from {
+    background-color: #fcffa8;
+  }
+
+  to {
+    background-color: #ecf5ff;
+  }
+}
 div.comment-links ul, div.message-links ul {
   list-style: none;
   margin: 0;
