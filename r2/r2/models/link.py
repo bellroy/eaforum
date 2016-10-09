@@ -152,7 +152,7 @@ class Link(Thing, Printable, ImageHolder):
         return submit_url
 
     @classmethod
-    def _submit(cls, title, article, author, sr, ip, tags, spam = False, date = None, **kwargs):
+    def _submit(cls, title, article, author, sr, ip, spam = False, date = None, **kwargs):
         # Create the Post and commit to db.
         l = cls(title = title,
                 url = 'self',
@@ -176,10 +176,6 @@ class Link(Thing, Printable, ImageHolder):
         l.set_article(article)
 
         l.set_url_cache()
-
-        # Add tags
-        for tag in tags:
-            l.add_tag(tag)
 
         return l
 
@@ -1247,14 +1243,6 @@ class Comment(Thing, Printable):
 
         if should_invalidate:
             g.rendercache.delete('side-comments' + '-' + c.site.name)
-            tags = Link._byID(self.link_id, data = True).tag_names()
-            if 'open_thread' in tags:
-                g.rendercache.delete('side-open' + '-' + c.site.name)
-            if 'quotes' in tags:
-                g.rendercache.delete('side-quote' + '-' + c.site.name)
-            if 'group_rationality_diary' in tags:
-                g.rendercache.delete('side-diary' + '-' + c.site.name)
-
 
 class InlineComment(Comment):
     """Exists to gain a different render_class in Wrapped"""
