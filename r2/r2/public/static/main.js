@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   // if user is adding a new article and does not have enough karma
   var mainForumOption = $("select#sr option[value=main]")[0];
-  if (/^.*\/submit\//.test(pathname) && mainForumOption.disabled) {
+  if (/^.*\/submit\//.test(pathname) && mainForumOption != undefined && mainForumOption.disabled) {
     var karma = / at least ([0-9]+) /.exec(mainForumOption.text)[1];
     $("<div class='infobar' style='width: inherit;'>You do not yet have enough karma to post an article. Every 'like' that your comments gain will increase your karma by one point. Once you have earned " + karma + " karma, you will be able to post articles here. In the meantime, here are some <a href=\"/ea/7b/welcome_to_the_effective_altruism_forum/\">other ways</a> to participate.</div><p>&nbsp;</p>").insertAfter("form h1");
   }

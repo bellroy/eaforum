@@ -989,7 +989,7 @@ class EmailVerify(Wrapped):
     pass
 
 class ReportEmail(Wrapped):
-    """Email template. Informs the contact email address that a user 
+    """Email template. Informs the contact email address that a user
     has reported a post"""
     pass
 
@@ -1162,9 +1162,9 @@ class FrameToolbar(Wrapped):
 
 class NewLink(Wrapped):
     """Render the link submission form"""
-    def __init__(self, captcha = None, article = '', title= '', subreddits = (), tags = (), sr_id = None):
+    def __init__(self, captcha = None, article = '', title= '', subreddits = (), sr_id = None):
         Wrapped.__init__(self, captcha = captcha, article = article,
-                         title = title, subreddits = subreddits, tags = tags,
+                         title = title, subreddits = subreddits,
                          sr_id = sr_id, notify_on_comment = True,
                          cc_licensed = True)
 

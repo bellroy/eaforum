@@ -20,7 +20,7 @@
 # CondeNet, Inc. All Rights Reserved.
 ################################################################################
 from r2.models import *
-from filters import unsafe, websafe, first_words, killhtml, word_count
+from filters import unsafe, websafe, first_words, cleanhtml, killhtml, word_count
 from r2.lib.utils import vote_hash, UrlParser
 from r2.models.poll import renderpolls
 
@@ -294,7 +294,7 @@ class ArticleSummary:
         self.link = link
 
     def plain_text(self):
-        return killhtml(renderpolls(self.link._summary(), self.link))
+        return killhtml(renderpolls(cleanhtml(self.link._summary()), self.link))
 
     def first_bit(self):
         ellipsis = "..." if self.has_more() or self.is_long() else ""

@@ -6,7 +6,7 @@ from r2.models.link import Tag, TagExists
 from r2.models.subreddit import Subreddit
 
 try:
-    register('admin', 'swordfish', '')
+    register('admin', 'swordfish', '', False)
 except AccountExists:
     pass
 
@@ -15,18 +15,18 @@ admin.email_validated = True
 admin._commit()
 
 try:
-    Subreddit._by_name('admin')
+    Subreddit._by_name('main')
 except NotFound:
-    Subreddit._create_and_subscribe('admin', admin,
-                                    { 'title': 'Admin',
+    Subreddit._create_and_subscribe('main', admin,
+                                    { 'title': 'Effective Altruism Forum',
                                       'type': 'restricted',
                                       'default_listing': 'new' })
 
 try:
-    Subreddit._by_name('main')
+    Subreddit._by_name('admin')
 except NotFound:
-    Subreddit._create_and_subscribe('main', admin,
-                                    { 'title': 'EA Forum',
+    Subreddit._create_and_subscribe('admin', admin,
+                                    { 'title': 'Admin',
                                       'type': 'restricted',
                                       'default_listing': 'new' })
 
