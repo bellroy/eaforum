@@ -45,6 +45,13 @@
   </div>
 
   <div class="js-link-confirmation-message infobar displayNone"></div>
+  <% allowed_to_publish = thing.main_subreddit.can_submit(c.user) %>
+  <% not_allowed_to_publish_error_message = thing.main_subreddit.can_submit_error(c.user) %>
+  %if not allowed_to_publish:
+    <div class="infobar">
+      ${not_allowed_to_publish_error_message}
+    </div>
+  %endif
 
   <table>
     <tr>
@@ -91,12 +98,12 @@
           <button class="js-save-button btn" data-save-action="save" type="submit">
             Save as Draft
           </button>
-          <% allowed_to_publish = thing.main_subreddit.can_submit(c.user) %>
           <button
             class="js-publish-button btn ${'' if allowed_to_publish else 'btn-disabled'}"
             ${"" if allowed_to_publish else "disabled"}
             data-save-action="publish"
             type="submit"
+            title="${not_allowed_to_publish_error_message}"
           >
             Publish
           </button>
