@@ -180,24 +180,30 @@ class Subreddit(Thing, Printable, ImageHolder):
             return False
 
     def can_submit(self, user):
+        return self.submission_permission_data(user)[0]
+
+    def can_submit_error(self, user):
+        return self.submission_permission_data(user)[1]
+
+    def submission_permission_data(self, user):
         if c.user_is_admin:
-            return True
+            return (True, "")
         elif (self.type == 'private' or self.type == 'restricted') and self.is_contributor(user):
             #restricted/private require contributorship
-            return True
+            return (True, "")
         elif not c.user.email_validated:
-            return False
+            return (False, "You need to confirm your email address.")
         elif self.is_banned(user):
-            return False
+            return (False, "You're not allowed to post.")
         elif self.is_moderator(user) or self.is_editor(user):
             # moderators and editors can always submit
-            return True
+            return (True, "")
         elif self.type == 'public':
-            return True
+            return (True, "")
         elif self == Subreddit._by_name(g.default_sr) and user.safe_karma >= g.karma_to_post:
-            return True
+            return (True, "")
         else:
-            return False
+            return (False, "You need at least {} karma to post.".format(g.karma_to_post) )
 
     def can_ban(self,user):
         return (user
@@ -398,6 +404,14 @@ class Subreddit(Thing, Printable, ImageHolder):
 
         srs.sort(key=lambda a:a.title)
         return srs
+
+    @classmethod
+    def main_subreddit(cls):
+        return cls._by_name("main")
+
+    @classmethod
+    def draft_subreddit(cls, account):
+        return cls._by_name(account.draft_sr_name)
 
     @property
     def path(self):

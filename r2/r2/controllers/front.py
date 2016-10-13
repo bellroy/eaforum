@@ -548,11 +548,14 @@ class FrontController(RedditController):
         except NotFound:
             sr = None
 
+        draft_subreddit = Subreddit.draft_subreddit(c.user)
+        main_subreddit = Subreddit.main_subreddit()
+
         return FormPage(_("Submit Article"),
                         show_sidebar = True,
                         content=NewLink(title=title or '',
-                                        subreddits = srs,
-                                        sr_id = sr._id if sr else None,
+                                        draft_subreddit=draft_subreddit,
+                                        main_subreddit=main_subreddit,
                                         captcha=captcha)).render()
 
     @validate(VUser(),
@@ -561,19 +564,21 @@ class FrontController(RedditController):
     def GET_editarticle(self, article):
         author = Account._byID(article.author_id, data=True)
         subreddits = Subreddit.submit_sr(author)
-        article_sr = Subreddit._byID(article.sr_id)
-        if c.user_is_admin:
-            # Add this admins subreddits to the list
-            subreddits = list(set(subreddits).union([article_sr] + Subreddit.submit_sr(c.user)))
-        elif article_sr.is_editor(c.user) and c.user != author:
-            # An editor can save to the current subreddit irrspective of the original author's karma
-            subreddits = [sr for sr in Subreddit.submit_sr(c.user) if sr.is_editor(c.user)]
 
         captcha = Captcha(tabular=False) if c.user.needs_captcha() else None
+        draft_subreddit = Subreddit.draft_subreddit(author)
+        main_subreddit = Subreddit.main_subreddit()
+        is_published = article.sr_id == main_subreddit._id
 
-        return FormPage(_("Edit article"),
-                      show_sidebar = True,
-                      content=EditLink(article, subreddits=subreddits, captcha=captcha)).render()
+        edit_link = EditLink(article,
+                             subreddits=subreddits,
+                             draft_subreddit=draft_subreddit,
+                             main_subreddit=main_subreddit,
+                             permalink=article.make_permalink_slow(),
+                             is_published=is_published,
+                             captcha=captcha)
+
+        return FormPage(_("Edit article"), show_sidebar = True, content=edit_link).render()
 
     def _render_opt_in_out(self, msg_hash, leave):
         """Generates the form for an optin/optout page"""

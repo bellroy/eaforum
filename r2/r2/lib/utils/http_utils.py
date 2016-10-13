@@ -1,4 +1,6 @@
 import pytz
+import urllib
+import urlparse
 from datetime import datetime
 
 DATE_RFC822 = '%a, %d %b %Y %H:%M:%S %Z'
@@ -22,3 +24,13 @@ def read_http_date(date_str):
 def http_date_str(date):
     date = date.astimezone(pytz.timezone('GMT'))
     return date.strftime(DATE_RFC822)
+
+# From http://stackoverflow.com/a/12897375:
+def set_query_parameter(url, param_name, param_value):
+    scheme, netloc, path, query_string, fragment = urlparse.urlsplit(url)
+    query_params = urlparse.parse_qs(query_string)
+
+    query_params[param_name] = [param_value]
+    new_query_string = urllib.urlencode(query_params, doseq=True)
+
+    return urlparse.urlunsplit((scheme, netloc, path, new_query_string, fragment))

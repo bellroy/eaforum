@@ -1162,10 +1162,14 @@ class FrameToolbar(Wrapped):
 
 class NewLink(Wrapped):
     """Render the link submission form"""
-    def __init__(self, captcha = None, article = '', title= '', subreddits = (), sr_id = None):
+    def __init__(self, captcha = None, article = '', title= '', main_subreddit = None, draft_subreddit = None):
         Wrapped.__init__(self, captcha = captcha, article = article,
-                         title = title, subreddits = subreddits,
-                         sr_id = sr_id, notify_on_comment = True,
+                         title = title,
+                         main_subreddit = main_subreddit,
+                         draft_subreddit = draft_subreddit,
+                         notify_on_comment = True,
+                         is_published = False,
+                         permalink="",
                          cc_licensed = True)
 
 class EditLink(Wrapped):
