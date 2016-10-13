@@ -28,9 +28,7 @@ from pylons.controllers.util import etag_cache
 
 import hashlib
 import httplib
-import urllib
 import urllib2
-import urlparse
 from validator import *
 
 from r2.models import *
@@ -43,6 +41,7 @@ from r2.controllers import ListingController
 from r2.lib.utils import get_title, sanitize_url, timeuntil, \
     set_last_modified, remote_addr
 from r2.lib.utils import query_string, to36, timefromnow
+from r2.lib.utils.http_utils import set_query_parameter
 from r2.lib.wrapped import Wrapped
 from r2.lib.rancode import random_key
 from r2.lib.pages import FriendList, ContributorList, ModList, EditorList, \
@@ -300,8 +299,9 @@ class ApiController(RedditController):
               continue_editing = VBoolean('keep_editing'),
               notify_on_comment = VBoolean('notify_on_comment'),
               cc_licensed = VBoolean('cc_licensed'),
+              save_action = nop('link_submit_action'),
     )
-    def POST_submit(self, res, l, new_content, title, save, continue_editing, sr, ip, notify_on_comment, cc_licensed):
+    def POST_submit(self, res, l, new_content, title, save, continue_editing, sr, ip, notify_on_comment, cc_licensed, save_action):
         res._update('status', innerHTML = '')
         should_ratelimit = sr.should_ratelimit(c.user, 'link') if sr else True
 
@@ -375,20 +375,10 @@ class ApiController(RedditController):
         # flag search indexer that something has changed
         tc.changed(l)
 
-        if continue_editing:
-          path = "/edit/%s" % l._id36
-        else:
-          # make_permalink is designed for links that can be set to _top
-          # here, we need to generate an ajax redirect as if we were not on a
-          # cname.
-          cname = c.cname
-          c.cname = False
-          #path = l.make_permalink_slow()
-          path = l.make_permalink(sr, sr_path = not sr.name == g.default_sr)
-          c.cname = cname
+        path = "/edit/%s" % l._id36
+        path = set_query_parameter(path, "message", save_action)
 
         res._redirect(path)
-
 
     def _login(self, res, user, dest='', rem = None):
         self.login(user, rem = rem)
@@ -408,17 +398,6 @@ class ApiController(RedditController):
         # TODO: This is a hack, and it doesn't work if the user clicks
         # on an anchor element after logging in because the query
         # param will disappear.
-        # TODO: This function should be in a different file.
-        # From http://stackoverflow.com/a/12897375:
-        def set_query_parameter(url, param_name, param_value):
-            scheme, netloc, path, query_string, fragment = urlparse.urlsplit(url)
-            query_params = urlparse.parse_qs(query_string)
-
-            query_params[param_name] = [param_value]
-            new_query_string = urllib.urlencode(query_params, doseq=True)
-
-            return urlparse.urlunsplit((scheme, netloc, path, new_query_string, fragment))
-
         dest_with_param = set_query_parameter(dest, "refresh", "true")
         res._redirect(dest_with_param)
 
