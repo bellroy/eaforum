@@ -1168,7 +1168,7 @@ class NewLink(Wrapped):
                          main_subreddit = main_subreddit,
                          draft_subreddit = draft_subreddit,
                          notify_on_comment = True,
-                         is_published = False,
+                         published_status = "new",
                          permalink="",
                          cc_licensed = True)
 
