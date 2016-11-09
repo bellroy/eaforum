@@ -162,7 +162,7 @@ ${parent.midcol()}
           %endif
         %endif
         <% allow_delete = thing.can_delete() %>
-        ${parent.delete_or_report_buttons(allow_delete,True,False)}
+        ${parent.delete_or_report_buttons(allow_delete,True,True)}
         ${parent.buttons()}
         %if c.user_is_loggedin and not thing.author == c.user:
           <li class='subscribe'>
@@ -185,3 +185,4 @@ ${parent.midcol()}
     ${ "title='%s'"%(_(tool_tip)) if tool_tip else "" }
    >${title}</a>
 </%def>
+
