@@ -408,6 +408,9 @@ class Link(Thing, Printable, ImageHolder):
             res = "/%s" % p
         return res
 
+    def make_permalink_slow(self):
+        return self.make_permalink(self.subreddit_slow)
+
     @property
     def canonical_url(self):
         from r2.lib.template_helpers import get_domain
@@ -1045,7 +1048,7 @@ class Comment(Thing, Printable):
         if not self._loaded:
             self._load()
         can_moderate = c.user_is_loggedin and (self.author_id == c.user._id or self.subreddit_slow.is_moderator(c.user) or c.user_is_admin)
-        return can_moderate and not self.has_children()
+        return (can_moderate and self.retracted and not self.has_children())
 
 
     # Changes the body of this comment, parsing the new body for polls and

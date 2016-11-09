@@ -30,7 +30,6 @@ from r2.config import cache
 from r2.lib.template_helpers import add_sr
 from r2.lib.jsonresponse import json_respond
 from r2.lib.errors import errors, UserRequiredException
-from r2.lib.utils import http_utils
 
 from r2.models import *
 
@@ -914,7 +913,35 @@ class VReason(Validator):
             fullname = reason[5:]
             t = Thing._by_fullname(fullname, data=True)
             url = t.make_permalink_slow()
-            return ('redirect', http_utils.generate_comment_url(url, fullname))
+
+            """
+            If URL is for a comment, replace the path to the comment permalink
+            with the path to the post, and add a fragment identifier to scroll
+            to the comment.
+
+            It would be better to get the post URL in a more-direct
+            manner and use a helper to append the hash for the comment.
+            """
+            def format_url(url, fullname):
+                regex_string = """
+                  ^
+                  /ea
+                  /(?P<post_id>[^/]+)
+                  /(?P<post_slug>[^/]+)
+                  /(?P<comment_id>[^/]+)
+                  /?
+                  $
+                """
+                regex = re.compile(regex_string, re.VERBOSE)
+                match = regex.match(url)
+                if match and match.group('comment_id'):
+                    groupdict = match.groupdict()
+                    groupdict['fullname'] = fullname
+                    return '/ea/{post_id}/{post_slug}/?refresh=true#thingrow_{fullname}'.format(**groupdict)
+                else:
+                    return url
+
+            return ('redirect', format_url(url, fullname))
         elif reason.startswith('share_'):
             fullname = reason[6:]
             t = Thing._by_fullname(fullname, data=True)
