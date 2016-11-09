@@ -1048,7 +1048,7 @@ class Comment(Thing, Printable):
         if not self._loaded:
             self._load()
         can_moderate = c.user_is_loggedin and (self.author_id == c.user._id or self.subreddit_slow.is_moderator(c.user) or c.user_is_admin)
-        return can_moderate and not self.has_children()
+        return (can_moderate and self.retracted and not self.has_children())
 
 
     # Changes the body of this comment, parsing the new body for polls and

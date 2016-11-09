@@ -2224,7 +2224,7 @@ div.comment-links ul li.unban a.mod,
 div.comment-links ul li.delete a {
   width: 19px;
   height: 20px;
-  background-position: -155px 0;
+  background-position: -160px -32px;
 }
 
 .commentreply .buttons button,
