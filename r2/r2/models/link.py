@@ -408,6 +408,9 @@ class Link(Thing, Printable, ImageHolder):
             res = "/%s" % p
         return res
 
+    def make_permalink_slow(self):
+        return self.make_permalink(self.subreddit_slow)
+
     @property
     def canonical_url(self):
         from r2.lib.template_helpers import get_domain
