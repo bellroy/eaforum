@@ -568,14 +568,15 @@ class FrontController(RedditController):
         captcha = Captcha(tabular=False) if c.user.needs_captcha() else None
         draft_subreddit = Subreddit.draft_subreddit(author)
         main_subreddit = Subreddit.main_subreddit()
-        published_status = "published" if article.sr_id == main_subreddit._id else "draft"
+        is_published = article.sr_id == main_subreddit._id
 
         edit_link = EditLink(article,
-                             draft_subreddit = draft_subreddit,
-                             main_subreddit = main_subreddit,
-                             permalink = article.make_permalink_slow(),
-                             published_status = published_status,
-                             captcha = captcha)
+                             subreddits=subreddits,
+                             draft_subreddit=draft_subreddit,
+                             main_subreddit=main_subreddit,
+                             permalink=article.make_permalink_slow(),
+                             is_published=is_published,
+                             captcha=captcha)
 
         return FormPage(_("Edit article"), show_sidebar = True, content=edit_link).render()
 

@@ -86,14 +86,14 @@
     %endif
     <tr>
       <td>
-        %if thing.published_status == "published":
+        %if thing.is_published:
           <button class="js-publish-button btn" data-save-action="update" type="submit">
             Update
           </button>
           <button class="js-save-button btn btn-danger"  data-save-action="unpublish" type="submit">
             Unpublish
           </button>
-          <a href="${thing.permalink}" target="_blank">View</a>
+          <a href="${thing.permalink}" target="_blank">View on Forum</a>
         %else:
           <button class="js-save-button btn" data-save-action="save" type="submit">
             Save as Draft
@@ -107,9 +107,6 @@
           >
             Publish
           </button>
-          %if thing.published_status == "draft":
-            <a href="${thing.permalink}" target="_blank">Preview</a>
-          %endif
         %endif
         <input type="hidden" id="keep_editing" name="keep_editing" value="on" />
         <input class="js-subreddit" name="sr" value="${thing.draft_subreddit.name}" hidden />
@@ -212,9 +209,9 @@
           var url = "${unsafe(thing.permalink)}";
           var messageType = getQueryVariable("message");
           var messages = {
-            "update": "Your published article has been updated. <a href='${unsafe(thing.permalink)}' target="_blank">View</a>",
+            "update": "Your published article has been updated. <a href='${unsafe(thing.permalink)}'>View</a>",
             "unpublish": "Your article is no longer publicly visible.",
-            "save": "Your draft was saved. <a href='${unsafe(thing.permalink)}' target='_blank'>Preview</a>",
+            "save": "Your draft was saved.",
             "publish": "Your article is published. <a href='${unsafe(thing.permalink)}' target='_blank'>View</a>",
           };
           return messages[messageType];
