@@ -4,13 +4,16 @@
    from pylons.i18n import _, ungettext
    from r2.lib.filters import killhtml
    from r2.lib.template_helpers import get_domain
+   from r2.lib.utils import http_utils
 %>
 
-  <span class="inline-comment-score" id="score_${thing._fullname}">${thing.score_fmt(thing.score)['label']}</span>
-  <span class="inline-comment-title" href="${thing.make_anchored_permalink()}">${killhtml(thing.body)}</span>
-  <span class="tagline">
-    by&#32;<a class="author" href="http://${get_domain(cname=True, subreddit=False)}/user/${thing.author.name}">
-    <strong>${thing.author.name}</strong></a>&#32;
-    on&#32;
-    <a href="${thing.permalink}" class="article-title">${thing.link.title}</a>
-  </span>
+<% comment_url = http_utils.generate_comment_url(thing.make_permalink_slow(), thing._fullname) %>
+
+<span class="inline-comment-score" id="score_${thing._fullname}">${thing.score_fmt(thing.score)['label']}</span>
+<a class="inline-comment-title" href="${comment_url}">${killhtml(thing.body)}</span>
+<span class="tagline">
+  by&#32;<a class="author" href="http://${get_domain(cname=True, subreddit=False)}/user/${thing.author.name}">
+  <strong>${thing.author.name}</strong></a>&#32;
+  on&#32;
+  <a href="${comment_url}" class="article-title">${thing.link.title}</a>
+</span>
