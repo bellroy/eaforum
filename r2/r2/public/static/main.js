@@ -151,6 +151,15 @@ $(document).ready(function() {
             (navigator.platform.indexOf("iPad") != -1));
   }
 
+  var commentId = window.location.hash;
+  jQuery(commentId).addClass("comment-fading-highlight");
+  window.addEventListener("hashchange", function () {
+    var commentId = window.location.hash;
+    jQuery(commentId)
+      .removeClass("comment-fading-highlight")
+      .addClass("comment-fading-highlight");
+  }, false);
+
   /* Don't do qtip tooltips with iphones (and related), it seems to interfer with the
      normal onclick behaviour */
   if (!isiPhone()) {
