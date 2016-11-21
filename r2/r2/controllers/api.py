@@ -28,7 +28,9 @@ from pylons.controllers.util import etag_cache
 
 import hashlib
 import httplib
+import urllib
 import urllib2
+import json
 from validator import *
 
 from r2.models import *
@@ -420,7 +422,7 @@ class ApiController(RedditController):
 
 
     @Json
-    @validate(VCaptcha(),
+    @validate(VRecaptcha('g-recaptcha-response'),
               VRatelimit(rate_ip = True, prefix='rate_register_'),
               name = VUname(['user_reg']),
               email = ValidEmail('email_reg'),
@@ -452,7 +454,7 @@ class ApiController(RedditController):
             res._focus('passwd2_reg')
         elif res._chk_error(errors.DRACONIAN, op):
             res._focus('legal_reg')
-        elif res._chk_captcha(errors.BAD_CAPTCHA):
+        elif res._chk_captcha(errors.BAD_RECAPTCHA):
             pass
         elif res._chk_error(errors.RATELIMIT, op):
             pass
