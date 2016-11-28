@@ -36,13 +36,6 @@
 <%call expr="submit_form(action='/submit', _class='long-text content', _id='newlink')">
   ${self.form_extra()}
   <h1>${_("Submit article")}</h1>
-  <div style="margin-bottom: 10px; max-width: 580px;">
-    We recently overhauled this page to make it easier to use. If
-    you notice something not working properly, please create an issue on
-    <a href="https://github.com/tog22/eaforum/issues">GitHub</a> or
-    <a href="mailto:pbrinichlanglois@gmail.com?subject=EA Forum bug report">e-mail</a>
-    us, and we'll do our best to fix it.
-  </div>
 
   <div class="js-link-confirmation-message infobar displayNone"></div>
   <% allowed_to_publish = thing.main_subreddit.can_submit(c.user) %>
