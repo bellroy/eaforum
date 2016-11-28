@@ -458,7 +458,7 @@ class VRecaptcha(Validator):
             return
 
         request_data = {
-            "secret": g.recaptcha_secret,
+            "secret": g.recaptcha_secret_key,
             "response": recaptcha_response,
         }
         query_params = urllib.urlencode(request_data)
