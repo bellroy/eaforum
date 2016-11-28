@@ -2635,8 +2635,12 @@ form#passwordEmail button.button {
 
 /* Mobile version.  This overrides styles for small screens, and so needs to stay at the
    end of the CSS. */
-@media only screen and (max-width: 1024px)  {
+@media only screen and (max-width: 750px)  {
   #sidebar { display: none; }
+  #side-search { display: none; }
+  #wrapper {
+    width: 750px;
+  }
   div.meta span.votes span.votes {
     margin-top: 0;
   }
@@ -2657,7 +2661,7 @@ form#passwordEmail button.button {
     margin-right: 5px;
   }
   #content {
-    width: 960px;
+    width: 690px;
     word-wrap: break-word;
   }
   .md { font-size: 32px; }
