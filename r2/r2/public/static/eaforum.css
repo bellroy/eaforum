@@ -661,5 +661,8 @@ button.btn-disabled {
   #comment-controls div.filter-inactive, #comment-controls div.filter-active {
     font-size: 18px;
   }
+  .comment-links {
+    zoom: 2;
+  }
   html * {max-height:1000000px;}
 }
