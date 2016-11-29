@@ -58,6 +58,14 @@ div.permamessage {
     width: 250px;
  }
 
+.SignupForm-recaptcha {
+  transform: scale(0.71);
+  -webkit-transform: scale(0.71);
+  transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  height: 56px;
+}
+
 /* cover */
 .cover {
     position: fixed;

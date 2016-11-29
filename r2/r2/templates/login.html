@@ -26,7 +26,6 @@
    from r2.lib.utils import UrlParser
    import random
  %>
-<%namespace file="captcha.html" import="captchagen"/>
 <%namespace file="utils.html" import="error_field, plain_link, text_with_links, img_link"/>
 
 ## default content
@@ -35,9 +34,6 @@
 %else:
   ${login_panel(user_reg = thing.user_reg, user_login = thing.user_login,
                 dest=thing.dest)}
-  <script type="text/javascript">
-    new_captcha();
-  </script>
 %endif
 
 <%def name="login_form(register=False, user='', dest='')">
@@ -96,9 +92,15 @@
           ${error_field("BAD_PASSWORD_MATCH_" + op, kind="span")}
         </li>
         <li>
-          ${captchagen('', tabulate=True, label=False, size=30)}
           ${error_field("DRACONIAN_" + op, kind="span")}
           ${error_field("RATELIMIT_" + op, kind="span")}
+        </li>
+        <li>
+          <div
+            class="g-recaptcha SignupForm-recaptcha"
+            data-sitekey="${g.recaptcha_site_key}"
+          ></div>
+          ${error_field("BAD_RECAPTCHA", kind="span")}
         </li>
       %endif
       <li>
