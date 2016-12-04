@@ -30,8 +30,12 @@
   <head>
     <title>${self.Title()}</title>
 
-<!-- `meta name="viewport"` set for mobile browsers. See https://github.com/tog22/eaforum/issues/7 & https://github.com/tog22/eaforum/issues/28 -->
-    <meta name="viewport" content="width=device-width minimum-scale=0.25 maximum-scale=2.0">
+<!-- `meta name="viewport"` controls how mobile browsers show the page. The page layout is
+originally a desktop layout, built around a screen that is at least 1024px wide.  For
+mobile, we tell the page to display at 750px, lop of the sidebars, then boost the sizes of
+many elements that would otherwise be too small. See the media query at the end of
+eaforum.css. -->
+    <meta name="viewport" content="width=750">
     <meta name="keywords" content="${self.keywords()}" />
     <meta name="title" content="${self.Title()}" />
     <% description = hasattr(thing, 'link') and thing.link._meta_description() %>
