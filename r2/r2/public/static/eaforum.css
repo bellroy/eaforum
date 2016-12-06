@@ -612,7 +612,25 @@ button.btn-disabled {
 /* Mobile version.  This overrides styles for small screens, and so needs to stay at the
    end of the CSS. */
 @media only screen and (max-width: 750px)  {
-  #sidebar { display: none; }
+  #banner { zoom: 0.75 }
+  #sidebar {
+    width: auto;
+    float: none;
+    margin-left: 34px;
+    font-size: 28px;
+  }
+  .linkbox {
+    margin-top: 28px;
+  }
+  #sidebar h2 {
+    font-size: 32px;
+  }
+  #sidebar .linkbox li a {
+    font-size: 24px;
+  }
+  #sidebar #feeds ul li a {
+    font-size: 24px;
+  }
   #side-search { display: none; }
   #wrapper {
     width: 750px;
@@ -628,6 +646,8 @@ button.btn-disabled {
   }
   #content .post .post-body h2 {
     padding-left: 34px;
+    font-size: 32px;
+    line-height: normal;
   }
   #content .post .post-body .content .md {
     font-size: 32px;
@@ -653,6 +673,7 @@ button.btn-disabled {
   }
   div.footer {
     font-size: 18px;
+    height: 32px;
   }
   div.comment-meta span {
     font-size: 32px;
