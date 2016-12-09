@@ -665,6 +665,9 @@ button.btn-disabled {
     #sidebar #feeds ul li a {
       font-size: 24px;
     }
+    #side-comments {
+      font-size: 24px;
+    }
     #content .post h1 a {
       font-size: 32px;
     }
@@ -703,6 +706,9 @@ button.btn-disabled {
       font-size: 18px;
     }
     .comment-links {
+      zoom: 2;
+    }
+    .tools {
       zoom: 2;
     }
   }
