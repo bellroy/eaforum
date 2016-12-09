@@ -689,6 +689,12 @@ button.btn-disabled {
       font-size: 24px;
       line-height: 26px;
     }
+    div.post h3 {
+      font-size: 32px;
+    }
+    div.post h2 {
+      font-size: 34px;
+    }
     #content .post .post-body .post-comment-count a {
       font-size: 24px;
     }
