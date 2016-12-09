@@ -714,6 +714,10 @@ button.btn-disabled {
     #comment-controls div.filter-inactive, #comment-controls div.filter-active {
       font-size: 18px;
     }
+    body.post .commentreply textarea,
+    body.meetup .commentreply textarea {
+      font-size: 36px;
+    }
     .comment-links {
       zoom: 2;
     }
