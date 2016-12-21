@@ -241,12 +241,6 @@ function chklogin(form) {
             post_form(form, 'register');
             if (window.pageTracker)
                 window.pageTracker._trackPageview('/NewSignup');
-            // We reset the CAPTCHA because if the form was invalid, a
-            // fresh CAPTCHA will be needed (they are single-use). It
-            // would make more sense to validate the CAPTCHA only if the
-            // rest of the form is valid, but I couldn't figure out how
-            // to do this within the current validation system.
-            grecaptcha.reset();
         }
         return false;
     }

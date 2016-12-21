@@ -31,9 +31,6 @@ from r2.lib.template_helpers import add_sr
 from r2.lib.jsonresponse import json_respond
 from r2.lib.errors import errors, UserRequiredException
 from r2.lib.utils import http_utils
-import urllib
-import urllib2
-import json
 
 from r2.models import *
 
@@ -448,25 +445,6 @@ class VCaptcha(Validator):
         if (not c.user_is_loggedin or c.user.needs_captcha()):
             if not captcha.valid_solution(iden, solution):
                 c.errors.add(errors.BAD_CAPTCHA)
-
-class VRecaptcha(Validator):
-    RECAPTCHA_VALIDATION_URL = "https://www.google.com/recaptcha/api/siteverify"
-
-    def run(self, recaptcha_response):
-        if not recaptcha_response:
-            c.errors.add(errors.BAD_RECAPTCHA)
-            return
-
-        request_data = {
-            "secret": g.recaptcha_secret_key,
-            "response": recaptcha_response,
-        }
-        query_params = urllib.urlencode(request_data)
-        request = urllib2.Request(self.RECAPTCHA_VALIDATION_URL, query_params)
-        response = urllib2.urlopen(request)
-        response_data = json.load(response)
-        if not response_data["success"]:
-            c.errors.add(errors.BAD_RECAPTCHA)
 
 class VUser(Validator):
     def run(self, password = None):
