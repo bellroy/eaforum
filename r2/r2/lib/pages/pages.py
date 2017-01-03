@@ -121,6 +121,7 @@ class Reddit(Wrapped):
 
         def get_links():
             links = [
+                ("Forum FAQ", "/ea/vm/ea_forum_faq/"),
                 ("New to Effective Altruism?", "http://effectivealtruism.org/"),
                 ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/"),
                 most_recent_open_thread_link(),
