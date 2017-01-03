@@ -134,7 +134,7 @@ class Reddit(Wrapped):
             SELECT thing_id
             FROM reddit_data_link
             WHERE key = 'title'
-              AND value LIKE 'The Effective Altruism Newsletter & Open Thread%%'
+              AND value ILIKE '%%open thread%%'
             ORDER BY thing_id DESC
             LIMIT 1
             """
