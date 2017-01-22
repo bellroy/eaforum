@@ -121,11 +121,12 @@ class Reddit(Wrapped):
 
         def get_links():
             links = [
+                ("Forum FAQ", "/ea/vm/ea_forum_faq/"),
                 ("New to Effective Altruism?", "http://effectivealtruism.org/"),
                 ("More on Effective Altruism", "/ea/6x/introduction_to_effective_altruism/"),
                 most_recent_open_thread_link(),
                 ("Meetups", "https://eahub.org/groups"),
-                ("Other Resources", "/ea/xd/ea_links/"),
+                ("Other Resources", "https://www.effectivealtruism.org/get-involved/"),
             ]
             return filter(None, links)
 
@@ -134,7 +135,7 @@ class Reddit(Wrapped):
             SELECT thing_id
             FROM reddit_data_link
             WHERE key = 'title'
-              AND value LIKE 'The Effective Altruism Newsletter & Open Thread%%'
+              AND value ILIKE '%%open thread%%'
             ORDER BY thing_id DESC
             LIMIT 1
             """
