@@ -6,16 +6,16 @@
 # software over a computer network and provide for limited attribution for the
 # Original Developer. In addition, Exhibit A has been modified to be consistent
 # with Exhibit B.
-# 
+#
 # Software distributed under the License is distributed on an "AS IS" basis,
 # WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
 # the specific language governing rights and limitations under the License.
-# 
+#
 # The Original Code is Reddit.
-# 
+#
 # The Original Developer is the Initial Developer.  The Initial Developer of the
 # Original Code is CondeNet, Inc.
-# 
+#
 # All portions of the code written by CondeNet are Copyright (c) 2006-2008
 # CondeNet, Inc. All Rights Reserved.
 ################################################################################
@@ -60,10 +60,9 @@ class Globals(object):
                  'side_tags_max_age',
                  'side_contributors_max_age',
                  'post_karma_multiplier',
-                 'article_navigation_max_age',
                  'meetups_radius',
                  ]
-    
+
     bool_props = ['debug',
                   'translator',
                   'sqlprinting',
@@ -98,27 +97,27 @@ class Globals(object):
         One instance of Globals is created by Pylons during
         application initialization and is available during requests
         via the 'g' variable.
-        
+
         ``global_conf``
             The same variable used throughout ``config/middleware.py``
             namely, the variables from the ``[DEFAULT]`` section of the
             configuration file.
-            
+
         ``app_conf``
             The same ``kw`` dictionary used throughout
             ``config/middleware.py`` namely, the variables from the
             section in the config file for your application.
-            
+
         ``extra``
-            The configuration returned from ``load_config`` in 
+            The configuration returned from ``load_config`` in
             ``config/middleware.py`` which may be of use in the setup of
             your global variables.
-            
+
         """
 
         def to_bool(x):
             return (x.lower() == 'true') if x else None
-        
+
         def to_iter(name, delim = ','):
             return (x.strip() for x in global_conf.get(name, '').split(delim))
 
@@ -142,7 +141,7 @@ class Globals(object):
         self.make_lock = make_lock_factory(mc)
 
         self.rec_cache = Memcache(self.rec_cache)
-        
+
         # set default time zone if one is not set
         self.tz = pytz.timezone(global_conf.get('timezone'))
 
@@ -204,8 +203,7 @@ class Globals(object):
 
     def __del__(self):
         """
-        Put any cleanup code to be run when the application finally exits 
+        Put any cleanup code to be run when the application finally exits
         here.
         """
         pass
-

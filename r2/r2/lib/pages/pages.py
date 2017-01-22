@@ -1118,11 +1118,6 @@ class GoogleSearchResults(BoringPage):
         # return self.content_stack(self.infobar,
                                   # self.nav_menu, self._content)
 
-class ArticleNavigation(Wrapped):
-  """Generates article navigation fragment for the supplied link"""
-  def __init__(self, link, author):
-    Wrapped.__init__(self, article=link, author=author)
-
 class SearchBar(Wrapped):
     """More detailed search box for /search and /categories pages.
     Displays the previous search as well as info of the elapsed_time
