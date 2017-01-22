@@ -47,9 +47,7 @@ from r2.lib.rancode import random_key
 from r2.lib.pages import FriendList, ContributorList, ModList, EditorList, \
     BannedList, BoringPage, FormPage, NewLink, CssError, UploadedImage, \
     RecentArticles, RecentComments, TagCloud, TopContributors, TopMonthlyContributors, WikiPageList, \
-    ArticleNavigation, UpcomingMeetups, RecentPromotedArticles, \
-    MeetupsMap, RecentTagged
-
+    UpcomingMeetups, RecentPromotedArticles, MeetupsMap, RecentTagged
 
 from r2.lib.menus import CommentSortMenu
 from r2.lib.translation import Translator
@@ -1257,16 +1255,6 @@ class ApiController(RedditController):
         """Return HTML snippet of the recent promoted posts for the front page."""
         # Server side cache is also invalidated when new article is posted
         return self.render_cached('recent-promoted', RecentPromotedArticles, g.side_posts_max_age)
-
-    @validate(link = VLink('article_id', redirect=False))
-    def GET_article_navigation(self, link, *a, **kw):
-      """Returns the article navigation fragment for the article specified"""
-      author = Account._byID(link.author_id, data=True) if link else None
-      return self.render_cached(
-        'article_navigation_%s' % (link._id36 if link else None),
-        ArticleNavigation, g.article_navigation_max_age,
-        link=link, author=author
-      )
 
     @validate(VModhash(),
               file = VLength('file', length=1024*500),

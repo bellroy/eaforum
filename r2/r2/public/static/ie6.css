@@ -27,16 +27,6 @@ div.tools ul li {
 div.tools div.tags {
   display: inline;
 }
-div.tools div.articlenavigation ul {
-	float: none;
-}
-div.tools div.articlenavigation ul li {
-	display: block;
-	float: none;
-	height: 15px;
-	overflow: hidden;
-}
-
 
 /* Meetup
 -------------------------------------------------------------------------------------- */

@@ -90,13 +90,6 @@
       </div>
     </div><!-- .content -->
     %if full_article:
-    <div class="articlenavigation">
-      <h4><a href="javascript:void(0)" class="dsphead" onclick="toggle_article_navigation('${thing._id36}')" id="articlenavstate">Article Navigation</a></h4>
-      <div style="display: none;" class="dspcont" id="article_nav_controls">
-        <span class="loading"><img src="${static('ajax-loader.gif')}" alt="" />
-        Loading&hellip;</span>
-      </div>
-    </div><!-- .articlenavigation -->
     <div class="tools">
       %if c.user_is_loggedin and (not c.profilepage):
         <% clicked = thing.clicked() if thing.clicked else None %>
