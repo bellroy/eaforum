@@ -98,27 +98,27 @@ class ListingController(RedditController):
 
     @property
     def menus(self):
-        """list of menus underneat the header (e.g., sort, time, kind,
+        """list of menus underneath the header (e.g., sort, time, kind,
         etc) to be displayed on this listing page"""
         return []
 
     @property
     def top_filter(self):
-      return None
+        return None
 
     @property
     def header_sub_nav(self):
-      buttons = []
-      if c.default_sr:
-        buttons.append(NamedButton("promoted"))
-        buttons.append(NamedButton("new"))
-      else:
-        buttons.append(NamedButton("new", aliases = ["/"]))
+        buttons = []
+        if c.default_sr:
+            buttons.append(NamedButton("promoted"))
+            buttons.append(NamedButton("new"))
+        else:
+            buttons.append(NamedButton("new", aliases = ["/"]))
 
-      buttons.append(NamedButton('top'))
-      if c.user_is_loggedin:
-        buttons.append(NamedButton('saved'))
-      return buttons
+        buttons.append(NamedButton('top'))
+        if c.user_is_loggedin:
+            buttons.append(NamedButton('saved'))
+        return buttons
 
     @base_listing
     def build_listing(self, num, after, reverse, count):
@@ -137,15 +137,15 @@ class ListingController(RedditController):
         self.builder_obj = self.builder()
         self.listing_obj = self.listing()
         content = self.content()
-        res =  self.render_cls(content = content,
-                               show_sidebar = self.show_sidebar,
-                               nav_menus = self.menus,
-                               title = self.title(),
-                               infotext = self.infotext,
-                               robots = self.robots,
-                               top_filter = self.top_filter,
-                               header_sub_nav = self.header_sub_nav,
-                               **self.render_params).render()
+        res = self.render_cls(content = content,
+                              show_sidebar = self.show_sidebar,
+                              nav_menus = self.menus,
+                              title = self.title(),
+                              infotext = self.infotext,
+                              robots = self.robots,
+                              top_filter = self.top_filter,
+                              header_sub_nav = self.header_sub_nav,
+                              **self.render_params).render()
         return res
 
 
@@ -325,10 +325,10 @@ class BlessedController(ListingController):
 
 # This used to be RootController, but renamed since there is a new root controller
 class PromotedController(ListingController):
-   def __before__(self):
-       ListingController.__before__(self)
-       controller = self.link_listings(c.site.default_listing)
-       self.__class__ = controller
+    def __before__(self):
+        ListingController.__before__(self)
+        controller = self.link_listings(c.site.default_listing)
+        self.__class__ = controller
 
 class NewController(ListingController):
     where = 'new'
@@ -376,7 +376,7 @@ class TagController(ListingController):
                            sort = TagSortMenu.operator(self.sort),
                            eager_load = True,
                            thing_data = not g.use_query_cache
-                      )
+                           )
         q.prewrap_fn = lambda x: x._thing1
         return q
 
