@@ -63,7 +63,7 @@ try:
            ("reddit is only compatible with SqlAlchemy 0.3.10 not '%s' " % vers)
 except ImportError:
     print "Installing Sqlalchemy 0.3.10 from the cheese shop"
-    easy_install(["http://pypi.python.org/packages/source/S/SQLAlchemy/SQLAlchemy-0.3.10.tar.gz"])
+    easy_install(["https://pypi.python.org/packages/source/S/SQLAlchemy/SQLAlchemy-0.3.10.tar.gz"])
 
 filtermod = Extension('Cfilters',
                       sources = ['r2/lib/c/filters.c'])
@@ -99,7 +99,7 @@ setup(
                       "flup==1.0.3.dev-20110405",
                       "simplejson==2.1.1",
                       "SQLAlchemy==0.3.10",
-                      "BeautifulSoup==3.0.7a",
+                      "BeautifulSoup==3.2.1",
                       "cssutils==0.9.5.1",
                       "chardet==1.0.1",
                       "psycopg2==2.2.1",
