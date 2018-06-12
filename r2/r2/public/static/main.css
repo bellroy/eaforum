@@ -1772,6 +1772,10 @@ body.post #content .post .post-body .post-info {
   font-size: 16px;
 }
 
+#content .post .post-body .content .md li {
+  margin-bottom: 12px;
+}
+
 #content .post .action-bar {
   border-top: 1px solid #ddd;
   padding: 13px 0 0;
