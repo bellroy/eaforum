@@ -45,7 +45,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     polyglot (0.3.5)
     public_suffix (3.0.2)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rake (0.8.7)
@@ -85,6 +85,7 @@ DEPENDENCIES
   capybara
   erubis (~> 2.6.6)
   httparty
+  rack (~> 2.0.6)
   rake (~> 0.8.7)
   right_aws (~> 3.0.0)
   rspec
@@ -92,4 +93,4 @@ DEPENDENCIES
   treetop (~> 1.4.8)
 
 BUNDLED WITH
-   1.16.1
+   1.17.1
