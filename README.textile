@@ -1,3 +1,5 @@
+h1. THIS CODEBASE IS DEPRECATED - please visit "this post":https://forum.effectivealtruism.org/posts/dMJ475rYzEaSvGDgP/what-s-changing-with-the-new-forum for more information
+
 h1. EA Forum
 
 The code behind the Effective Altruist Forum at "effective-altruism.com":http://effective-altruism.com.
